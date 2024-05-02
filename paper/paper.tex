@@ -1,0 +1,370 @@
+\documentclass[draft]{agujournal2019}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url} %this package should fix any errors with URLs in refs.
+\usepackage{lineno}
+\usepackage{soul}
+\linenumbers
+
+\draftfalse
+
+\journalname{JGR: Oceans}
+
+\begin{document}
+
+\title{Dispersion of short waves riding on longer waves}
+
+\authors{M. Curcic\affil{1,2}}
+
+\affiliation{1}{
+  Rosenstiel School of Marine, Atmospheric, and Earth Science,
+  University of Miami,
+  Miami, FL
+}
+\affiliation{2}{
+  Frost Institute for Data Science and Computing,
+  University of Miami,
+  Miami, FL
+}
+
+\correspondingauthor{Milan Curcic}{mcurcic@miami.edu}
+
+\begin{keypoints}
+\item enter point 1 here
+\item enter point 2 here
+\item enter point 3 here
+\end{keypoints}
+
+\begin{abstract}
+Abstract goes here
+\end{abstract}
+
+\section*{Plain Language Summary}
+Plain language summary goes here
+
+\section{Introduction}
+
+Short ocean surface waves are modulated by longer swell.
+Following the result by \citeA{unna1941white,unna1942waves,unna1947sea},
+\citeA{longuet1960changes} introduced an analytical solution for hydrodynamic
+modulation of short waves by an underlying longer wave:
+
+\begin{equation}
+\label{eq:tau}
+\widetilde{k} = k (1 + a_L k_L)
+\end{equation}
+where $\widetilde{k}$ and $k$ are the modulated and unmodulated wavenumbers of
+short waves, respectively, and $a_L$ and $k_L$ are amplitude and wavenumber
+of the long wave.
+
+This result has been influential on the development of remote sensing of ocean
+surface waves and currents \cite{keller1975microwave,hara1994hydrodynamic}
+and has been used even recently \cite{peureux2021unsteady} to simulate
+unsteady growth of short-waves due to longer waves.
+
+In this study, we extend the \citeA{longuet1960changes} theory (hereafter L-HS)
+to a higher-order solution following the linear wave theory, and present revised
+phase-averaged estimates of short-wave properties in presence of long waves. 
+
+\section{Governing equations}
+
+Paragraph: Describe the conditions, assumptions, and limitations.
+
+\section{Analytical solutions}
+
+\subsection{Derivation of the original L-HS solution}
+
+The L-HS solution can be most readily obtained by starting from the dispersion
+relationship for short waves:
+
+\begin{equation}
+\label{eq:dispersion}
+\omega = \sqrt{gk} + k U
+\end{equation}
+where $\omega$ is the angular frequency,
+$g$ is the gravitational acceleration,
+and $U$ is the mean advective current in the direction of the wave propagation.
+For simplicity, we will limit the derivation to gravity waves and ignore
+surface tension effects, however, the solution can be as well derived for
+gravity-capillary waves by carrying the surface tension terms.
+
+Next, take the conservation of wave crests:
+
+\begin{equation}
+\label{eq:wave_crests1}
+\dfrac{\partial k}{\partial t}
++ \dfrac{\partial \omega}{\partial x}
+= 0
+\end{equation}
+where $\partial/\partial t$ and $\partial/\partial x$ are partial derivatives
+in time and space, respectively.
+Insert (\ref{eq:dispersion}) into (\ref{eq:wave_crests1}) to get:
+
+\begin{equation}
+\label{eq:wave_crests2}
+\dfrac{\partial k}{\partial t}
++ C_g \dfrac{\partial k}{\partial x}
++ U \dfrac{\partial k}{\partial x}
++ k \dfrac{\partial U}{\partial x}
+= 0
+\end{equation}
+where $C_g$ is the group velocity of short waves.
+At this step, we assume that $g$ does not vary in space and time.
+We will see later that to a second order $g$ of short waves varies in presence
+of long waves.
+If we follow the short waves in a Lagrangian frame, we can re-write
+(\ref{eq:wave_crests2}) as:
+
+\begin{equation}
+\label{eq:wave_crests3}
+\dfrac{d k}{dt}
++ k \dfrac{\partial U}{\partial x}
+= 0
+\end{equation}
+
+\begin{equation}
+\label{eq:wave_crests4}
+\dfrac{d k}{k}
+= - \dfrac{\partial U}{\partial x} dt
+\end{equation}
+which states that the relative contraction of short waves is largest where the
+convergence of the ambient current $U$ is the largest.
+For short waves riding on longer waves, the mean ambient current is the
+horizontal near-surface orbital velocity of the long wave.
+Rather than at the long-wave surface, L-HS took the ambient current to be the
+long-wave orbital velocity at the mean water level, $z = 0$:
+
+\begin{equation}
+\label{eq:U_L1}
+U = a_L \omega_L \cos{\psi}
+\end{equation}
+where $\psi$ is the long-wave phase such that the crest is located
+at $\psi = 0$.
+Insert (\ref{eq:U_L1}) into (\ref{eq:wave_crests4}) to obtain:
+
+\begin{equation}
+\label{eq:wave_crests5}
+\dfrac{d k}{k}
+= a_L k_L \omega_L \sin{\psi} dt
+\end{equation}
+To calculate the long-wave modulated short-wave wavenumber, integrate
+(\ref{eq:wave_crests5}) from the initial time at which the short-waves
+are unperturbed (at $z=0$, or $\psi=\pi/2$), to time $t$:
+
+\begin{equation}
+\label{eq:wave_crests6}
+\int_k^{\ \widetilde k(t)} \dfrac{d k'}{k'}
+= \int_0^t a_L k_L \omega_L \sin{\psi} dt'
+\end{equation}
+which yields:
+
+\begin{equation}
+\label{eq:k_short1}
+\ \widetilde k(\psi) = k e^{a_L k_L \cos{\psi}}
+\end{equation}
+Approximating (\ref{eq:k_short1}) to the first-order Taylor expansion,
+we obtain the original L-HS solution:
+
+\begin{equation}
+\label{eq:k_short2}
+\ \widetilde k(\psi) = k (1 + a_L k_L \cos{\psi})
+\end{equation}
+The intuitive interpretation of (\ref{eq:k_short2}) is that as the short waves
+contract on the front face of the long wave, they reach maximum contraction
+(highest $\ \widetilde k$) at the crest of the long wave.
+As they pass to the rear face of the long wave, they get elongated and reach
+minimum contraction (lowest $\ \widetilde k$) in the trough of the long wave.
+
+\subsection{Extending the L-HS solution}
+
+L-HS made two approximations in their solution:
+First, they evaluated the advective velocity of short waves at $z = 0$
+rather than the surface, $z = \eta_L$, where $\eta_L$ is the long-wave
+elevation; and second, they evaluated the solution to the first order
+of the Taylor expansion series.
+Both of these approximations cause an underestimate of the short-wave
+modulation magnitude.
+
+To extend the L-HS solution, evaluate the advective velocity at the surface
+of the long-wave:
+
+\begin{equation}
+\label{eq:U_L2}
+U = U_L(z=\eta) = a_L \omega_L e^{a_L k_L \cos{\psi}} \cos{\psi}
+\end{equation}
+and insert it into \ref{eq:wave_crests4} to obtain:
+
+\begin{equation}
+\label{eq:wave_crests7}
+\dfrac{dk}{k} = a_L k_L \omega_L e^{a_L k_L \cos{\psi}} \sin{\psi} dt
+\end{equation}
+Integrate (\ref{eq:wave_crests7}) to the same limits as we did with
+(\ref{eq:wave_crests6}) to obtain:
+
+\begin{equation}
+\label{eq:k_short3}
+\widetilde{k}(\psi) = k e^{a_L k_L \cos{\psi} e^{a_L k_L \cos{\psi}}}
+\end{equation}
+
+We compare the solutions from (\ref{eq:k_short1}), (\ref{eq:k_short2}),
+and (\ref{eq:k_short3}) for a moderately steep long wave with steepness
+$a_L k_L = 0.2$ in Fig. (\ref{fig:wavenumber_modulation}).
+The original L-HS solution is a cosine wave with an amplitude equal
+to the long-wave steepness.
+The other two solutions both introduce an increase in wave modulation
+on the crest and a decrease in the trough.
+At the crest, the relative modulation predicted by the exact L-HS solution
+is 10.7\% larger than that predicted by the 1st order approximate L-HS
+solution, while the solution that evaluates the long-wave orbital velocity
+at the water surface rather than $z = 0$ is 38.4\% larger than that of the
+1st order approximate L-HS solution.
+Also, since the less-approximate solutions decrease the modulation in the
+troughs and increase in on the crests, the average wavenumber modulation
+is no longer 0, but 1\% in the case of the exact L-HS solution and 3.1\% in the
+case of the extended solution.
+
+\begin{figure}[h]
+\label{fig:wavenumber_modulation}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_wavenumber_modulation_by_phase.png}
+\caption{
+  Comparison of relative short-wave modulation as function of the
+  long-wave phase, for a moderately steep long wave of $a_L k_L = 0.2$.
+  The dotted line shows the 1st-order approximated solution by L-HS,
+  the dashed line shows the exact solution by L-HS,
+  and the solid line shows the extended solution introduced in this paper.
+}
+\end{figure}
+
+\section{Apparent gravity}
+
+Long waves also induce orbital acceleration under their surface, so the short
+waves experience an apparent gravity:
+
+\begin{equation}
+\label{eq:apparent_gravity1}
+\widetilde{g} = g + \dfrac{\partial w_L}{\partial t}
+\end{equation}
+The positive sign in front of $\partial w_L/\partial t$ comes from our
+coordinate-system convention where $w$ is defined positive-upward and $g$ is
+defined positive-downward, and the fact that $\widetilde{g}$ is the apparent
+gravity in the reference frame of the short waves.
+Taking the long-wave vertical acceleration at the surface as:
+
+\begin{equation}
+\label{eq:w_L}
+w_L = - a_L \omega_L e^{a_L k_L \cos{\psi}} \sin{\psi}
+\end{equation}
+we arrive at:
+
+\begin{equation}
+\label{eq:apparent_gravity2}
+\widetilde{g}(\psi) = g \left[
+  1 - a_L k_L e^{a_L k_L \cos{\psi}} \left(
+    \cos{\psi} + a_L k_L \sin^2{\psi}
+  \right)
+\right]
+\end{equation}
+The first-order term in $a_L k_L$ is in phase with the long-wave elevation,
+so the apparent gravity of the short waves is increased at the long-wave crests
+and decreased in the troughs.
+The second-order term in $a_L k_L$ is positive-definite and phase-shifted by
+$\pi/2$ relative to the crests.
+The second-order term thus increases the apparent gravity on the front and rear
+faces of the long wave (Fig. \ref{fig:apparent_gravity}).
+
+\begin{figure}[h]
+\label{fig:apparent_gravity}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_gravity_modulation_by_phase.png}
+\caption{
+  Relative change in gravity of short waves due to a longer wave with steepness $a_L k_L = 0.2$,
+  as a function of the long-wave phase and evaluated to the first (dashed line) and second (solid line) order in $a_L k_L$.
+}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:gravity_modulation_vs_ak}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_gravity_modulation_by_ak.png}
+\caption{
+  TODO
+}
+\end{figure}
+
+With the new long-wave modulated expressions for the short-wave wavenumber
+(Eq. \ref{eq:k_short3}) and gravity (Eq. \ref{eq:apparent_gravity2}), we can
+evaluate the long-wave modulated frequency as simply
+$\widetilde{\omega}(\psi) = \sqrt{\widetilde{g} \widetilde{k}}$, which we compare
+for four different values of $a_L k_L$ in Fig. \ref{fig:frequency_modulation}.
+
+\begin{figure}[h]
+\label{fig:frequency_modulation}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_frequency_modulation.png}
+\caption{
+  Relative change in short-wave frequency due to the presence of longer
+  waves, for four different values of long-wave steepness.
+}
+\end{figure}
+
+\section{Lagrangian averaged short-wave properties}
+
+Stokes drift is a residual Lagrangian drift that occurs due to the wave orbits
+not being closed under a propagating wave
+\cite{stokes1847,kenyon1969stokes,van2018stokes}:
+
+\begin{equation}
+\label{}
+u_s = a^2 \omega k e^{2kz}
+\end{equation}
+for a monochromatic wave in deep water.
+Stokes drift has been successfully used to predict material transport on the
+ocean surface \cite{rohrs2012observation,curcic2016hurricane}.
+It can be derived from linear wave theory by integrating the wave orbital
+velocity following material orbits \cite{phillips1966dynamics}:
+
+\begin{equation}
+\label{eq:lagrangian_average}
+u_s = \overline{
+  u(\psi) + 
+  \zeta \dfrac{\partial u}{\partial x} +
+  \xi \dfrac{\partial w}{\partial z}
+}
+\end{equation}
+where $\zeta$ and $\xi$ are horizontal and vertical excursions of the orbits,
+respectively.
+
+To obtain an average modulation of the short-wave properties, we apply the same
+Lagrangian integration approach used to obtain Stokes drift.
+
+\begin{equation}
+\label{eq:stokes_wavenumber}
+\widetilde{k_s} = \overline{
+  \widetilde{k}(\psi) +
+  \zeta \dfrac{\partial \widetilde{k}}{\partial x} +
+  \xi \dfrac{\partial \widetilde{k}}{\partial z}
+}
+= k \left( 1 + a_L^2 k_L^2 \right)
+\end{equation}
+
+\begin{equation}
+\label{eq:stokes_gravity}
+\widetilde{g_s} = \overline{
+  \widetilde{g}(\psi) +
+  \zeta \dfrac{\partial \widetilde{g}}{\partial x} +
+  \xi \dfrac{\partial \widetilde{g}}{\partial z}
+}
+= g \left( 1 + \dfrac{3}{2} a_L^2 k_L^2 \right)
+\end{equation}
+
+\section{Numerical solutions}
+
+\section{Conclusions}
+
+\acknowledgments
+We thank anonymous reviewers for their help improving this paper.
+
+\bibliography{references.bib}
+
+\end{document}
