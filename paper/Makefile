@@ -1,6 +1,9 @@
-.PHONY: all clean
+.PHONY: all clean figures
 
 all: paper
+
+figures:
+	$(MAKE) -C scripts
 
 paper: paper.tex references.bib
 	pdflatex -halt-on-error $@
