@@ -14,7 +14,7 @@
 
 \title{Dispersion of short waves riding on longer waves}
 
-\authors{M. Curcic\affil{1,2}}
+\authors{Milan Curcic\affil{1,2}}
 
 \affiliation{1}{
   Rosenstiel School of Marine, Atmospheric, and Earth Science,
@@ -30,18 +30,45 @@
 \correspondingauthor{Milan Curcic}{mcurcic@miami.edu}
 
 \begin{keypoints}
-\item enter point 1 here
-\item enter point 2 here
-\item enter point 3 here
+\item We revisit analytical and numerical solutions for hydrodynamic modulation of short waves by longer waves from linear wave theory.
+\item We extend the original solution by \citeA{longuet1960changes} to a higher-order solution.
+\item In contrast to earlier studies, we find that there exist stable numerical solutions for modulation by realistic long-wave groups.
 \end{keypoints}
 
 \begin{abstract}
-Abstract goes here
+Hydrodynamic modulation of short ocean surface waves by longer ambient waves is
+a well-known ocean surface process that pertains to remote sensing, the
+interpretation of in situ wave measurements, and numerical wave forecasting.
+In this paper we revisit the early analytical work by \citeA{longuet1960changes},
+as well as the more recent numerical simulations by \citeA{peureux2021unsteady},
+to re-evaluate the changes in short-wave properties due to the presence of longer waves.
+We present two distinct improvements to the current state of the art:
+First, we derive a higher-order, non-linear solution for the short-wave wavenumber
+and action density as function of the long-wave phase and steepness.
+This solution suggests an increase in short-wave wavenumber by 18 and 38\% for
+long-wave steepenesses of 0.1 and 0.2, respectively, compared to the original
+linear solution.
+It is also in close agreement with the full numerical solutions up to the
+long-wave steepness of 0.25.
+Second, we find that the full numerical solutions, which were previously found
+to be unstable for homogeneous initial conditions, are in fact stable for more
+realistic long-wave groups.
+The key physical interpretation from these results is that the short waves can
+indefinitely grow and steepen only in the presence of inifinite long-wave trains,
+an unlikely occurence in the ocean.
 \end{abstract}
 
 \section*{Plain Language Summary}
-Plain language summary goes here
-
+The ocean surface is typically covered by waves of many wavelengths.
+Longer waves bunch up and dilate the shorter waves, and this process is
+important to consider for both the measurements and the forecasting of ocean
+waves.
+Although there have been analytical and numerical solutions for how the short
+waves should change in the presence of longer waves, they have been simplified
+and incomplete.
+This paper revisits and extends these solutions to propose a more accurate
+description of how the short waves should change in the presence of longer
+waves.
 \section{Introduction}
 
 Short ocean surface waves are modulated by longer swell.
@@ -68,59 +95,80 @@ phase-averaged estimates of short-wave properties in presence of long waves.
 
 \section{Governing equations}
 
-Paragraph: Describe the conditions, assumptions, and limitations.
-
-\section{Analytical solutions}
-
-\subsection{Derivation of the original L-HS solution}
-
-The L-HS solution can be most readily obtained by starting from the dispersion
-relationship for short waves:
+In this paper we consider inviscid, irrotational, and incompressible flow.
+In these conditions the linear (sine-like), deep-water, surface gravity waves
+obey the dispersion relation:
 
 \begin{equation}
 \label{eq:dispersion}
 \omega = \sqrt{gk} + k U
 \end{equation}
-where $\omega$ is the angular frequency,
-$g$ is the gravitational acceleration,
-and $U$ is the mean advective current in the direction of the wave propagation.
-For simplicity, we will limit the derivation to gravity waves and ignore
-surface tension effects, however, the solution can be as well derived for
-gravity-capillary waves by carrying the surface tension terms.
+where $\omega$ is the angular frequency, $g$ is the gravitational acceleration,
+$k$ is the wavenumber, and $U$ is the mean advective current in the direction
+of the wave propagation.
+A current in the direction of the waves thus increases its absolution frequency,
+wavenumber remaining unchanged.
+An important limitation here is that $U$ must be slow-varying on the scales of
+the wave period.
+In the context of short waves riding on long waves, the mean advective current
+is the horizontal near-surface orbital velocity of the long wave.
 
-Next, take the conservation of wave crests:
+The second important relation is the conservation of wave crests:
 
 \begin{equation}
-\label{eq:wave_crests1}
+\label{eq:wave_crests}
 \dfrac{\partial k}{\partial t}
 + \dfrac{\partial \omega}{\partial x}
 = 0
 \end{equation}
-where $\partial/\partial t$ and $\partial/\partial x$ are partial derivatives
-in time and space, respectively.
-Insert (\ref{eq:dispersion}) into (\ref{eq:wave_crests1}) to get:
+where $t$ and $x$ are time and space, respectively.
+This relation states that the wavenumber must change when the frequency varies
+in space.
+
+Equations (\ref{eq:dispersion}) and (\ref{eq:wave_crests}) only describe the
+evolution of the wavenumber.
+To describe the evolution of the wave amplitude, we use the conservation of wave
+action:
 
 \begin{equation}
-\label{eq:wave_crests2}
+\label{eq:wave_action}
+\dfrac{\partial N}{\partial t}
++ \dfrac{\partial}{\partial x} \left[\left(C_g + U\right)N\right]
+= 0
+\end{equation}
+where $N$ is the action density, and $C_g = \partial \omega / \partial k$ is the
+group speed.
+In deep water, the group speed is half the phase speed, so $C_g = 1/2\sqrt{g/k}$.
+
+As the short waves ride on the surface of the long wave, defined by the elevation
+$\eta_L = a_L cos{\psi}$, where $\psi = k_L x - \omega_L t$ is the long-wave phase,
+they move in an accelerated reference frame and will thus experience effective
+gravitational acceleration that changes in both space and time.
+Inserting equation (\ref{eq:dispersion}) into (\ref{eq:wave_action}) we obtain:
+
+\begin{equation}
+\label{eq:wavenumber}
 \dfrac{\partial k}{\partial t}
-+ C_g \dfrac{\partial k}{\partial x}
-+ U \dfrac{\partial k}{\partial x}
++ \left(C_g + U\right) \dfrac{\partial k}{\partial x}
 + k \dfrac{\partial U}{\partial x}
++ \dfrac{1}{2} \sqrt{\dfrac{k}{g}} \dfrac{\partial g}{\partial x}
 = 0
 \end{equation}
-where $C_g$ is the group velocity of short waves.
-At this step, we assume that $g$ does not vary in space and time.
-We will see later that to a second order $g$ of short waves varies in presence
-of long waves.
-If we follow the short waves in a Lagrangian frame, we can re-write
-(\ref{eq:wave_crests2}) as:
+
+Similarly, we expand the equation \ref{eq:wave_action} to obtain:
 
 \begin{equation}
-\label{eq:wave_crests3}
-\dfrac{d k}{dt}
-+ k \dfrac{\partial U}{\partial x}
+\label{eq:wave_action2}
+\dfrac{\partial N}{\partial t}
++ \left(C_g + U\right) \dfrac{\partial N}{\partial x}
++ N \dfrac{\partial U}{\partial x}
++ N \dfrac{\partial C_g}{\partial x}
 = 0
 \end{equation}
+
+\section{Analytical solutions}
+
+\subsection{Derivation of the original L-HS solution}
 
 \begin{equation}
 \label{eq:wave_crests4}
