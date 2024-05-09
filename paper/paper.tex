@@ -69,12 +69,13 @@ and incomplete.
 This paper revisits and extends these solutions to propose a more accurate
 description of how the short waves should change in the presence of longer
 waves.
+
 \section{Introduction}
 
 Short ocean surface waves are modulated by longer swell.
 Following the result by \citeA{unna1941white,unna1942waves,unna1947sea},
 \citeA{longuet1960changes} introduced an analytical solution for hydrodynamic
-modulation of short waves by an underlying longer wave:
+modulation of short waves at the crest of an underlying longer wave:
 
 \begin{equation}
 \label{eq:tau}
@@ -82,12 +83,13 @@ modulation of short waves by an underlying longer wave:
 \end{equation}
 where $\widetilde{k}$ and $k$ are the modulated and unmodulated wavenumbers of
 short waves, respectively, and $a_L$ and $k_L$ are amplitude and wavenumber
-of the long wave.
-
+of the long wave, respectively.
 This result has been influential on the development of remote sensing of ocean
 surface waves and currents \cite{keller1975microwave,hara1994hydrodynamic}
 and has been used even recently \cite{peureux2021unsteady} to simulate
 unsteady growth of short-waves due to longer waves.
+
+TODO extend with background.
 
 In this study, we extend the \citeA{longuet1960changes} theory (hereafter L-HS)
 to a higher-order solution following the linear wave theory, and present revised
@@ -128,7 +130,7 @@ in space.
 Equations (\ref{eq:dispersion}) and (\ref{eq:wave_crests}) only describe the
 evolution of the wavenumber.
 To describe the evolution of the wave amplitude, we use the conservation of wave
-action:
+action in absence of sources (e.g. due to wind) and sinks (e.g. due to whitecapping):
 
 \begin{equation}
 \label{eq:wave_action}
@@ -140,11 +142,10 @@ where $N$ is the action density, and $C_g = \partial \omega / \partial k$ is the
 group speed.
 In deep water, the group speed is half the phase speed, so $C_g = 1/2\sqrt{g/k}$.
 
-As the short waves ride on the surface of the long wave, defined by the elevation
-$\eta_L = a_L cos{\psi}$, where $\psi = k_L x - \omega_L t$ is the long-wave phase,
+As the short waves ride on the surface of the long wave,
 they move in an accelerated reference frame and will thus experience effective
 gravitational acceleration that changes in both space and time.
-Inserting equation (\ref{eq:dispersion}) into (\ref{eq:wave_action}) we obtain:
+Inserting Eq. (\ref{eq:dispersion}) into (\ref{eq:wave_action}) we obtain:
 
 \begin{equation}
 \label{eq:wavenumber}
@@ -154,8 +155,15 @@ Inserting equation (\ref{eq:dispersion}) into (\ref{eq:wave_action}) we obtain:
 + \dfrac{1}{2} \sqrt{\dfrac{k}{g}} \dfrac{\partial g}{\partial x}
 = 0
 \end{equation}
+From left to right, the terms in this equation represent the change in wavenumber
+due to the propagation and advection by ambient current $U$, the convergence of
+the ambient current, and the spatial inhomogeneity of the gravitational acceleration.
+In a non-accelerated reference frame (i.e. in absence of longer waves), the last
+term is zero.
+However, if gravitational acceleration varies in space, this term is necessary
+to conserve the wave crests.
 
-Similarly, we expand the equation \ref{eq:wave_action} to obtain:
+Similar to Eq. \ref{eq:wavenumber}, we expand Eq. \ref{eq:wave_action} to obtain:
 
 \begin{equation}
 \label{eq:wave_action2}
@@ -165,98 +173,74 @@ Similarly, we expand the equation \ref{eq:wave_action} to obtain:
 + N \dfrac{\partial C_g}{\partial x}
 = 0
 \end{equation}
+This equation is similar to Eq. \ref{eq:wavenumber}, except for the last term
+which here represents the inhomogeneity of the group speed.
+As \citeA{peureux2021unsteady} explained, this term is responsible for unstable
+growth of wave action in infinite long-wave trains.
+Eqs. \ref{eq:wavenumber} and \ref{eq:wave_action2} will be the governing equations
+that we solve numerically in section \ref{section:numerical_solutions}.
+
+For the ambient forcing, we consider a single, monochromatic long wave
+defined by the elevation $\eta_L = a_L cos{\psi}$,
+where $a_L$ is the long-wave amplitude, $\psi = k_L x - \omega_L t$ is the
+long-wave phase, and $\omega_L$ its angular frequency.
+At this time we define the long-wave steepness $\varepsilon_L = a_L k_L$ which
+we will use thoughout the rest of the paper as a scaling parameter.
+The long wave induces horizontal and vertical orbital velocities whose values
+at the surface $\eta_L$ are:
+
+\begin{equation}
+\label{eq:U_L}
+U = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \cos{\psi}
+\end{equation}
+
+\begin{equation}
+\label{eq:w_L}
+W = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \sin{\psi}
+\end{equation}
+
+Eqs. \ref{eq:dispersion}-\ref{eq:w_L} is the full system of equations that we
+exploit in the remainder of this paper.
 
 \section{Analytical solutions}
+\label{section:analytical_solutions}
 
-\subsection{Derivation of the original L-HS solution}
+\subsection{Wavenumber and amplitude modulation}
 
-\begin{equation}
-\label{eq:wave_crests4}
-\dfrac{d k}{k}
-= - \dfrac{\partial U}{\partial x} dt
-\end{equation}
-which states that the relative contraction of short waves is largest where the
-convergence of the ambient current $U$ is the largest.
-For short waves riding on longer waves, the mean ambient current is the
-horizontal near-surface orbital velocity of the long wave.
-Rather than at the long-wave surface, L-HS took the ambient current to be the
-long-wave orbital velocity at the mean water level, $z = 0$:
+Solving analytically for the wavenumber requires dropping spatial gradients of
+$k$ in Eq. \ref{eq:wavenumber} and assuming homogeneous $g$:
 
 \begin{equation}
-\label{eq:U_L1}
-U = a_L \omega_L \cos{\psi}
+\label{eq:wavenumber2}
+\dfrac{\partial k}{\partial t}
+= - k \dfrac{\partial U}{\partial x}
 \end{equation}
-where $\psi$ is the long-wave phase such that the crest is located
-at $\psi = 0$.
-Insert (\ref{eq:U_L1}) into (\ref{eq:wave_crests4}) to obtain:
+Although \citeA{peureux2021unsteady} pointed out that the solution by L-HS
+requires assuming homogeneous group speed of the short-wave field, in fact,
+it also requires assuming no horizontal propagation and advection of the short
+waves.
+Combining Eqs. \ref{eq:U_L} and \ref{eq:wavenumber2}, and integrating it in time
+yields:
 
 \begin{equation}
-\label{eq:wave_crests5}
-\dfrac{d k}{k}
-= a_L k_L \omega_L \sin{\psi} dt
+\label{eq:k_short_exact}
+\widetilde{k}(\psi) = k e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
 \end{equation}
-To calculate the long-wave modulated short-wave wavenumber, integrate
-(\ref{eq:wave_crests5}) from the initial time at which the short-waves
-are unperturbed (at $z=0$, or $\psi=\pi/2$), to time $t$:
+
+Notice that the Taylor expansion of Eq. \ref{eq:k_short_exact} to the first order
+recovers the original solution by L-HS:
 
 \begin{equation}
-\label{eq:wave_crests6}
-\int_k^{\ \widetilde k(t)} \dfrac{d k'}{k'}
-= \int_0^t a_L k_L \omega_L \sin{\psi} dt'
+\label{eq:k_short_lhs}
+\widetilde{k}(\psi) = k (1 + \varepsilon_L \cos{\psi})
 \end{equation}
-which yields:
 
-\begin{equation}
-\label{eq:k_short1}
-\ \widetilde k(\psi) = k e^{a_L k_L \cos{\psi}}
-\end{equation}
-Approximating (\ref{eq:k_short1}) to the first-order Taylor expansion,
-we obtain the original L-HS solution:
-
-\begin{equation}
-\label{eq:k_short2}
-\ \widetilde k(\psi) = k (1 + a_L k_L \cos{\psi})
-\end{equation}
-The intuitive interpretation of (\ref{eq:k_short2}) is that as the short waves
-contract on the front face of the long wave, they reach maximum contraction
-(highest $\ \widetilde k$) at the crest of the long wave.
-As they pass to the rear face of the long wave, they get elongated and reach
-minimum contraction (lowest $\ \widetilde k$) in the trough of the long wave.
-
-\subsection{Extending the L-HS solution}
-
-L-HS made two approximations in their solution:
-First, they evaluated the advective velocity of short waves at $z = 0$
-rather than the surface, $z = \eta_L$, where $\eta_L$ is the long-wave
-elevation; and second, they evaluated the solution to the first order
+The L-HS solution requires two approximations in their solution:
+First, evaluating the long-wave velocity at $z = 0$
+rather than $z = \eta_L$; and second, evaluating the solution to the first order
 of the Taylor expansion series.
 Both of these approximations cause an underestimate of the short-wave
-modulation magnitude.
-
-To extend the L-HS solution, evaluate the advective velocity at the surface
-of the long-wave:
-
-\begin{equation}
-\label{eq:U_L2}
-U = U_L(z=\eta) = a_L \omega_L e^{a_L k_L \cos{\psi}} \cos{\psi}
-\end{equation}
-and insert it into \ref{eq:wave_crests4} to obtain:
-
-\begin{equation}
-\label{eq:wave_crests7}
-\dfrac{dk}{k} = a_L k_L \omega_L e^{a_L k_L \cos{\psi}} \sin{\psi} dt
-\end{equation}
-Integrate (\ref{eq:wave_crests7}) to the same limits as we did with
-(\ref{eq:wave_crests6}) to obtain:
-
-\begin{equation}
-\label{eq:k_short3}
-\widetilde{k}(\psi) = k e^{a_L k_L \cos{\psi} e^{a_L k_L \cos{\psi}}}
-\end{equation}
-
-We compare the solutions from (\ref{eq:k_short1}), (\ref{eq:k_short2}),
-and (\ref{eq:k_short3}) for a moderately steep long wave with steepness
-$a_L k_L = 0.2$ in Fig. (\ref{fig:wavenumber_modulation}).
+modulation magnitude (Fig. \ref{fig:wavenumber_modulation}).
 The original L-HS solution is a cosine wave with an amplitude equal
 to the long-wave steepness.
 The other two solutions both introduce an increase in wave modulation
@@ -266,10 +250,6 @@ is 10.7\% larger than that predicted by the 1st order approximate L-HS
 solution, while the solution that evaluates the long-wave orbital velocity
 at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 1st order approximate L-HS solution.
-Also, since the less-approximate solutions decrease the modulation in the
-troughs and increase in on the crests, the average wavenumber modulation
-is no longer 0, but 1\% in the case of the exact L-HS solution and 3.1\% in the
-case of the extended solution.
 
 \begin{figure}[h]
 \label{fig:wavenumber_modulation}
@@ -277,14 +257,14 @@ case of the extended solution.
 \includegraphics[width=\textwidth]{figures/fig_wavenumber_modulation_by_phase.png}
 \caption{
   Comparison of relative short-wave modulation as function of the
-  long-wave phase, for a moderately steep long wave of $a_L k_L = 0.2$.
+  long-wave phase, for a moderately steep long wave of $a_L k_L = 0.1$.
   The dotted line shows the 1st-order approximated solution by L-HS,
   the dashed line shows the exact solution by L-HS,
   and the solid line shows the extended solution introduced in this paper.
 }
 \end{figure}
 
-\section{Apparent gravity}
+\subsection{Apparent gravity}
 
 Long waves also induce orbital acceleration under their surface, so the short
 waves experience an apparent gravity:
@@ -356,7 +336,7 @@ for four different values of $a_L k_L$ in Fig. \ref{fig:frequency_modulation}.
 }
 \end{figure}
 
-\section{Lagrangian averaged short-wave properties}
+\subsection{Lagrangian averaged short-wave properties}
 
 Stokes drift is a residual Lagrangian drift that occurs due to the wave orbits
 not being closed under a propagating wave
@@ -407,11 +387,22 @@ Lagrangian integration approach used to obtain Stokes drift.
 \end{equation}
 
 \section{Numerical solutions}
+\label{section:numerical_solutions}
+
+\section{Scale analysis}
+\label{section:scale_analysis}
+
+Now that we showed that the analytical solution is consistent with full numerical
+solutions for $\varepsilon_L < 0.25$, we can use analytical solutions for scale
+analysis to quantify the relative contribution of tendencies in the full equation set.
+
+TODO
 
 \section{Conclusions}
 
 \acknowledgments
-We thank anonymous reviewers for their help improving this paper.
+Thanks to Peisen Tan, Nathan Laxague, and Fabrice Ardhuin for providing helpful
+feedback on the early drafts of this work.
 
 \bibliography{references.bib}
 
