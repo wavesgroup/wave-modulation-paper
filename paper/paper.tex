@@ -111,7 +111,7 @@ of the wave propagation.
 A current in the direction of the waves thus increases its absolution frequency,
 wavenumber remaining unchanged.
 An important limitation here is that $U$ must be slow-varying on the scales of
-the wave period.
+the wave period \cite{bretherton1968wavetrains}.
 In the context of short waves riding on long waves, the mean advective current
 is the horizontal near-surface orbital velocity of the long wave.
 
@@ -144,7 +144,7 @@ In deep water, the group speed is half the phase speed, so $C_g = 1/2\sqrt{g/k}$
 
 As the short waves ride on the surface of the long wave,
 they move in an accelerated reference frame and will thus experience effective
-gravitational acceleration that changes in both space and time.
+gravitational acceleration that changes in both space and time \cite{longuet1986eulerian,longuet1987propagation}.
 Inserting Eq. (\ref{eq:dispersion}) into (\ref{eq:wave_action}) we obtain:
 
 \begin{equation}
@@ -206,6 +206,7 @@ exploit in the remainder of this paper.
 \label{section:analytical_solutions}
 
 \subsection{Wavenumber and amplitude modulation}
+\label{subsection:analytical_solutions}
 
 Solving analytically for the wavenumber requires dropping spatial gradients of
 $k$ in Eq. \ref{eq:wavenumber} and assuming homogeneous $g$:
@@ -254,42 +255,31 @@ at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 \begin{figure}[h]
 \label{fig:wavenumber_modulation}
 \centering
-\includegraphics[width=\textwidth]{figures/fig_wavenumber_modulation_by_phase.png}
+\includegraphics[width=\textwidth]{figures/fig_wavenumber_modulation_2panel.png}
 \caption{
   Comparison of relative short-wave modulation as function of the
-  long-wave phase, for a moderately steep long wave of $a_L k_L = 0.1$.
+  long-wave phase, for a moderately steep long wave of $\varepsilon = 0.1$.
   The dotted line shows the 1st-order approximated solution by L-HS,
   the dashed line shows the exact solution by L-HS,
   and the solid line shows the extended solution introduced in this paper.
 }
 \end{figure}
 
-\subsection{Apparent gravity}
+\subsection{Gravity modulation}
+\label{subsection:gravity_modulation}
 
-Long waves also induce orbital acceleration under their surface, so the short
-waves experience an apparent gravity:
-
-\begin{equation}
-\label{eq:apparent_gravity1}
-\widetilde{g} = g + \dfrac{\partial w_L}{\partial t}
-\end{equation}
-The positive sign in front of $\partial w_L/\partial t$ comes from our
-coordinate-system convention where $w$ is defined positive-upward and $g$ is
-defined positive-downward, and the fact that $\widetilde{g}$ is the apparent
-gravity in the reference frame of the short waves.
-Taking the long-wave vertical acceleration at the surface as:
+Long waves induce vertical orbital accelerations, so the short
+waves that ride on their surface move in an accelerated reference frame and
+experience effective gravitational acceleration that is lower at the crests and
+higher in the troughs \cite{longuet1986eulerian,longuet1987propagation}.
+A linearized (sine-like) wave has a modulation in gravity acceleration at its
+surface:
 
 \begin{equation}
-\label{eq:w_L}
-w_L = - a_L \omega_L e^{a_L k_L \cos{\psi}} \sin{\psi}
-\end{equation}
-we arrive at:
-
-\begin{equation}
-\label{eq:apparent_gravity2}
+\label{eq:effective_gravity}
 \widetilde{g}(\psi) = g \left[
-  1 - a_L k_L e^{a_L k_L \cos{\psi}} \left(
-    \cos{\psi} + a_L k_L \sin^2{\psi}
+  1 - \varepsilon_L e^{\varepsilon_L \cos{\psi}} \left(
+    \cos{\psi} + \varepsilon_L \sin^2{\psi}
   \right)
 \right]
 \end{equation}
@@ -302,21 +292,12 @@ The second-order term thus increases the apparent gravity on the front and rear
 faces of the long wave (Fig. \ref{fig:apparent_gravity}).
 
 \begin{figure}[h]
-\label{fig:apparent_gravity}
+\label{fig:gravity_modulation}
 \centering
-\includegraphics[width=\textwidth]{figures/fig_gravity_modulation_by_phase.png}
+\includegraphics[width=\textwidth]{figures/fig_gravity_modulation_2panel.png}
 \caption{
   Relative change in gravity of short waves due to a longer wave with steepness $a_L k_L = 0.2$,
   as a function of the long-wave phase and evaluated to the first (dashed line) and second (solid line) order in $a_L k_L$.
-}
-\end{figure}
-
-\begin{figure}[h]
-\label{fig:gravity_modulation_vs_ak}
-\centering
-\includegraphics[width=\textwidth]{figures/fig_gravity_modulation_by_ak.png}
-\caption{
-  TODO
 }
 \end{figure}
 
