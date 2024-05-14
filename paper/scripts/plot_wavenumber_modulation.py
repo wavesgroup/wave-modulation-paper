@@ -40,20 +40,24 @@ def plot_fig_wavenumber_modulation():
 
     # Evaluate wa enumber modulation as function of ak
     ak_range = np.arange(0, 0.41, 0.01)
-    k1_mean, k1_max = [], []
-    k2_mean, k2_max = [], []
+    k1_mean, k1_max, k1_min = [], [], []
+    k2_mean, k2_max, k2_min = [], [], []
     for ak in ak_range:
         k1 = 1 + ak * np.cos(phase)
         k2 = np.exp(ak * np.cos(phase) * np.exp(ak * np.cos(phase)))
         k1_mean.append(np.mean(k1))
         k1_max.append(np.max(k1))
+        k1_min.append(np.min(k1))
         k2_mean.append(np.mean(k2))
         k2_max.append(np.max(k2))
+        k2_min.append(np.min(k2))
 
-    ax2.plot(ak_range, k1_max, "k-", label="L-H&S, max", lw=2)
+    ax2.plot(ak_range, k1_max, "k-", label="L-H&S, max.", lw=2)
     ax2.plot(ak_range, k1_mean, "k--", label="L-H&S, mean", lw=2)
-    ax2.plot(ak_range, k2_max, "r-", label="This paper, max", lw=2)
+    ax2.plot(ak_range, k1_min, "k:", label="L-H&S, min.", lw=2)
+    ax2.plot(ak_range, k2_max, "r-", label="This paper, max.", lw=2)
     ax2.plot(ak_range, k2_mean, "r--", label="This paper, mean", lw=2)
+    ax2.plot(ak_range, k2_min, "r:", label="This paper, min.", lw=2)
     ax2.legend(loc="upper left")
     ax2.grid()
     ax2.set_xlabel(r"$\varepsilon_L$")

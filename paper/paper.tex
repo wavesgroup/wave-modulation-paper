@@ -128,7 +128,7 @@ This relation states that the wavenumber must change when the frequency varies
 in space.
 
 Equations (\ref{eq:dispersion}) and (\ref{eq:wave_crests}) only describe the
-evolution of the wavenumber.
+evolution of the short-wave wavenumber.
 To describe the evolution of the wave amplitude, we use the conservation of wave
 action in absence of sources (e.g. due to wind) and sinks (e.g. due to whitecapping):
 
@@ -180,10 +180,11 @@ growth of wave action in infinite long-wave trains.
 Eqs. \ref{eq:wavenumber} and \ref{eq:wave_action2} will be the governing equations
 that we solve numerically in section \ref{section:numerical_solutions}.
 
-For the ambient forcing, we consider a single, monochromatic long wave
-defined by the elevation $\eta_L = a_L cos{\psi}$,
+For the ambient forcing, we consider a train of monochromatic long wave
+defined, to the first order in steepness, by the elevation $\eta_L = a_L cos{\psi}$,
 where $a_L$ is the long-wave amplitude, $\psi = k_L x - \omega_L t$ is the
 long-wave phase, and $\omega_L$ its angular frequency.
+
 At this time we define the long-wave steepness $\varepsilon_L = a_L k_L$ which
 we will use thoughout the rest of the paper as a scaling parameter.
 The long wave induces horizontal and vertical orbital velocities whose values

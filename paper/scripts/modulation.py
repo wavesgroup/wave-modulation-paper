@@ -8,7 +8,7 @@ def gravity(
     phi = phase(x, t, k, omega)
     term1 = -a * k * np.cos(phi)
     term2 = -a * k * np.cos(phi) * np.exp(a * k * np.cos(phi))
-    term3 = -((a * k * np.sin(phi)) ** 2) * np.exp(a * k * np.cos(phi))
+    term3 = ((a * k * np.sin(phi)) ** 2) * np.exp(a * k * np.cos(phi))
     if order == 0:
         return g0 * np.ones_like(x)
     elif order == 1:
