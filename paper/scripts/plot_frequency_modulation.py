@@ -10,29 +10,70 @@ def plot_fig_frequency_modulation():
     phase = np.arange(0, 2 * np.pi + 1e-4, 1e-4)
     g = 9.8
 
-    fig = plt.figure(figsize=(8, 6))
-    ax = fig.add_subplot(111)
+    ak_L = 0.2
 
-    for ak_L in [0.1, 0.2, 0.3, 0.4]:
+    g1 = 1 - ak_L * np.cos(phase)
+    k1 = 1 + ak_L * np.cos(phase)
+    omega_rel1 = np.sqrt(g1 * k1)
+
+    term1 = -ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase))
+    term2 = ((ak_L * np.sin(phase)) ** 2) * np.exp(ak_L * np.cos(phase))
+    g2 = 1 + term1 + term2
+    k2 = np.exp(ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase)))
+    omega_rel2 = np.sqrt(g2 * k2)
+
+    fig = plt.figure(figsize=(14, 6))
+    ax1 = fig.add_subplot(121)
+    ax2 = fig.add_subplot(122)
+
+    ax1.plot(phase, omega_rel1, "k-", label=r"1$^{st}$ order", lw=2)
+    ax1.plot(phase, omega_rel2, "r-", label=r"3$^{rd}$ order", lw=2)
+    ax1.legend()
+    ax1.set_xlabel("Phase [rad]")
+    ax1.set_ylabel(r"$\widetilde \omega/\omega$")
+    ax1.grid()
+    ax1.plot([0, 2 * np.pi], [1, 1], "k--")
+    ax1.set_xlim(0, 2 * np.pi)
+    ax1.set_xticks(np.arange(0, 2.5 * np.pi, 0.5 * np.pi))
+    ax1.set_xticklabels(["0", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
+
+    # Evaluate frequency modulation as function of ak
+    ak_range = np.arange(0, 0.41, 0.01)
+    omega1_mean, omega1_max, omega1_min = [], [], []
+    omega2_mean, omega2_max, omega2_min = [], [], []
+    for ak_L in ak_range:
+        g1 = 1 - ak_L * np.cos(phase)
+        k1 = 1 + ak_L * np.cos(phase)
+        omega1 = np.sqrt(g1 * k1)
+
         term1 = -ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase))
-        term2 = -((ak_L * np.sin(phase)) ** 2) * np.exp(ak_L * np.cos(phase))
-        g_rel = 1 + term1 + term2
-        k_rel = np.exp(ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase)))
-        omega_rel = np.sqrt(g_rel * k_rel)
-        plt.plot(
-            phase, omega_rel, marker="", linestyle="-", label=r"$a_L k_L=%.1f$" % ak_L
-        )
+        term2 = ((ak_L * np.sin(phase)) ** 2) * np.exp(ak_L * np.cos(phase))
+        g2 = 1 + term1 + term2
+        k2 = np.exp(ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase)))
+        omega2 = np.sqrt(g2 * k2)
 
-    plt.legend()
-    plt.xlabel("Phase [rad]")
-    plt.ylabel(r"$\widetilde \omega/\omega$")
-    plt.grid()
-    plt.plot([0, 2 * np.pi], [1, 1], "k--")
-    plt.xlim(0, 2 * np.pi)
-    plt.xticks(np.arange(0, 2.5 * np.pi, 0.5 * np.pi))
-    ax.set_xticklabels(["0", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
-    plt.savefig("../figures/fig_frequency_modulation.png", dpi=200)
-    plt.close(fig)
+        omega1_mean.append(np.mean(omega1))
+        omega1_max.append(np.max(omega1))
+        omega1_min.append(np.min(omega1))
+        omega2_mean.append(np.mean(omega2))
+        omega2_max.append(np.max(omega2))
+        omega2_min.append(np.min(omega2))
+
+    ax2.plot(ak_range, omega1_max, "k-", label="1$^{st}$ order, max.", lw=2)
+    ax2.plot(ak_range, omega1_mean, "k--", label="1$^{st}$ order, mean", lw=2)
+    ax2.plot(ak_range, omega1_min, "k:", label="1$^{st}$ order, min.", lw=2)
+    ax2.plot(ak_range, omega2_max, "r-", label="3$^{rd}$ order, max.", lw=2)
+    ax2.plot(ak_range, omega2_mean, "r--", label="3$^{rd}$ order, mean", lw=2)
+    ax2.plot(ak_range, omega2_min, "r:", label="3$^{rd}$ order, min.", lw=2)
+    ax2.legend(loc="lower left", prop={"size": 14})
+    ax2.grid()
+    ax2.set_xlabel(r"$\varepsilon_L$")
+    ax2.set_ylabel(r"$\widetilde \omega/\omega$")
+    ax2.set_xlim(0, 0.4)
+    ax2.set_ylim(0.85, 1.1)
+    ax2.set_xticks([0, 0.1, 0.2, 0.3, 0.4])
+
+    plt.savefig("../figures/fig_frequency_modulation_2panel.png", dpi=200)
 
 
 def plot_fig_phase_speed_modulation():

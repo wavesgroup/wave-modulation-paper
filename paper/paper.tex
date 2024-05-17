@@ -266,6 +266,8 @@ at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 }
 \end{figure}
 
+TODO amplitude modulation;
+
 \subsection{Gravity modulation}
 \label{subsection:gravity_modulation}
 
@@ -278,7 +280,7 @@ surface:
 
 \begin{equation}
 \label{eq:effective_gravity}
-\widetilde{g}(\psi) = g \left[
+\widetilde{g}(\psi) = g + \dfrac{\partial W}{\partial t} = g \left[
   1 - \varepsilon_L e^{\varepsilon_L \cos{\psi}} \left(
     \cos{\psi} + \varepsilon_L \sin^2{\psi}
   \right)
@@ -311,12 +313,14 @@ for four different values of $a_L k_L$ in Fig. \ref{fig:frequency_modulation}.
 \begin{figure}[h]
 \label{fig:frequency_modulation}
 \centering
-\includegraphics[width=\textwidth]{figures/fig_frequency_modulation.png}
+\includegraphics[width=\textwidth]{figures/fig_frequency_modulation_2panel.png}
 \caption{
   Relative change in short-wave frequency due to the presence of longer
   waves, for four different values of long-wave steepness.
 }
 \end{figure}
+
+\subsection{Frequency and group speed modulation}
 
 \subsection{Lagrangian averaged short-wave properties}
 
