@@ -282,7 +282,7 @@ surface:
 \label{eq:effective_gravity}
 \widetilde{g}(\psi) = g + \dfrac{\partial W}{\partial t} = g \left[
   1 - \varepsilon_L e^{\varepsilon_L \cos{\psi}} \left(
-    \cos{\psi} + \varepsilon_L \sin^2{\psi}
+    \cos{\psi} - \varepsilon_L \sin^2{\psi}
   \right)
 \right]
 \end{equation}
@@ -374,6 +374,51 @@ Lagrangian integration approach used to obtain Stokes drift.
 
 \section{Numerical solutions}
 \label{section:numerical_solutions}
+
+We now proceed to integrate the full numerical solutions for the short-wave
+wavenumber and action density in presence of long waves.
+Equations (\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are discretized using
+2nd order central finite difference in space and integrated in time using the
+4th order Runge-Kutta method \cite{butcher1996runge}.
+Although the 2nd order central finite difference is not appropriate for many
+numerical problems, in our case it is sufficient because it is conservative and
+the fields that we compute derivatives of are smooth and continuous.
+The space is divided into 100 grid points.
+
+\subsection{Unstable growth in infinite long-wave trains}
+\label{subsection:unstable_growth}
+
+\begin{figure}[h]
+\label{fig:frequency_modulation}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_modulation_3panel_infinite_wave_train.png}
+\caption{
+  TODO
+}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:frequency_modulation}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_modulation_3panel_linear_ramp.png}
+\caption{
+  TODO
+}
+\end{figure}
+
+\subsection{Short-wave modulation by long-wave groups}
+\label{subsection:wave_groups}
+
+\begin{figure}[h]
+\label{fig:frequency_modulation}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_modulation_3panel_wave_group.png}
+\caption{
+  TODO
+}
+\end{figure}
+
+
 
 \section{Scale analysis}
 \label{section:scale_analysis}

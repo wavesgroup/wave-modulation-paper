@@ -56,6 +56,11 @@ def plot_modulation_3panel(model, contour_levels, title):
 
 
 m = WaveModulationModel()
-m.run()
+m.run(ramp_type=None)
+plot_modulation_3panel(m, np.arange(0.5, 2.3, 0.1), "Infinite wave train")
 
-plot_modulation_3panel(m, np.arange(0.5, 2.2, 0.1), "Infinite wave train")
+m.run(ramp_type="linear")
+plot_modulation_3panel(m, np.arange(0.8, 1.24, 0.04), "Linear ramp")
+
+m.run(ramp_type="groups")
+plot_modulation_3panel(m, np.arange(0.8, 1.24, 0.04), "Wave group")

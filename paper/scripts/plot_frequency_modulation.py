@@ -26,6 +26,13 @@ def plot_fig_frequency_modulation():
     ax1 = fig.add_subplot(121)
     ax2 = fig.add_subplot(122)
 
+    ax1.text(
+        0, 1.02, "(a)", ha="left", va="bottom", transform=ax1.transAxes, fontsize=20
+    )
+    ax2.text(
+        0, 1.02, "(b)", ha="left", va="bottom", transform=ax2.transAxes, fontsize=20
+    )
+
     ax1.plot(phase, omega_rel1, "k-", label=r"1$^{st}$ order", lw=2)
     ax1.plot(phase, omega_rel2, "r-", label=r"3$^{rd}$ order", lw=2)
     ax1.legend()
