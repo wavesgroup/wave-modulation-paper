@@ -267,6 +267,25 @@ at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 \end{figure}
 
 TODO amplitude modulation;
+The modulation of short-wave amplitude can be derived in the same way by
+dropping the non-linear terms in the wave action balance equation
+(Eq. \ref{eq:wave_action2}) and integrating wave action in time:
+
+\begin{equation}
+\label{eq:wave_action_modulation}
+\widetilde{N}(\psi) = N e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
+\end{equation}
+
+Since wave action is variance divided by the intrinsic frequency $\sigma$,
+and variance scales with the square of the amplitude, the modulation of
+amplitude is proportional to the square root of the modulation of wave action.
+
+\begin{equation}
+\label{eq:wave_amplitude_modulation}
+\widetilde{a}(\psi) = a \sqrt{\dfrac{\sigma}{\widetilde{\sigma}} \dfrac{\widetilde{N}}{N}}
+\end{equation}
+To determine $\widetilde{\sigma}$, we will need to evaluate the modulation of
+the gravitational acceleration at the surface of the long wave.
 
 \subsection{Gravity modulation}
 \label{subsection:gravity_modulation}
@@ -275,11 +294,10 @@ Long waves induce vertical orbital accelerations, so the short
 waves that ride on their surface move in an accelerated reference frame and
 experience effective gravitational acceleration that is lower at the crests and
 higher in the troughs \cite{longuet1986eulerian,longuet1987propagation}.
-A linearized (sine-like) wave has a modulation in gravity acceleration at its
-surface:
+A linear wave causes a modulation in gravity acceleration at its surface:
 
 \begin{equation}
-\label{eq:effective_gravity}
+\label{eq:gravity_modulation_linear}
 \widetilde{g}(\psi) = g + \dfrac{\partial W}{\partial t} = g \left[
   1 - \varepsilon_L e^{\varepsilon_L \cos{\psi}} \left(
     \cos{\psi} - \varepsilon_L \sin^2{\psi}
@@ -292,7 +310,7 @@ and decreased in the troughs.
 The second-order term in $a_L k_L$ is positive-definite and phase-shifted by
 $\pi/2$ relative to the crests.
 The second-order term thus increases the apparent gravity on the front and rear
-faces of the long wave (Fig. \ref{fig:apparent_gravity}).
+faces of the long wave (Fig. \ref{fig:gravity_modulation}).
 
 \begin{figure}[h]
 \label{fig:gravity_modulation}
@@ -304,23 +322,59 @@ faces of the long wave (Fig. \ref{fig:apparent_gravity}).
 }
 \end{figure}
 
+We can also derive the short-wave gravitational acceleration on the surface of
+a non-linear Stokes wave with the elevation (to the third order in $\varepsilon_L$):
+
+\begin{equation}
+\label{eq:eta_stokes}
+\eta_{St} = a_L \left[
+  \cos{\psi} +
+  \dfrac{1}{2} \varepsilon_L \cos{2\psi} +
+  \varepsilon_L^2 \left( \dfrac{3}{8} \cos{3\psi} - \dfrac{1}{16} \cos{\psi} \right)
+\right]
+\end{equation}
+
+The corresponding gravitational acceleration at the surface of the Stokes wave
+is:
+
+\begin{equation}
+\label{eq:gravity_modulation_stokes}
+\widetilde{g}(\psi) =
+g \left\{
+  1 - \varepsilon_L e^{k \eta_{St}}
+  \left[ \cos{\psi} -
+    \varepsilon_L \sin{\psi} \left(
+      \sin{\psi}
+      + \varepsilon_L \sin{2\psi}
+      - \dfrac{1}{16} \varepsilon_L^2 \sin{\psi}
+      + \dfrac{9}{8} \varepsilon_L^2 \sin{3\psi}
+    \right)
+  \right]
+\right\}
+\end{equation}
+
 With the new long-wave modulated expressions for the short-wave wavenumber
-(Eq. \ref{eq:k_short3}) and gravity (Eq. \ref{eq:apparent_gravity2}), we can
-evaluate the long-wave modulated frequency as simply
-$\widetilde{\omega}(\psi) = \sqrt{\widetilde{g} \widetilde{k}}$, which we compare
-for four different values of $a_L k_L$ in Fig. \ref{fig:frequency_modulation}.
+(Eq. \ref{eq:k_short_exact}) and gravity
+(Eqs. \ref{eq:gravity_modulation_linear}-\ref{eq:gravity_modulation_stokes}),
+we can evaluate the long-wave modulated frequency as
+$\widetilde{\omega}(\psi) = \sqrt{\widetilde{g} \widetilde{k}}$.
+We compare the modulated intrinsic frequency for short waves on the surface of
+linear and Stokes waves with $\varepsilon_L=2$ as function of phase, and their
+phase-integral statistics in Fig. \ref{fig:frequency_modulation}.
 
 \begin{figure}[h]
 \label{fig:frequency_modulation}
 \centering
 \includegraphics[width=\textwidth]{figures/fig_frequency_modulation_2panel.png}
 \caption{
-  Relative change in short-wave frequency due to the presence of longer
-  waves, for four different values of long-wave steepness.
+  (a) Relative change in the short-wave intrinsic frequency on the surface of a
+  longer linear (black) and Stokes (red) wave of steepness $\varepsilon_L = 0.2$
+  as function of long-wave phase;
+  (b) Long-wave phase maximum (solid), mean (dashed), and minimum (dotted)
+  relative change in the short-wave intrinsic frequency as function of long-wave
+  steepness in the case of a linear (black) and Stokes (red) long wave.
 }
 \end{figure}
-
-\subsection{Frequency and group speed modulation}
 
 \subsection{Lagrangian averaged short-wave properties}
 
@@ -376,45 +430,135 @@ Lagrangian integration approach used to obtain Stokes drift.
 \label{section:numerical_solutions}
 
 We now proceed to integrate the full numerical solutions for the short-wave
-wavenumber and action density in presence of long waves.
+wavenumber and action density in presence of long waves, and in absence of
+sources or sinks of wave energy.
 Equations (\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are discretized using
-2nd order central finite difference in space and integrated in time using the
-4th order Runge-Kutta method \cite{butcher1996runge}.
-Although the 2nd order central finite difference is not appropriate for many
+2$^{nd}$  order central finite difference in space and integrated in time using the
+4$^{th}$ order Runge-Kutta method \cite{butcher1996runge}.
+The space is divided into 100 grid points.
+This is effectively the same equation set and numerical configuration as that of
+\citeA{peureux2021unsteady}, except that, like \citeA{longuet1960changes}, their
+long-wave orbital velocities are evaluated at $z=0$ instead of $z=\eta_L$.
+The key difference is that evaluating orbital velocities at $z=0$ neglects the
+Stokes drift of short-wave groups.
+Although not significantly consequential for the modulation results here, there
+is no good reason to exclude it given that its implementation is trivial.
+
+Another difference is the choice of the numerical scheme for spatial differences,
+which in their case is the MUSCL4 scheme by Kurganov and Tadmor (2000 TODO).
+Although the 2$^{nd}$ order central finite difference is not appropriate for many
 numerical problems, in our case it is sufficient because it is conservative and
 the fields that we compute derivatives of are smooth and continuous.
-The space is divided into 100 grid points.
+We show in the next section that our numerical results in infinite long-wave
+trains are qualitatively equivalent to those of \citeA{peureux2021unsteady}.
+
+Finally, the numerical equations here are integrated in a fixed reference frame,
+rather than one that moves with the long wave phase speed.
+Either approach produces qualitatively equivalent results, but we find that
+a fixed reference frame allows for more intuitive interpretation of the results.
+However, this difference is important to keep in mind when comparing the results
+of \citeA{peureux2021unsteady} and those presented here--in their Fig. 1 the
+long-wave phase is fixed and the short waves are moving leftward
+with the speed of $C_{pL} - C_g - U$ (neglecting any group speed inhomogeneity),
+whereas in the figures that follow, the long wave is moving rightward with its
+phase speed $C_{pL}$ and the short waves (that is, their energy) are moving
+rightward with the speed of $C_g + U$ (neglecting any group wave inhomogeneity).
 
 \subsection{Unstable growth in infinite long-wave trains}
 \label{subsection:unstable_growth}
 
+The key result of \citeA{peureux2021unsteady} is that of unsteady steepening of
+short waves when a homogeneous field of short waves is forced by an infinite
+long-wave train.
+The steepening is driven by the progressive increase in the action of short
+waves (as opposed to their wavenumber), and is centered on the group of short
+waves that begins its journey in the trough of the long wave.
+This is because the unmodulated short waves that begin in the trough enter into
+the area where the surface velocities are converging.
+Inversely, the short waves that begin around the crest of the long-wave will
+enter into the area of surface divergence and will thus have their wave action
+and wavenumber, decreased.
+We reproduce this behavior in Fig. \ref{fig:modulation_3panel_infinite}, which
+shows the evolution of the short-wave action, wavenumber, and steepness
+modulation (here defined as the change of a quantity relative to its initial value).
+After 10 long-wave periods, the short-wave action modulation $\widetilde{N}/N$
+is approximately doubled, which almost exactly corresponds to the unsteady growth
+reported by \citeA{peureux2021unsteady} in their Fig. 1.
+Another important property of this solution is that the short-wave group that
+experiences peak amplification (dampening) are not locked-in to the long-wave
+crests (troughs), as they are in the L-HS solution.
+
 \begin{figure}[h]
-\label{fig:frequency_modulation}
+\label{fig:modulation_3panel_infinite}
 \centering
 \includegraphics[width=\textwidth]{figures/fig_modulation_3panel_infinite_wave_train.png}
 \caption{
-  TODO
+  Change in the short-wave action (left), wavenumber (middle), and steepness (right)
+  relative to their initial values as function of initial long-wave phase and time.
+  $k_L = 1$, $k = 10$, $\varepsilon_L = 0.1$.
 }
 \end{figure}
 
+Why does this unsteady growth of short-wave action occur?
+As \citeA{peureux2021unsteady} explain, "the additional change in advection
+velocity due to the modulation of the short wave group speed gives an additional
+amplification."
+That is, it is the inhomogeneity term $N \dfrac{\partial C_g}{\partial x}$ that
+is responsible for the instability.
+However, the instability only occurs if the short waves are initialized as a
+uniform field.
+If they are initialized instead as a periodic function of the long-wave phase
+such that their wavenumber (and optionally, action) is higher on the crests
+and lower in the troughs, akin to the L-HS solution, the instability does not
+occur.
+
 \begin{figure}[h]
-\label{fig:frequency_modulation}
+\label{fig:modulation_3panel_ramp}
 \centering
 \includegraphics[width=\textwidth]{figures/fig_modulation_3panel_linear_ramp.png}
 \caption{
-  TODO
+  Same as Fig. \ref{fig:modulation_3panel_infinite} but with a linear ramp
+  applied to $a_L$ during the initial five long-wave periods.
 }
 \end{figure}
+
+Why is it, then, that the solution is so different depending on the short-wave
+initial conditions?
+\citeA{peureux2021unsteady} did not provide an explanation for this behavior.
+At first, it may seem that there is something special about the uniform initial
+conditions that makes its solutions grow unsteadily and indefinitely.
+\citeA{peureux2021unsteady} describe this scenario as "...the sudden appearance
+of a long wave perturbation in the middle of a homogeneous short wave field".
+The sudden appearance of long waves may be a clue.
+The exact numerical simulation as shown in Fig. \ref{fig:modulation_3panel_infinite},
+except for a linear ramp applied to $a_L$ (and consequently, $U$ and $W$ as well)
+for the first five periods reveals that the unsteady growh no longer occurs
+(Fig. \ref{fig:modulation_3panel_ramp}).
+
+\begin{figure}[h]
+  \label{fig:modulation_3panel_ramp}
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig_modulation_ramp_timeseries.png}
+  \caption{
+    Maximum short-wave steepness modulation as function of time in case of
+    infinite long-wave train case (blue) and the same case but with a linear
+    ramp during the initial five long-wave periods (orange). The dashed black
+    line corresponds to the short-wave steepness of 0.4 at which most waves are
+    expected to break.
+  }
+  \end{figure}
 
 \subsection{Short-wave modulation by long-wave groups}
 \label{subsection:wave_groups}
 
 \begin{figure}[h]
-\label{fig:frequency_modulation}
+\label{fig:modulation_3panel_groups}
 \centering
 \includegraphics[width=\textwidth]{figures/fig_modulation_3panel_wave_group.png}
 \caption{
-  TODO
+  Same as Fig. \ref{fig:modulation_3panel_infinite} but for a long-wave group,
+  causing the long-wave amplitude to gradually increase and peak at $a_L = 0.1$
+  after five long-wave periods, and then conversely decay back to a calm sea state.
 }
 \end{figure}
 

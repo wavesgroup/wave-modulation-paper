@@ -27,7 +27,6 @@ advection = -U * diff(k) / dx
 convergence = -k * diff(U) / dx
 inhomogeneity = -0.5 * np.sqrt(k / g) * diff(g) / dx
 
-
 m = WaveModulationModel(a_long=a_long, k_long=k_long)
 m.run(ramp_type="groups")
 ds = m.to_xarray()
