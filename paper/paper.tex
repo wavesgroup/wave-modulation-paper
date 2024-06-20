@@ -12,7 +12,8 @@
 
 \begin{document}
 
-\title{Dispersion of short waves riding on longer waves}
+%\title{Dispersion of short waves riding on longer waves}
+\title{Revisiting the linear theory of hydrodynamic wave modulation}
 
 \authors{Milan Curcic\affil{1,2}}
 
@@ -89,7 +90,10 @@ surface waves and currents \cite{keller1975microwave,hara1994hydrodynamic}
 and has been used even recently \cite{peureux2021unsteady} to simulate
 unsteady growth of short-waves due to longer waves.
 
-TODO extend with background.
+Working through the theory of \citeA{longuet1960changes,longuet1987propagation}
+and the numerical simulation of \citeA{peureux2021unsteady}, I found several
+gaps in the current understanding of the hydrodynamic modulation of short waves
+based on linear wave theory that I thought were worth revisiting.
 
 In this study, we extend the \citeA{longuet1960changes} theory (hereafter L-HS)
 to a higher-order solution following the linear wave theory, and present revised
@@ -202,6 +206,13 @@ W = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \sin{\psi}
 
 Eqs. \ref{eq:dispersion}-\ref{eq:w_L} is the full system of equations that we
 exploit in the remainder of this paper.
+Note that here we derive the solutions from a different starting set of
+equations than that of \citeA{longuet1960changes}.
+Rather than starting from the conservation of crests and wave action, as we do
+here, they derived their solution from the linear superposition of the velocity
+potential of two waves.
+It appears the starting from the conservation of crests and wave action allows
+for a simpler and more intuitive derivation.
 
 \section{Analytical solutions}
 \label{section:analytical_solutions}
@@ -251,7 +262,7 @@ At the crest, the relative modulation predicted by the exact L-HS solution
 is 10.7\% larger than that predicted by the 1st order approximate L-HS
 solution, while the solution that evaluates the long-wave orbital velocity
 at the water surface rather than $z = 0$ is 38.4\% larger than that of the
-1st order approximate L-HS solution.
+1$^{st}$ order approximate L-HS solution.
 
 \begin{figure}[h]
 \label{fig:wavenumber_modulation}
@@ -277,12 +288,15 @@ dropping the non-linear terms in the wave action balance equation
 \end{equation}
 
 Since wave action is variance divided by the intrinsic frequency $\sigma$,
-and variance scales with the square of the amplitude, the modulation of
-amplitude is proportional to the square root of the modulation of wave action.
+and variance scales with $ga^2$, the modulation of the amplitude is proportional
+to the square root of the modulation of wave action.
 
 \begin{equation}
 \label{eq:wave_amplitude_modulation}
-\widetilde{a}(\psi) = a \sqrt{\dfrac{\sigma}{\widetilde{\sigma}} \dfrac{\widetilde{N}}{N}}
+\widetilde{a}(\psi) = a \sqrt{
+  \dfrac{g}{\widetilde{g}}
+  \dfrac{\sigma}{\widetilde{\sigma}}
+  \dfrac{\widetilde{N}}{N}}
 \end{equation}
 To determine $\widetilde{\sigma}$, we will need to evaluate the modulation of
 the gravitational acceleration at the surface of the long wave.
