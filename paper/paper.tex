@@ -13,7 +13,7 @@
 \begin{document}
 
 %\title{Dispersion of short waves riding on longer waves}
-\title{Revisiting the linear theory of hydrodynamic wave modulation}
+\title{Revisiting the hydrodynamic wave modulation from linear wave theory}
 
 \authors{Milan Curcic\affil{1,2}}
 
@@ -277,7 +277,6 @@ at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 }
 \end{figure}
 
-TODO amplitude modulation;
 The modulation of short-wave amplitude can be derived in the same way by
 dropping the non-linear terms in the wave action balance equation
 (Eq. \ref{eq:wave_action2}) and integrating wave action in time:
@@ -297,7 +296,20 @@ to the square root of the modulation of wave action.
   \dfrac{g}{\widetilde{g}}
   \dfrac{\sigma}{\widetilde{\sigma}}
   \dfrac{\widetilde{N}}{N}}
+=
+  \left( \dfrac{\widetilde{g}}{g} \right)^{0.75}
+  \left( \dfrac{\widetilde{k}}{k} \right)^{0.25}
+  \left( \dfrac{\widetilde{N}}{N} \right)^{0.5}
 \end{equation}
+To the 1$^{st}$ order in $\varepsilon_L$, the amplitude modulation is then:
+
+\begin{equation}
+\label{eq:wave_amplitude_modulation_order1}
+\dfrac{\widetilde{a}}{a} = 
+  \left( \dfrac{\widetilde{g}}{g} \right)^{0.75}
+  \left( 1 + \varepsilon_L \right)^{0.75}
+\end{equation}
+
 To determine $\widetilde{\sigma}$, we will need to evaluate the modulation of
 the gravitational acceleration at the surface of the long wave.
 
