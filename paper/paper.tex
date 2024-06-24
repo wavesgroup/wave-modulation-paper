@@ -217,8 +217,8 @@ for a simpler and more intuitive derivation.
 \section{Analytical solutions}
 \label{section:analytical_solutions}
 
-\subsection{Wavenumber and amplitude modulation}
-\label{subsection:analytical_solutions}
+\subsection{Wavenumber modulation}
+\label{subsection:wavenumber_modulation}
 
 Solving analytically for the wavenumber requires dropping spatial gradients of
 $k$ in Eq. \ref{eq:wavenumber} and assuming homogeneous $g$:
@@ -277,42 +277,6 @@ at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 }
 \end{figure}
 
-The modulation of short-wave amplitude can be derived in the same way by
-dropping the non-linear terms in the wave action balance equation
-(Eq. \ref{eq:wave_action2}) and integrating wave action in time:
-
-\begin{equation}
-\label{eq:wave_action_modulation}
-\widetilde{N}(\psi) = N e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
-\end{equation}
-
-Since wave action is energy divided by the intrinsic frequency $\sigma$,
-and energy scales with $ga^2$, the modulation of the amplitude is readily
-related to the modulations of gravity, wavenumber, and action:
-
-\begin{equation}
-\label{eq:wave_amplitude_modulation}
-\dfrac{\widetilde{a}}{a} = \sqrt{
-  \dfrac{g}{\widetilde{g}}
-  \dfrac{\widetilde{\sigma}}{\sigma}
-  \dfrac{\widetilde{N}}{N}}
-=
-  \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
-  \left( \dfrac{\widetilde{k}}{k} \right)^{0.25}
-  \left( \dfrac{\widetilde{N}}{N} \right)^{0.5}
-\end{equation}
-To the 1$^{st}$ order in $\varepsilon_L$, and using Eqs. \ref{eq:k_short_exact}
-and \ref{eq:wave_action_modulation}, we get:
-
-\begin{equation}
-\label{eq:wave_amplitude_modulation_order1}
-\dfrac{\widetilde{a}}{a} = 
-  \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
-  \left( 1 + \varepsilon_L \right)^{0.75}
-\end{equation}
-
-To determine $\widetilde{g}$, we will need to evaluate the modulation of
-the gravitational acceleration at the surface of the long wave.
 
 \subsection{Gravity modulation}
 \label{subsection:gravity_modulation}
@@ -360,9 +324,8 @@ a non-linear Stokes wave with the elevation (to the third order in $\varepsilon_
   \varepsilon_L^2 \left( \dfrac{3}{8} \cos{3\psi} - \dfrac{1}{16} \cos{\psi} \right)
 \right]
 \end{equation}
-
 The corresponding gravitational acceleration at the surface of the Stokes wave
-is:
+is, to the 4$^{th}$ order:
 
 \begin{equation}
 \label{eq:gravity_modulation_stokes}
@@ -403,55 +366,43 @@ phase-integral statistics in Fig. \ref{fig:frequency_modulation}.
 }
 \end{figure}
 
-\subsection{Lagrangian averaged short-wave properties}
+\subsection{Amplitude and steepness modulation}
+\label{subsection:amplitude_modulation}
 
-Stokes drift is a residual Lagrangian drift that occurs due to the wave orbits
-not being closed under a propagating wave
-\cite{stokes1847,kenyon1969stokes,van2018stokes}:
-
-\begin{equation}
-\label{}
-u_s = a^2 \omega k e^{2kz}
-\end{equation}
-for a monochromatic wave in deep water.
-Stokes drift has been successfully used to predict material transport on the
-ocean surface \cite{rohrs2012observation,curcic2016hurricane}.
-It can be derived from linear wave theory by integrating the wave orbital
-velocity following material orbits \cite{phillips1966dynamics}:
+The modulation of short-wave amplitude can be derived in the same way by
+dropping the non-linear terms in the wave action balance equation
+(Eq. \ref{eq:wave_action2}) and integrating wave action in time:
 
 \begin{equation}
-\label{eq:lagrangian_average}
-u_s = \overline{
-  u(\psi) + 
-  \zeta \dfrac{\partial u}{\partial x} +
-  \xi \dfrac{\partial w}{\partial z}
-}
+\label{eq:wave_action_modulation}
+\widetilde{N}(\psi) = N e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
 \end{equation}
-where $\zeta$ and $\xi$ are horizontal and vertical excursions of the orbits,
-respectively.
 
-To obtain an average modulation of the short-wave properties, we apply the same
-Lagrangian integration approach used to obtain Stokes drift.
+Since wave action is energy divided by the intrinsic frequency $\sigma$,
+and energy scales with $ga^2$, the modulation of the amplitude is readily
+related to the modulations of gravity, wavenumber, and action:
 
 \begin{equation}
-\label{eq:stokes_wavenumber}
-\widetilde{k_s} = \overline{
-  \widetilde{k}(\psi) +
-  \zeta \dfrac{\partial \widetilde{k}}{\partial x} +
-  \xi \dfrac{\partial \widetilde{k}}{\partial z}
-}
-= k \left( 1 + a_L^2 k_L^2 \right)
+\label{eq:wave_amplitude_modulation}
+\dfrac{\widetilde{a}}{a} = \sqrt{
+  \dfrac{g}{\widetilde{g}}
+  \dfrac{\widetilde{\sigma}}{\sigma}
+  \dfrac{\widetilde{N}}{N}}
+=
+  \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
+  \left( \dfrac{\widetilde{k}}{k} \right)^{0.25}
+  \left( \dfrac{\widetilde{N}}{N} \right)^{0.5}
 \end{equation}
+To the 1$^{st}$ order in $\varepsilon_L$, and using Eqs. \ref{eq:k_short_exact}
+and \ref{eq:wave_action_modulation}, we get:
 
 \begin{equation}
-\label{eq:stokes_gravity}
-\widetilde{g_s} = \overline{
-  \widetilde{g}(\psi) +
-  \zeta \dfrac{\partial \widetilde{g}}{\partial x} +
-  \xi \dfrac{\partial \widetilde{g}}{\partial z}
-}
-= g \left( 1 + \dfrac{3}{2} a_L^2 k_L^2 \right)
+\label{eq:wave_amplitude_modulation_order1}
+\dfrac{\widetilde{a}}{a} = 
+  \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
+  \left( 1 + \varepsilon_L \right)^{0.75}
 \end{equation}
+
 
 \section{Numerical solutions}
 \label{section:numerical_solutions}
