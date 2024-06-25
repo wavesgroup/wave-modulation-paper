@@ -14,26 +14,48 @@ def g_modulation(psi, a, k):
 
 k_long = 1
 
-ak_range = np.arange(0, 0.41, 0.01)
-solutions = []
+ak_range = np.arange(0, 0.45, 0.05)
+solutions1 = []
+solutions2 = []
 for ak in ak_range:
     a_long = ak / k_long
+
     m = WaveModulationModel(a_long=a_long, k_long=k_long)
     m.run(ramp_type="groups")
-    solutions.append(m)
+    solutions1.append(m)
 
-k_modulation_numerical = np.array(
-    [np.max(m.to_xarray().wavenumber) / m.k_short for m in solutions]
+    m = WaveModulationModel(a_long=a_long, k_long=k_long)
+    m.run(wave_type="stokes", ramp_type="groups")
+    solutions2.append(m)
+
+
+k_modulation_numerical_linear = np.array(
+    [np.max(m.to_xarray().wavenumber) / m.k_short for m in solutions1]
 )
-a_modulation_numerical = np.array(
-    [np.max(m.to_xarray().amplitude) / m.a_short for m in solutions]
+a_modulation_numerical_linear = np.array(
+    [np.max(m.to_xarray().amplitude) / m.a_short for m in solutions1]
 )
-ak_modulation_numerical = np.array(
+k_modulation_numerical_stokes = np.array(
+    [np.max(m.to_xarray().wavenumber) / m.k_short for m in solutions2]
+)
+a_modulation_numerical_stokes = np.array(
+    [np.max(m.to_xarray().amplitude) / m.a_short for m in solutions2]
+)
+ak_modulation_numerical_linear = np.array(
     [
         np.max(m.to_xarray().amplitude * m.to_xarray().wavenumber)
         / m.a_short
         / m.k_short
-        for m in solutions
+        for m in solutions1
+    ]
+)
+
+ak_modulation_numerical_stokes = np.array(
+    [
+        np.max(m.to_xarray().amplitude * m.to_xarray().wavenumber)
+        / m.a_short
+        / m.k_short
+        for m in solutions2
     ]
 )
 
@@ -69,10 +91,18 @@ ax.plot(
 )
 ax.plot(
     ak_range,
-    a_modulation_numerical,
+    a_modulation_numerical_linear,
     linestyle="-",
     lw=2,
     color="tab:orange",
+    label="Amplitude, numerical",
+)
+ax.plot(
+    ak_range,
+    a_modulation_numerical_stokes,
+    linestyle="-",
+    lw=2,
+    color="tab:green",
     label="Amplitude, numerical",
 )
 
@@ -87,19 +117,28 @@ ax.plot(
 )
 ax.plot(
     ak_range,
-    ak_modulation_numerical,
+    ak_modulation_numerical_linear,
     linestyle="--",
     lw=2,
     color="tab:orange",
     label="Steepness, numerical",
 )
+ax.plot(
+    ak_range,
+    ak_modulation_numerical_stokes,
+    linestyle="--",
+    lw=2,
+    color="tab:green",
+    label="Steepness, numerical",
+)
+
 
 ax.legend()
 ax.set_xlabel(r"$\varepsilon_L$")
 ax.set_ylabel(r"Amplitude and steepness modulation")
 ax.grid()
 ax.set_xlim(0, 0.4)
-ax.set_ylim(1, 5)
+ax.set_ylim(1, 7)
 
 plt.savefig("../figures/numerical_vs_analytical_solutions.png", dpi=200)
 plt.close()

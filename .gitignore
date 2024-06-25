@@ -302,4 +302,8 @@ TSWLatexianTemp*
 
 # Python artifacts
 *.pyc
-__pycache__
+__pycache
+
+*.png
+*.pdf
+venv
