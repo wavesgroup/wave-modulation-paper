@@ -25,15 +25,15 @@
 \affiliation{2}{
   Frost Institute for Data Science and Computing,
   University of Miami,
-  Miami, FL
+  Coral Gables, FL
 }
 
 \correspondingauthor{Milan Curcic}{mcurcic@miami.edu}
 
 \begin{keypoints}
-\item We revisit analytical and numerical solutions for hydrodynamic modulation of short waves by longer waves from linear wave theory.
-\item We extend the original solution by \citeA{longuet1960changes} to a higher-order solution.
-\item In contrast to earlier studies, we find that there exist stable numerical solutions for modulation by realistic long-wave groups.
+\item We revisit analytical and numerical solutions for hydrodynamic modulation of short waves by longer waves.
+\item We present a higher-order analytical solution based on linear wave theory.
+\item In contrast to an earlier study, we find stable numerical solutions for modulation by realistic long-wave groups.
 \end{keypoints}
 
 \begin{abstract}
@@ -79,27 +79,44 @@ Following the result by \citeA{unna1941white,unna1942waves,unna1947sea},
 modulation of short waves at the crest of an underlying longer wave:
 
 \begin{equation}
-\label{eq:tau}
-\widetilde{k} = k (1 + a_L k_L)
+\label{eq:lhs1960wavenumber}
+\widetilde{k} = k (1 + \varepsilon_L)
 \end{equation}
-where $\widetilde{k}$ and $k$ are the modulated and unmodulated wavenumbers of
-short waves, respectively, and $a_L$ and $k_L$ are amplitude and wavenumber
-of the long wave, respectively.
+where $\widetilde{k}$ and $k$ are modulated and unmodulated short-wave wavenumbers,
+respectively, and $\varepsilon_L = a_L k_L$ is the steepness of the long wave with
+wavenumber $k_L$ and amplitude $a_L$.
 This result has been influential on the development of remote sensing of ocean
-surface waves and currents \cite{keller1975microwave,hara1994hydrodynamic}
-and has been used even recently \cite{peureux2021unsteady} to simulate
-unsteady growth of short-waves due to longer waves.
+surface waves and currents \cite{keller1975microwave,hara1994hydrodynamic}.
+\citeA{longuet1987propagation} revisited this problem by considering variation
+in the gravitational acceleration and fully non-linear wave numerical solutions
+to find significantly stronger modulation than that predicted by
+Eq. \ref{eq:lhs1960wavenumber}.
+\citeA{zhang1990evolution} evaluated the effects of nonlinearity of short waves
+using a non-linear Schr\" odinger equation and found higher wavenumber
+modulation but lesser amplitude modulation than those predicted by
+\citeA{longuet1987propagation}.
+More recently, \cite{peureux2021unsteady} simulated the full wave conservation
+equations and found that the short waves grow unsteadily due to the propagation of
+longer waves, suggesting that the steady-state solutions may only be valid for
+a few long-wave periods before the short waves are steep enough to break. 
 
-Working through the theory of \citeA{longuet1960changes,longuet1987propagation}
-and the numerical simulation of \citeA{peureux2021unsteady}, I found several
-gaps in the current understanding of the hydrodynamic modulation of short waves
-based on linear wave theory that I thought were worth revisiting.
-
-In this study, we extend the \citeA{longuet1960changes} theory (hereafter L-HS)
-to a higher-order solution following the linear wave theory, and present revised
-phase-averaged estimates of short-wave properties in presence of long waves. 
+In this paper, we revisit this problem from a linear wave theory perspective and
+derive new non-linear solutions for the modulation of short waves, evaluated
+at the long-wave surface.
+We also perform numerical simulations of the full wave crest and action
+conservation laws and evaluate the effect of long-wave groups on the short waves.
+The next section presents the governing equations, followed by the analytical
+solutions in section \ref{section:analytical_solutions}.
+In section \ref{section:numerical_solutions} we present the numerical solutions
+and compare them to the analytical solutions.
+In section \ref{section:scale_analysis} we perform a scale analysis of the
+analytical solutions to quantify the relative importance of the terms in the
+full equation set.
+Finally, we summarize the results and discuss their implications in section
+\ref{section:conclusions}.
 
 \section{Governing equations}
+\label{section:governing_equations}
 
 In this paper we consider inviscid, irrotational, and incompressible flow.
 In these conditions the linear (sine-like), deep-water, surface gravity waves
@@ -559,6 +576,7 @@ analysis to quantify the relative contribution of tendencies in the full equatio
 TODO
 
 \section{Conclusions}
+\label{section:conclusions}
 
 \acknowledgments
 Thanks to Peisen Tan, Nathan Laxague, and Fabrice Ardhuin for providing helpful

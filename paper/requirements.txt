@@ -2,3 +2,4 @@ matplotlib
 numpy
 rich
 sympy
+xarray
