@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 from model import WaveModulationModel
 import numpy as np
+import pandas as pd
 import matplotlib
 
-matplotlib.rc("font", size=16)
+matplotlib.rc("font", size=14)
 
 
 def g_modulation(psi, a, k):
@@ -14,7 +15,7 @@ def g_modulation(psi, a, k):
 
 k_long = 1
 
-ak_range = np.arange(0, 0.45, 0.05)
+ak_range = np.arange(0, 0.41, 0.01)
 solutions1 = []
 solutions2 = []
 for ak in ak_range:
@@ -77,68 +78,54 @@ k_modulation_analytical = np.array(k_modulation_analytical)
 ak_modulation_analytical = np.array(ak_modulation_analytical)
 
 
+df_k_lh1987 = pd.read_csv("../data/lh1987_k_modulation_r10.csv")
+df_ak_lh1987 = pd.read_csv("../data/lh1987_ak_modulation_r10.csv")
+
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
-
-ax.plot(ak_range, (1 + ak_range), "k-", lw=2, label="Amplitude, L-HS 1960")
-ax.plot(
-    ak_range,
-    a_modulation_analytical,
-    linestyle="-",
-    lw=2,
-    color="tab:blue",
-    label="Amplitude, analytical",
-)
-ax.plot(
-    ak_range,
-    a_modulation_numerical_linear,
-    linestyle="-",
-    lw=2,
-    color="tab:orange",
-    label="Amplitude, numerical",
-)
-ax.plot(
-    ak_range,
-    a_modulation_numerical_stokes,
-    linestyle="-",
-    lw=2,
-    color="tab:green",
-    label="Amplitude, numerical",
-)
-
-ax.plot(ak_range, (1 + ak_range) ** 2, "k--", lw=2, label="Steepness, L-HS 1960")
-ax.plot(
-    ak_range,
-    ak_modulation_analytical,
-    linestyle="--",
-    lw=2,
-    color="tab:blue",
-    label="Steepness, analytical",
-)
-ax.plot(
-    ak_range,
-    ak_modulation_numerical_linear,
-    linestyle="--",
-    lw=2,
-    color="tab:orange",
-    label="Steepness, numerical",
-)
-ax.plot(
-    ak_range,
-    ak_modulation_numerical_stokes,
-    linestyle="--",
-    lw=2,
-    color="tab:green",
-    label="Steepness, numerical",
-)
-
-
-ax.legend()
+ax.plot(ak_range, (1 + ak_range), "k-", lw=2, label="L-HS 1960, analytical")
+ax.plot(df_k_lh1987.epsilon, df_k_lh1987.k_modulation, "ko", ms=8, label="L-H 1987, numerical", zorder=10)
+ax.plot(ak_range, k_modulation_analytical, linestyle="-", lw=2, color="tab:blue", label="This paper, analytical")
+ax.plot(ak_range, k_modulation_numerical_linear, linestyle="-", lw=2, color="tab:green", label="This paper, numerical, linear")
+ax.plot(ak_range, k_modulation_numerical_stokes, linestyle="-", lw=2, color="tab:orange", label="This paper, numerical, Stokes")
+ax.legend(loc="upper left")
 ax.set_xlabel(r"$\varepsilon_L$")
-ax.set_ylabel(r"Amplitude and steepness modulation")
+ax.set_ylabel(r"$\widetilde{k}/k$")
 ax.grid()
-ax.set_xlim(0, 0.4)
-ax.set_ylim(1, 7)
+ax.set_xlim(0, 0.405)
+ax.set_ylim(1, 3.5)
+plt.savefig("../figures/numerical_vs_analytical_solutions_k.png", dpi=200)
+plt.close()
 
-plt.savefig("../figures/numerical_vs_analytical_solutions.png", dpi=200)
+
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111)
+ax.plot(ak_range, (1 + ak_range), "k-", lw=2, label="L-HS 1960, analytical")
+ax.plot(df_ak_lh1987.epsilon, df_ak_lh1987.ak_modulation / df_k_lh1987.k_modulation, "ko", ms=8, label="L-H 1987, numerical", zorder=10)
+ax.plot(ak_range, a_modulation_analytical, linestyle="-", lw=2, color="tab:blue", label="This paper, analytical")
+ax.plot(ak_range, a_modulation_numerical_linear, linestyle="-", lw=2, color="tab:green", label="This paper, numerical, linear")
+ax.plot(ak_range, a_modulation_numerical_stokes, linestyle="-", lw=2, color="tab:orange", label="This paper, numerical, Stokes")
+ax.legend(loc="upper left")
+ax.set_xlabel(r"$\varepsilon_L$")
+ax.set_ylabel(r"$\widetilde{a}/a$")
+ax.grid()
+ax.set_xlim(0, 0.405)
+ax.set_ylim(1, 3)
+plt.savefig("../figures/numerical_vs_analytical_solutions_a.png", dpi=200)
+plt.close()
+
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111)
+ax.plot(ak_range, (1 + ak_range)**2, "k-", lw=2, label="L-HS 1960, analytical")
+ax.plot(df_ak_lh1987.epsilon, df_ak_lh1987.ak_modulation, "ko", ms=8, label="L-H 1987, numerical", zorder=10)
+ax.plot(ak_range, ak_modulation_analytical, linestyle="-", lw=2, color="tab:blue", label="This paper, analytical")
+ax.plot(ak_range, ak_modulation_numerical_linear, linestyle="-", lw=2, color="tab:green", label="This paper, numerical, linear")
+ax.plot(ak_range, ak_modulation_numerical_stokes, linestyle="-", lw=2, color="tab:orange", label="This paper, numerical, Stokes")
+ax.legend(loc="upper left")
+ax.set_xlabel(r"$\varepsilon_L$")
+ax.set_ylabel(r"$\widetilde{ak}/(ak)$")
+ax.grid()
+ax.set_xlim(0, 0.405)
+ax.set_ylim(1, 8)
+plt.savefig("../figures/numerical_vs_analytical_solutions_ak.png", dpi=200)
 plt.close()
