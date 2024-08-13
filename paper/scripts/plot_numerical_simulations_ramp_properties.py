@@ -23,8 +23,9 @@ ak_init = 0.1
 
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
-ax.plot(periods, np.max(ak1, 1) / ak_init, color="tab:blue", lw=2)
-ax.plot(periods, np.max(ak2, 1) / ak_init, color="tab:orange", lw=2)
+ax.plot(periods, np.max(ak1, 1) / ak_init, color="tab:blue", lw=2, label="Sudden onset of long waves")
+ax.plot(periods, np.max(ak2, 1) / ak_init, color="tab:orange", lw=2, label="Linear ramp")
+ax.legend()
 ax.set_xlabel("Time (periods)")
 ax.set_ylabel(r"$\widetilde{ak}/(ak)$")
 ax.grid()
