@@ -80,8 +80,9 @@ def plot_analytical_solutions(a_L: float):
         plt.subplot2grid((3, 2), (2, 1)),
     ]
 
-    axes[0].plot(phase, k_lhs, "k-", lw=2, label="L-H&S")
+    axes[0].plot(phase, k_lhs, "k-", lw=2, label="L-HS 1960")
     axes[0].plot(phase, k_modulation, "r-", lw=2, label="This paper")
+    axes[0].legend()
 
     axes[1].plot(phase, np.ones(phase.shape), "k-", lw=2)
     axes[1].plot(phase, g_modulation, "r-", lw=2)
