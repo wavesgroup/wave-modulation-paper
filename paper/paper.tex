@@ -100,6 +100,31 @@ equations and found that the short waves grow unsteadily due to the propagation 
 longer waves, suggesting that the steady-state solutions may only be valid for
 a few long-wave periods before the short waves are steep enough to break. 
 
+\begin{table}[h]
+\label{table:modulation_literature_summary}
+\caption{
+  Summary of prior \cite{longuet1960changes,longuet1987propagation,zhang1990evolution} and present (this paper)
+  approaches to calculating the modulation of short waves by long waves.
+}
+\begin{tabular}{cccccc}
+\hline
+Reference   & Governing & Gravity & Nonlinear  & Nonlinear   & Solution \\
+            & equations & varies  & long waves & short waves &          \\
+\hline
+\hline
+L-HS (1960) & Velocity potential       & No  & No  & No  & Analytical \\
+\hline
+L-H (1987)  & Velocity potential       & Yes & Yes & No  & Numerical \\
+\hline
+ZM (1990)   & Nonlinear Schr\" odinger & Yes & Yes & Yes & Numerical \\
+            & equation                 &     &     &     &           \\
+\hline
+This paper  & Crest and action         & Yes & Yes & No  & Analytical \\
+            & conservation             &     &     &     & and numerical \\
+\hline
+\end{tabular}
+\end{table}
+
 In this paper, we revisit this problem from a linear wave theory perspective and
 derive new non-linear solutions for the modulation of short waves, evaluated
 at the long-wave surface.
@@ -230,6 +255,7 @@ here, they derived their solution from the linear superposition of the velocity
 potential of two waves.
 It appears the starting from the conservation of crests and wave action allows
 for a simpler and more intuitive derivation.
+
 
 \section{Analytical solutions}
 \label{section:analytical_solutions}
@@ -442,7 +468,41 @@ whereas in the figures that follow, the long wave is moving rightward with its
 phase speed $C_{pL}$ and the short waves (that is, their energy) are moving
 rightward with the speed of $C_g + U$ (neglecting any group wave inhomogeneity).
 
-\subsection{Unstable growth in infinite long-wave trains}
+\subsection{Comparison with analytical solutions}
+\label{subsection:comparison_with_analytical_solutions}
+
+\begin{figure}[h]
+\label{fig:numerical_solutions}
+\centering
+\includegraphics[width=\textwidth]{figures/numerical_vs_analytical_solutions_with_phase.png}
+\caption{
+  Comparison of numerical solutions of wavenumber, amplitude, and steepness modulation
+  with their analytical solutions, for $\varepsilon_L$ = 0.1, 0.2, and 0.4.
+}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:numerical_vs_analytical_k}
+\centering
+\includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_k.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:numerical_vs_analytical_a}
+\centering
+\includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_a.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:numerical_vs_analytical_ak}
+\centering
+\includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_ak.png}
+\caption{}
+\end{figure}
+
+\subsection{Unstable growth in Pereux et al. (2021)}
 \label{subsection:unstable_growth}
 
 The key result of \citeA{peureux2021unsteady} is that of unsteady steepening of
@@ -538,28 +598,6 @@ for the first five periods reveals that the unsteady growh no longer occurs
   causing the long-wave amplitude to gradually increase and peak at $a_L = 0.1$
   after five long-wave periods, and then conversely decay back to a calm sea state.
 }
-\end{figure}
-
-\begin{figure}[h]
-\label{fig:numerical_vs_analytical_k}
-\centering
-\includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_k.png}
-\caption{}
-\end{figure}
-
-
-\begin{figure}[h]
-\label{fig:numerical_vs_analytical_a}
-\centering
-\includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_a.png}
-\caption{}
-\end{figure}
-
-\begin{figure}[h]
-\label{fig:numerical_vs_analytical_ak}
-\centering
-\includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_ak.png}
-\caption{}
 \end{figure}
 
 \section{Scale analysis}

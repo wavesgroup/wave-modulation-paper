@@ -84,10 +84,38 @@ df_ak_lh1987 = pd.read_csv("../data/lh1987_ak_modulation_r10.csv")
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
 ax.plot(ak_range, (1 + ak_range), "k-", lw=2, label="L-HS 1960, analytical")
-ax.plot(df_k_lh1987.epsilon, df_k_lh1987.k_modulation, "ko", ms=8, label="L-H 1987, numerical", zorder=10)
-ax.plot(ak_range, k_modulation_analytical, linestyle="-", lw=2, color="tab:blue", label="This paper, analytical")
-ax.plot(ak_range, k_modulation_numerical_linear, linestyle="-", lw=2, color="tab:green", label="This paper, numerical, linear")
-ax.plot(ak_range, k_modulation_numerical_stokes, linestyle="-", lw=2, color="tab:orange", label="This paper, numerical, Stokes")
+ax.plot(
+    df_k_lh1987.epsilon,
+    df_k_lh1987.k_modulation,
+    "ko",
+    ms=8,
+    label="L-H 1987, numerical",
+    zorder=10,
+)
+ax.plot(
+    ak_range,
+    k_modulation_analytical,
+    linestyle="-",
+    lw=2,
+    color="tab:blue",
+    label="This paper, analytical",
+)
+ax.plot(
+    ak_range,
+    k_modulation_numerical_linear,
+    linestyle="-",
+    lw=2,
+    color="tab:green",
+    label="This paper, numerical, linear",
+)
+ax.plot(
+    ak_range,
+    k_modulation_numerical_stokes,
+    linestyle="-",
+    lw=2,
+    color="tab:orange",
+    label="This paper, numerical, Stokes",
+)
 ax.legend(loc="upper left")
 ax.set_xlabel(r"$\varepsilon_L$")
 ax.set_ylabel(r"$\widetilde{k}/k$")
@@ -101,10 +129,38 @@ plt.close()
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
 ax.plot(ak_range, (1 + ak_range), "k-", lw=2, label="L-HS 1960, analytical")
-ax.plot(df_ak_lh1987.epsilon, df_ak_lh1987.ak_modulation / df_k_lh1987.k_modulation, "ko", ms=8, label="L-H 1987, numerical", zorder=10)
-ax.plot(ak_range, a_modulation_analytical, linestyle="-", lw=2, color="tab:blue", label="This paper, analytical")
-ax.plot(ak_range, a_modulation_numerical_linear, linestyle="-", lw=2, color="tab:green", label="This paper, numerical, linear")
-ax.plot(ak_range, a_modulation_numerical_stokes, linestyle="-", lw=2, color="tab:orange", label="This paper, numerical, Stokes")
+ax.plot(
+    df_ak_lh1987.epsilon,
+    df_ak_lh1987.ak_modulation / df_k_lh1987.k_modulation,
+    "ko",
+    ms=8,
+    label="L-H 1987, numerical",
+    zorder=10,
+)
+ax.plot(
+    ak_range,
+    a_modulation_analytical,
+    linestyle="-",
+    lw=2,
+    color="tab:blue",
+    label="This paper, analytical",
+)
+ax.plot(
+    ak_range,
+    a_modulation_numerical_linear,
+    linestyle="-",
+    lw=2,
+    color="tab:green",
+    label="This paper, numerical, linear",
+)
+ax.plot(
+    ak_range,
+    a_modulation_numerical_stokes,
+    linestyle="-",
+    lw=2,
+    color="tab:orange",
+    label="This paper, numerical, Stokes",
+)
 ax.legend(loc="upper left")
 ax.set_xlabel(r"$\varepsilon_L$")
 ax.set_ylabel(r"$\widetilde{a}/a$")
@@ -116,11 +172,39 @@ plt.close()
 
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
-ax.plot(ak_range, (1 + ak_range)**2, "k-", lw=2, label="L-HS 1960, analytical")
-ax.plot(df_ak_lh1987.epsilon, df_ak_lh1987.ak_modulation, "ko", ms=8, label="L-H 1987, numerical", zorder=10)
-ax.plot(ak_range, ak_modulation_analytical, linestyle="-", lw=2, color="tab:blue", label="This paper, analytical")
-ax.plot(ak_range, ak_modulation_numerical_linear, linestyle="-", lw=2, color="tab:green", label="This paper, numerical, linear")
-ax.plot(ak_range, ak_modulation_numerical_stokes, linestyle="-", lw=2, color="tab:orange", label="This paper, numerical, Stokes")
+ax.plot(ak_range, (1 + ak_range) ** 2, "k-", lw=2, label="L-HS 1960, analytical")
+ax.plot(
+    df_ak_lh1987.epsilon,
+    df_ak_lh1987.ak_modulation,
+    "ko",
+    ms=8,
+    label="L-H 1987, numerical",
+    zorder=10,
+)
+ax.plot(
+    ak_range,
+    ak_modulation_analytical,
+    linestyle="-",
+    lw=2,
+    color="tab:blue",
+    label="This paper, analytical",
+)
+ax.plot(
+    ak_range,
+    ak_modulation_numerical_linear,
+    linestyle="-",
+    lw=2,
+    color="tab:green",
+    label="This paper, numerical, linear",
+)
+ax.plot(
+    ak_range,
+    ak_modulation_numerical_stokes,
+    linestyle="-",
+    lw=2,
+    color="tab:orange",
+    label="This paper, numerical, Stokes",
+)
 ax.legend(loc="upper left")
 ax.set_xlabel(r"$\varepsilon_L$")
 ax.set_ylabel(r"$\widetilde{ak}/(ak)$")
