@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
+from model import diff
 
 matplotlib.rc("font", size=12)
 
@@ -20,13 +21,50 @@ def gravity_linear(
     a: float,
     k: float,
     phase: float,
-    g0: float,
+    g0: float = 9.8,
 ) -> float:
     """Gravitational acceleration at the surface of a linear wave."""
     eta = elevation_linear(a, phase)
     return g0 * (
         1 - a * k * np.exp(k * eta) * (np.cos(phase) - a * k * np.sin(phase) ** 2)
     )
+
+
+def gravity_curvilinear(
+    a: float,
+    k: float,
+    phase: float,
+    g0: float = 9.8,
+) -> float:
+    """Gravitational acceleration at the surface of a curvilinear wave."""
+    eta = elevation_linear(a, phase)
+    eps = a * k
+    denominator = np.sqrt((eps * np.sin(phase)) ** 2 + 1)
+    enumerator = g0 * (
+        1
+        - eps * np.exp(eps * np.cos(phase)) * np.cos(phase)
+        - eps**3 * np.exp(eps * np.cos(phase)) * np.cos(phase) * np.sin(phase) ** 2
+    )
+    return enumerator / denominator
+
+
+def gravity_curvilinear_numerical(
+    a: float,
+    k: float,
+    phase: float,
+    g0: float = 9.8,
+) -> float:
+    eta = elevation_linear(a, phase)
+    x = phase / k
+    dx = np.diff(x)[0]
+    omega = np.sqrt(g0 * k)
+    dU_dt = a * omega**2 * np.exp(k * eta) * np.sin(phase) * (a * k * np.cos(phase) + 1)
+    dW_dt = (
+        a * omega**2 * np.exp(k * eta) * (a * k * np.sin(phase) ** 2 - np.cos(phase))
+    )
+    alpha = np.arctan(diff(eta) / dx)
+    g = g0 * np.cos(alpha) + dW_dt * np.cos(alpha) + dU_dt * np.sin(alpha)
+    return g
 
 
 def gravity_stokes(a: float, k: float, phase: float, g0: float) -> float:
@@ -53,14 +91,15 @@ def gravity_stokes(a: float, k: float, phase: float, g0: float) -> float:
 
 
 def plot_analytical_solutions(a_L: float):
-    phase = np.arange(0, 2 * np.pi + 1e-4, 1e-4)
+    phase = np.linspace(0, 2 * np.pi, 10000, endpoint=False)
     k_L = 1
     ak_L = a_L * k_L
 
     k_lhs = 1 + ak_L * np.cos(phase)
     k_modulation = np.exp(ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase)))
 
-    g_modulation = gravity_linear(a_L, k_L, phase, 1)
+    # g_modulation = gravity_linear(a_L, k_L, phase, 1)
+    g_modulation = gravity_curvilinear(a_L, k_L, phase, 1)
     # g_modulation_stokes = gravity_stokes(a_L, k_L, phase, 1)
 
     N_modulation = k_modulation
@@ -133,7 +172,7 @@ def plot_analytical_solutions(a_L: float):
     axes[1].set_title(r"$\widetilde{g}/g$")
     axes[2].set_title(r"$\widetilde{a}/a$")
     axes[3].set_title(r"$\widetilde{ak}/(ak)$")
-    axes[4].set_title(r"$\widetilde{\omega}/\omega$")
+    axes[4].set_title(r"$\widetilde{\sigma}/\sigma$")
     axes[5].set_title(r"$\widetilde{C_p}/C_p$")
 
     for n, ax in enumerate(axes):

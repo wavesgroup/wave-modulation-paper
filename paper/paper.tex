@@ -340,16 +340,32 @@ Long waves induce vertical orbital accelerations, so the short
 waves that ride on their surface move in an accelerated reference frame and
 experience effective gravitational acceleration that is lower at the crests and
 higher in the troughs \cite{longuet1986eulerian,longuet1987propagation}.
-A linear wave causes a modulation in gravity acceleration at its surface:
+A long wave modulates gravitational acceleration at its surface:
+
+\begin{equation}
+\label{eq:gravity_modulation_general}
+\widetilde{g}(\psi)
+  = g \cos{\alpha} 
+  + \dfrac{\partial W}{\partial t} \cos{\alpha}
+  + \frac{\partial U}{\partial t} \sin{\alpha}
+\end{equation}
+where $\alpha = \arctan{\frac{\partial \eta}{\partial x}}$ is the local slope
+of the long-wave surface.
+Curvilinear effects on effective gravity can be removed by setting $\alpha = 0$.
+
+For a linear wave, the effective gravity is:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear}
-\widetilde{g}(\psi) = g + \dfrac{\partial W}{\partial t} = g \left[
-  1 - \varepsilon_L e^{\varepsilon_L \cos{\psi}} \left(
-    \cos{\psi} - \varepsilon_L \sin^2{\psi}
-  \right)
-\right]
+\widetilde{g}
+  = g 
+  \frac{
+    1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}
+    \left[ 1 + \left(\varepsilon_L \sin{\psi}\right)^2 \right]
+  }
+  {\sqrt{\left(\varepsilon_L \sin{\psi}\right)^2 + 1}}
 \end{equation}
+
 The first-order term in $a_L k_L$ is in phase with the long-wave elevation,
 so the apparent gravity of the short waves is increased at the long-wave crests
 and decreased in the troughs.
