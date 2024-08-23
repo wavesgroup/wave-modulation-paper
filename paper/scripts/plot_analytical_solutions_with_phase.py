@@ -48,20 +48,75 @@ def gravity_curvilinear(
     return enumerator / denominator
 
 
+def dU_dt_linear(a: float, k: float, phase: float, g0: float = 9.8) -> float:
+    eta = elevation_linear(a, phase)
+    omega = np.sqrt(g0 * k)
+    return a * omega**2 * np.exp(k * eta) * np.sin(phase) * (a * k * np.cos(phase) + 1)
+
+
+def dW_dt_linear(a: float, k: float, phase: float, g0: float = 9.8) -> float:
+    eta = elevation_linear(a, phase)
+    omega = np.sqrt(g0 * k)
+    return a * omega**2 * np.exp(k * eta) * (a * k * np.sin(phase) ** 2 - np.cos(phase))
+
+
+def dU_dt_stokes(a: float, k: float, phase: float, g0: float = 9.8) -> float:
+    eta = elevation_stokes(a, k, phase)
+    omega = np.sqrt(g0 * k)
+    term1 = a * omega**2 * np.exp(k * eta) * np.sin(phase)
+    term2 = (
+        a**2
+        * omega**2
+        * k
+        * np.exp(k * eta)
+        * np.cos(phase)
+        * (
+            np.sin(phase)
+            + a * k * np.sin(2 * phase)
+            + (a * k) ** 2 * (9 / 8.0 * np.sin(3 * phase) - 1 / 16.0 * np.sin(phase))
+        )
+    )
+    return term1 + term2
+
+
+def dW_dt_stokes(a: float, k: float, phase: float, g0: float = 9.8) -> float:
+    eta = elevation_stokes(a, k, phase)
+    omega = np.sqrt(g0 * k)
+    term1 = -a * omega**2 * np.exp(k * eta) * np.cos(phase)
+    term2 = (
+        a**2
+        * omega**2
+        * k
+        * np.exp(k * eta)
+        * np.sin(phase)
+        * (
+            np.sin(phase)
+            + a * k * np.sin(2 * phase)
+            + (a * k) ** 2 * (9 / 8.0 * np.sin(3 * phase) - 1 / 16.0 * np.sin(phase))
+        )
+    )
+    return term1 + term2
+
+
 def gravity_curvilinear_numerical(
     a: float,
     k: float,
     phase: float,
     g0: float = 9.8,
+    long_wave: str = "stokes",
 ) -> float:
-    eta = elevation_linear(a, phase)
     x = phase / k
     dx = np.diff(x)[0]
-    omega = np.sqrt(g0 * k)
-    dU_dt = a * omega**2 * np.exp(k * eta) * np.sin(phase) * (a * k * np.cos(phase) + 1)
-    dW_dt = (
-        a * omega**2 * np.exp(k * eta) * (a * k * np.sin(phase) ** 2 - np.cos(phase))
-    )
+    if long_wave == "linear":
+        eta = elevation_linear(a, phase)
+        dU_dt = dU_dt_linear(a, k, phase, g0)
+        dW_dt = dW_dt_linear(a, k, phase, g0)
+    elif long_wave == "stokes":
+        eta = elevation_stokes(a, k, phase)
+        dU_dt = dU_dt_stokes(a, k, phase, g0)
+        dW_dt = dW_dt_stokes(a, k, phase, g0)
+    else:
+        raise ValueError("long_wave must be either 'linear' or 'stokes'")
     alpha = np.arctan(diff(eta) / dx)
     g = g0 * np.cos(alpha) + dW_dt * np.cos(alpha) + dU_dt * np.sin(alpha)
     return g
@@ -100,6 +155,7 @@ def plot_analytical_solutions(a_L: float):
 
     # g_modulation = gravity_linear(a_L, k_L, phase, 1)
     g_modulation = gravity_curvilinear(a_L, k_L, phase, 1)
+    # g_modulation = gravity_curvilinear_numerical(a_L, k_L, phase, 1, "stokes")
     # g_modulation_stokes = gravity_stokes(a_L, k_L, phase, 1)
 
     N_modulation = k_modulation

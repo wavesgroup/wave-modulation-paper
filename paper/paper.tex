@@ -271,6 +271,10 @@ for a simpler and more intuitive derivation.
 \section{Analytical solutions}
 \label{section:analytical_solutions}
 
+We now describe the analytical solutions for the short-wave wavenumber,
+effective gravitational acceleration, amplitude, steepness, intrinsic frequency,
+and intrinsic phase speed in presence of long waves.
+
 \subsection{Wavenumber modulation}
 \label{subsection:wavenumber_modulation}
 
@@ -336,23 +340,31 @@ at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 \subsection{Gravity modulation}
 \label{subsection:gravity_modulation}
 
-Long waves induce vertical orbital accelerations, so the short
-waves that ride on their surface move in an accelerated reference frame and
-experience effective gravitational acceleration that is lower at the crests and
-higher in the troughs \cite{longuet1986eulerian,longuet1987propagation}.
-A long wave modulates gravitational acceleration at its surface:
+Long waves induce orbital accelerations, so the short waves that ride on their
+surface move in an accelerated reference frame and experience effective
+gravitational acceleration that is lower at the crests and higher in the troughs
+\cite{longuet1986eulerian,longuet1987propagation}.
+Further, a smaller but non-negligible effect is that of the centripetal force
+due to the curvature of the long wave
+\cite{phillips1981dispersion,zhang1990evolution}.
+These effects are completely described by projecting the gravitational
+acceleration from the coordinate that is perpendicular to the mean water surface
+($z=0$) to that which is perpendicular to the long-wave surface ($z=\eta$),
+and likewise for the long-wave orbital accelerations:
 
 \begin{equation}
 \label{eq:gravity_modulation_general}
-\widetilde{g}(\psi)
+\widetilde{g}
   = g \cos{\alpha} 
-  + \dfrac{\partial W}{\partial t} \cos{\alpha}
-  + \frac{\partial U}{\partial t} \sin{\alpha}
+  + \dfrac{\partial W_{z=\eta}}{\partial t} \cos{\alpha}
+  + \dfrac{\partial U_{z=\eta}}{\partial t} \sin{\alpha}
 \end{equation}
-where $\alpha = \arctan{\frac{\partial \eta}{\partial x}}$ is the local slope
-of the long-wave surface.
-Curvilinear effects on effective gravity can be removed by setting $\alpha = 0$.
 
+\begin{equation}
+\label{eq:local_slope}
+\alpha = \tan^{-1}{\dfrac{\partial \eta}{\partial x}}
+\end{equation}
+where $\alpha$ is the local slope of the long-wave surface.
 For a linear wave, the effective gravity is:
 
 \begin{equation}
@@ -365,6 +377,8 @@ For a linear wave, the effective gravity is:
   }
   {\sqrt{\left(\varepsilon_L \sin{\psi}\right)^2 + 1}}
 \end{equation}
+
+Curvilinear effects on effective gravity can be neglected by setting $\alpha = 0$.
 
 The first-order term in $a_L k_L$ is in phase with the long-wave elevation,
 so the apparent gravity of the short waves is increased at the long-wave crests
@@ -385,8 +399,9 @@ a non-linear Stokes wave with the elevation (to the third order in $\varepsilon_
   \varepsilon_L^2 \left( \dfrac{3}{8} \cos{3\psi} - \dfrac{1}{16} \cos{\psi} \right)
 \right]
 \end{equation}
-The corresponding gravitational acceleration at the surface of the Stokes wave
-is, to the 4$^{th}$ order:
+Without considering the curvilinear effects in Eq. \ref{eq:gravity_modulation_general},,
+the gravitational acceleration at the surface of a Stokes wave is, to the
+4$^{th}$ order:
 
 \begin{equation}
 \label{eq:gravity_modulation_stokes}
@@ -403,15 +418,47 @@ g \left\{
   \right]
 \right\}
 \end{equation}
+The equivalent expression that includes the curvilinear effects can be derived
+by evaluating orbital accelerations and local slope $\alpha$ at $z = \eta_{St}$,
+and inserting them into Eq. \ref{eq:gravity_modulation_general}:
 
-With the new long-wave modulated expressions for the short-wave wavenumber
-(Eq. \ref{eq:k_short_exact}) and gravity
-(Eqs. \ref{eq:gravity_modulation_linear}-\ref{eq:gravity_modulation_stokes}),
-we can evaluate the long-wave modulated frequency as
-$\widetilde{\omega}(\psi) = \sqrt{\widetilde{g} \widetilde{k}}$.
-We compare the modulated intrinsic frequency for short waves on the surface of
-linear and Stokes waves with $\varepsilon_L=2$ as function of phase, and their
-phase-integral statistics in Fig. \ref{fig:frequency_modulation}.
+\begin{equation}
+\label{eq:gravity_modulation_general_stokes}
+\widetilde{g}
+  = g \cos{\alpha} 
+  + \dfrac{\partial W_{z=\eta_{St}}}{\partial t} \cos{\alpha_{St}}
+  + \dfrac{\partial U_{z=\eta_{St}}}{\partial t} \sin{\alpha_{St}}
+\end{equation}
+
+\begin{equation}
+\label{eq:local_slope_stokes}
+\alpha_{St} = \tan^{-1}{\dfrac{\partial \eta_{St}}{\partial x}}
+\end{equation}
+
+\begin{figure}[h]
+\label{fig:effective_gravities}
+\centering
+\includegraphics[width=0.6\textwidth]{figures/fig_effective_gravities.png}
+\caption{
+  (a) Analytical solutions for the effective gravitational acceleration
+  modulation by long waves, as function of long-wave phase, for $\varepsilon_L = 0.2$.
+  Black is for linear wave evaluated at $z=0$,
+  blue and green are for linear and Stokes waves, respectively, evaluated at $z=\eta$ and without curvature effects,
+  and orange and green are for linear and Stokes waves, respectively, evaluated at $z=\eta$ and with curvature effects.
+  (b) As in (a) but normalized by the modulation of the linear wave evaluated at $z=0$.
+}
+\end{figure}
+
+\begin{figure}[h]
+\label{fig:effective_gravities_mean_max_min}
+\centering
+\includegraphics[width=0.8\textwidth]{figures/fig_effective_gravities_mean_max_min.png}
+\caption{
+  As Fig. \ref{fig:effective_gravities} but showing the mean (solid),
+  maximum (dashed), and minimum (dotted) short-wave gravity modulation as
+  function of long-wave steepness $\varepsilon_L$.
+}
+\end{figure}
 
 \subsection{Amplitude and steepness modulation}
 \label{subsection:amplitude_modulation}
