@@ -1,40 +1,39 @@
-\documentclass[draft]{agujournal2019}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{url} %this package should fix any errors with URLs in refs.
-\usepackage{lineno}
-\usepackage{soul}
+
+\documentclass[lineno]{jfm}
+
+\usepackage{graphicx}
+%\usepackage{epstopdf,epsfig}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{natbib}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    urlcolor   = blue,
+    citecolor  = black,
+}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\RomanNumeralCaps}[1]
 \linenumbers
 
-\draftfalse
 
-\journalname{JGR: Oceans}
+% {\MakeUppercase{\romannumeral #1}}
 
-\begin{document}
-
-%\title{Dispersion of short waves riding on longer waves}
 \title{Revisiting the hydrodynamic wave modulation from linear wave theory}
 
-\authors{Milan Curcic\affil{1,2}}
-
-\affiliation{1}{
-  Rosenstiel School of Marine, Atmospheric, and Earth Science,
-  University of Miami,
-  Miami, FL
-}
-\affiliation{2}{
-  Frost Institute for Data Science and Computing,
-  University of Miami,
-  Coral Gables, FL
+\author{
+  Milan Curcic\aff{1}
+  \corresp{\email{mcurcic@miami.edu}}
 }
 
-\correspondingauthor{Milan Curcic}{mcurcic@miami.edu}
+\affiliation{
+  \aff{1}Rosenstiel School of Marine, Atmospheric, and Earth Science, University of Miami, Miami, FL
+  \aff{2}Frost Institute for Data Science and Computing, University of Miami, Coral Gables, FL
+}
 
-\begin{keypoints}
-\item We revisit analytical and numerical solutions for hydrodynamic modulation of short waves by longer waves.
-\item We present a higher-order analytical solution based on linear wave theory.
-\item In contrast to an earlier study, we find stable numerical solutions for modulation by long-wave groups.
-\end{keypoints}
+\begin{document}
+\maketitle
 
 \begin{abstract}
 Hydrodynamic modulation of short ocean surface waves by longer ambient waves is
@@ -48,9 +47,9 @@ We validate the analytical solutions with numerical simulations of the full wave
 crest and action conservation equations.
 The nonlinear analytical solutions of short-wave wavenumber, amplitude, and
 steepness modulation significantly deviate from the linear analytical solutions
-of \citeA{longuet1960changes}, and are similar to the nonlinear numerical
-solutions by \citeA{zhang1990evolution}.
-We also discuss the result of \citeA{peureux2021unsteady} who found through
+of \citet{longuet1960changes}, and are similar to the nonlinear numerical
+solutions by \citet{zhang1990evolution}.
+We also discuss the result of \citet{peureux2021unsteady} who found through
 numerical simulations that the short-wave modulation grows unsteadily with
 each long-wave phase.
 Here we show that this unsteady growth only occurs for homogeneous initial
@@ -61,23 +60,17 @@ The new analytical solutions are a good approximation of the full numerical
 solution in long-wave steepness up to $\approx 0.2$.
 \end{abstract}
 
-\section*{Plain Language Summary}
-The ocean surface is typically covered by waves of many wavelengths.
-Longer waves bunch up and dilate the shorter waves, and this process is
-important to consider for both the measurements and the forecasting of ocean
-waves.
-Although there have been analytical and numerical solutions for how the short
-waves should change in the presence of longer waves, they have either been
-simplistic or 
-This paper revisits and extends these solutions to propose a more accurate
-description of how the short waves should change in the presence of longer
-waves.
+\begin{keywords}
+%Authors should not enter keywords on the manuscript, as these must be chosen by the author during the online submission process and will then be added during the typesetting process (see \href{https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/information/list-of-keywords}{Keyword PDF} for the full list).  Other classifications will be added at the same time.
+\end{keywords}
+
+%{\bf MSC Codes }  {\it(Optional)} Please enter your MSC Codes here
 
 \section{Introduction}
 
 Short ocean surface waves are modulated by longer swell.
-Following the result by \citeA{unna1941white,unna1942waves,unna1947sea},
-\citeA{longuet1960changes} introduced an analytical solution for hydrodynamic
+Following the result by \citet{unna1941white,unna1942waves,unna1947sea},
+\citet{longuet1960changes} introduced an analytical solution for hydrodynamic
 modulation of short waves at the crest of an underlying longer wave:
 
 \begin{equation}
@@ -88,34 +81,26 @@ where $\widetilde{k}$ and $k$ are modulated and unmodulated short-wave wavenumbe
 respectively, and $\varepsilon_L = a_L k_L$ is the steepness of the long wave with
 wavenumber $k_L$ and amplitude $a_L$.
 This result has been influential on the development of remote sensing of ocean
-surface waves and currents \cite{keller1975microwave,hara1994hydrodynamic}.
-\citeA{longuet1987propagation} revisited this problem by considering variation
+surface waves and currents \citep{keller1975microwave,hara1994hydrodynamic}.
+\citet{longuet1987propagation} revisited this problem by considering variation
 in the gravitational acceleration and fully non-linear wave numerical solutions
 to find significantly stronger modulation than that predicted by
 Eq. \ref{eq:lhs1960wavenumber}.
-\citeA{zhang1990evolution} evaluated the effects of nonlinearity of short waves
+\citet{zhang1990evolution} evaluated the effects of nonlinearity of short waves
 using a non-linear Schr\" odinger equation and found higher wavenumber
 modulation but lesser amplitude modulation than those predicted by
-\citeA{longuet1987propagation}.
-More recently, \cite{peureux2021unsteady} simulated the full wave conservation
+\citet{longuet1987propagation}.
+More recently, \citep{peureux2021unsteady} simulated the full wave conservation
 equations and found that the short waves grow unsteadily due to the propagation of
 longer waves, suggesting that the steady-state solutions may only be valid for
 a few long-wave periods before the short waves are steep enough to break. 
 
-\begin{table}[h]
-\label{table:modulation_literature_summary}
-\caption{
-  Summary of prior
-  \cite{longuet1960changes,phillips1981dispersion,longuet1987propagation,zhang1990evolution,peureux2021unsteady}
-  and present (this paper) approaches to calculating the modulation of short
-  waves by long waves.
-  *: long 3rd order Stokes wave is considered only in numerical simulations.
-}
+\begin{table}
+\begin{center}
+\def~{\hphantom{0}}
 \begin{tabular}{cccccc}
-\hline
 Reference   & Governing & Gravity & Nonlinear  & Nonlinear   & Solution \\
             & equations & varies  & long waves & short waves &          \\
-\hline
 \hline
 L-HS 1960   & Velocity potential       & No  & No  & No  & Analytical \\
 \hline
@@ -123,6 +108,8 @@ P 1981      & Crest and energy         & Yes & Yes & No  & Numerical \\
             & conservation             &     &     &     &           \\
 \hline
 L-H 1987    & Velocity potential       & Yes & Yes & No  & Numerical \\
+\hline
+H 1988      & Hamiltonian              & Yes & Yes & No  & Analytical \\
 \hline
 ZM 1990     & Nonlinear Schr\" odinger & Yes & Yes & Yes & Numerical \\
             & equation                 &     &     &     &           \\
@@ -134,6 +121,15 @@ This paper  & Crest and action         & Yes & Yes* & No  & Analytical \\
             & conservation             &     &      &     & and numerical \\
 \hline
 \end{tabular}
+\caption{
+  Summary of prior
+  \citep{longuet1960changes,phillips1981dispersion,longuet1987propagation,zhang1990evolution,peureux2021unsteady}
+  and present (this paper) approaches to calculating the modulation of short
+  waves by long waves.
+  *: long 3rd order Stokes wave is considered only in numerical simulations.
+}
+\label{table:modulation_literature_summary}
+\end{center}
 \end{table}
 
 In this paper, we revisit this problem from a linear wave theory perspective and
@@ -168,12 +164,12 @@ of the wave propagation.
 A current in the direction of the waves thus increases its absolution frequency,
 wavenumber remaining unchanged.
 An important limitation here is that $U$ must be slow-varying on the scales of
-the wave period \cite{bretherton1968wavetrains}.
+the wave period \citep{bretherton1968wavetrains}.
 In the context of short waves riding on long waves, the mean advective current
 is the horizontal near-surface orbital velocity of the long wave.
 
 The second important relation is the conservation of wave crests
-\cite{phillips1981dispersion}:
+\citep{phillips1981dispersion}:
 
 \begin{equation}
 \label{eq:wave_crests}
@@ -202,7 +198,8 @@ In deep water, the group speed is half the phase speed, so $C_g = 1/2\sqrt{g/k}$
 
 As the short waves ride on the surface of the long wave,
 they move in an accelerated reference frame and will thus experience effective
-gravitational acceleration that changes in both space and time \cite{longuet1986eulerian,longuet1987propagation}.
+gravitational acceleration that changes in both space and time
+\citep{longuet1986eulerian,longuet1987propagation}.
 Inserting Eq. (\ref{eq:dispersion}) into (\ref{eq:wave_action}) we obtain:
 
 \begin{equation}
@@ -233,7 +230,7 @@ Similar to Eq. \ref{eq:wavenumber}, we expand Eq. \ref{eq:wave_action} to obtain
 \end{equation}
 This equation is similar to Eq. \ref{eq:wavenumber}, except for the last term
 which here represents the inhomogeneity of the group speed.
-As \citeA{peureux2021unsteady} explained, this term is responsible for unstable
+As \citet{peureux2021unsteady} explained, this term is responsible for unstable
 growth of wave action in infinite long-wave trains.
 Eqs. \ref{eq:wavenumber} and \ref{eq:wave_action2} will be the governing equations
 that we solve numerically in section \ref{section:numerical_solutions}.
@@ -261,7 +258,7 @@ W = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \sin{\psi}
 Eqs. \ref{eq:dispersion}-\ref{eq:w_L} is the full system of equations that we
 exploit in the remainder of this paper.
 Note that here we derive the solutions from a different starting set of
-equations than that of \citeA{longuet1960changes}.
+equations than that of \citet{longuet1960changes}.
 Rather than starting from the conservation of crests and wave action, as we do
 here, they derived their solution from the linear superposition of the velocity
 potential of two waves.
@@ -286,7 +283,7 @@ $k$ in Eq. \ref{eq:wavenumber} and assuming homogeneous $g$:
 \dfrac{\partial k}{\partial t}
 = - k \dfrac{\partial U}{\partial x}
 \end{equation}
-Although \citeA{peureux2021unsteady} pointed out that the solution by L-HS
+Although \citet{peureux2021unsteady} pointed out that the solution by L-HS
 requires assuming homogeneous group speed of the short-wave field, in fact,
 it also requires assuming no horizontal propagation and advection of the short
 waves.
@@ -322,19 +319,19 @@ solution, while the solution that evaluates the long-wave orbital velocity
 at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 1$^{st}$ order approximate L-HS solution.
 
-\begin{figure}[ht]
-\label{fig:analytical_solutions_ak0.1}
+\begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_analytical_solutions_ak0.1.png}
 \caption{
   Modulation of short-wave (a) wavenumber, (b) gravitational acceleration,
   (c) amplitude, (d) steepness, (e) intrinsic frequency, and (d) intrinsic phase
   speed as function of long-wave phase for $\varepsilon_L = 0.1$, based on
-  analytical solutions by \citeA{longuet1960changes} (L-HS 1960, black)
+  analytical solutions by \citet{longuet1960changes} (L-HS 1960, black)
   and this paper (blue).
   Long-wave crest and trough are located at $\psi = 0$ and $\psi = \pi$,
   respectively.
 }
+\label{fig:analytical_solutions_ak0.1}
 \end{figure}
 
 \subsection{Gravity modulation}
@@ -343,10 +340,10 @@ at the water surface rather than $z = 0$ is 38.4\% larger than that of the
 Long waves induce orbital accelerations, so the short waves that ride on their
 surface move in an accelerated reference frame and experience effective
 gravitational acceleration that is lower at the crests and higher in the troughs
-\cite{longuet1986eulerian,longuet1987propagation}.
+\citep{longuet1986eulerian,longuet1987propagation}.
 Further, a smaller but non-negligible effect is that of the centripetal force
 due to the curvature of the long wave
-\cite{phillips1981dispersion,zhang1990evolution}.
+\citep{phillips1981dispersion,zhang1990evolution}.
 These effects are completely described by projecting the gravitational
 acceleration from the coordinate that is perpendicular to the mean water surface
 ($z=0$) to that which is perpendicular to the long-wave surface ($z=\eta$),
@@ -435,8 +432,7 @@ and inserting them into Eq. \ref{eq:gravity_modulation_general}:
 \alpha_{St} = \tan^{-1}{\dfrac{\partial \eta_{St}}{\partial x}}
 \end{equation}
 
-\begin{figure}[h]
-\label{fig:effective_gravities}
+\begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{figures/fig_effective_gravities.png}
 \caption{
@@ -447,10 +443,10 @@ and inserting them into Eq. \ref{eq:gravity_modulation_general}:
   and orange and green are for linear and Stokes waves, respectively, evaluated at $z=\eta$ and with curvature effects.
   (b) As in (a) but normalized by the modulation of the linear wave evaluated at $z=0$.
 }
+\label{fig:effective_gravities}
 \end{figure}
 
-\begin{figure}[h]
-\label{fig:effective_gravities_mean_max_min}
+\begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_effective_gravities_mean_max_min.png}
 \caption{
@@ -458,6 +454,7 @@ and inserting them into Eq. \ref{eq:gravity_modulation_general}:
   maximum (dashed), and minimum (dotted) short-wave gravity modulation as
   function of long-wave steepness $\varepsilon_L$.
 }
+\label{fig:effective_gravities_mean_max_min}
 \end{figure}
 
 \subsection{Amplitude and steepness modulation}
@@ -497,18 +494,18 @@ and \ref{eq:wave_action_modulation}, we get:
   \left( 1 + \varepsilon_L \right)^{0.75}
 \end{equation}
 
-\begin{figure}[ht]
-\label{fig:analytical_solutions_ak0.2}
+\begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_analytical_solutions_ak0.2.png}
 \caption{As Fig. \ref{fig:analytical_solutions_ak0.1} but for $\varepsilon_L = 0.2$.}
+\label{fig:analytical_solutions_ak0.2}
 \end{figure}
 
-\begin{figure}[ht]
-\label{fig:analytical_solutions_ak0.4}
+\begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_analytical_solutions_ak0.4.png}
 \caption{As Fig. \ref{fig:analytical_solutions_ak0.1} but for $\varepsilon_L = 0.4$.}
+\label{fig:analytical_solutions_ak0.4}
 \end{figure}
 
 \section{Numerical solutions}
@@ -519,10 +516,10 @@ wavenumber and action density in presence of long waves, and in absence of
 sources or sinks of wave energy.
 Equations (\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are discretized using
 2$^{nd}$  order central finite difference in space and integrated in time using the
-4$^{th}$ order Runge-Kutta method \cite{butcher1996runge}.
+4$^{th}$ order Runge-Kutta method \citep{butcher1996runge}.
 The space is divided into 100 grid points.
 This is effectively the same equation set and numerical configuration as that of
-\citeA{peureux2021unsteady}, except that, like \citeA{longuet1960changes}, their
+\citet{peureux2021unsteady}, except that, like \citet{longuet1960changes}, their
 long-wave orbital velocities are evaluated at $z=0$ instead of $z=\eta_L$.
 The key difference is that evaluating orbital velocities at $z=0$ neglects the
 Stokes drift of short-wave groups.
@@ -535,14 +532,14 @@ Although the 2$^{nd}$ order central finite difference is not appropriate for man
 numerical problems, in our case it is sufficient because it is conservative and
 the fields that we compute derivatives of are smooth and continuous.
 We show in the next section that our numerical results in infinite long-wave
-trains are qualitatively equivalent to those of \citeA{peureux2021unsteady}.
+trains are qualitatively equivalent to those of \citet{peureux2021unsteady}.
 
 Finally, the numerical equations here are integrated in a fixed reference frame,
 rather than one that moves with the long wave phase speed.
 Either approach produces qualitatively equivalent results, but we find that
 a fixed reference frame allows for more intuitive interpretation of the results.
 However, this difference is important to keep in mind when comparing the results
-of \citeA{peureux2021unsteady} and those presented here--in their Fig. 1 the
+of \citet{peureux2021unsteady} and those presented here--in their Fig. 1 the
 long-wave phase is fixed and the short waves are moving leftward
 with the speed of $C_{pL} - C_g - U$ (neglecting any group speed inhomogeneity),
 whereas in the figures that follow, the long wave is moving rightward with its
@@ -552,41 +549,41 @@ rightward with the speed of $C_g + U$ (neglecting any group wave inhomogeneity).
 \subsection{Comparison with analytical solutions}
 \label{subsection:comparison_with_analytical_solutions}
 
-\begin{figure}[h]
-\label{fig:numerical_solutions}
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/numerical_vs_analytical_solutions_with_phase.png}
 \caption{
   Comparison of numerical solutions of wavenumber, amplitude, and steepness modulation
   with their analytical solutions, for $\varepsilon_L$ = 0.1, 0.2, and 0.4.
 }
+\label{fig:numerical_solutions}
 \end{figure}
 
-\begin{figure}[h]
-\label{fig:numerical_vs_analytical_k}
+\begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_k.png}
 \caption{}
+\label{fig:numerical_vs_analytical_k}
 \end{figure}
 
-\begin{figure}[h]
-\label{fig:numerical_vs_analytical_a}
+\begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_a.png}
 \caption{}
+\label{fig:numerical_vs_analytical_a}
 \end{figure}
 
-\begin{figure}[h]
-\label{fig:numerical_vs_analytical_ak}
+\begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_ak.png}
 \caption{}
+\label{fig:numerical_vs_analytical_ak}
 \end{figure}
 
 \subsection{Unstable growth in Pereux et al. (2021)}
 \label{subsection:unstable_growth}
 
-The key result of \citeA{peureux2021unsteady} is that of unsteady steepening of
+The key result of \citet{peureux2021unsteady} is that of unsteady steepening of
 short waves when a homogeneous field of short waves is forced by an infinite
 long-wave train.
 The steepening is driven by the progressive increase in the action of short
@@ -602,13 +599,12 @@ shows the evolution of the short-wave action, wavenumber, and steepness
 modulation (here defined as the change of a quantity relative to its initial value).
 After 10 long-wave periods, the short-wave action modulation $\widetilde{N}/N$
 is approximately doubled, which almost exactly corresponds to the unsteady growth
-reported by \citeA{peureux2021unsteady} in their Fig. 1.
+reported by \citet{peureux2021unsteady} in their Fig. 1.
 Another important property of this solution is that the short-wave group that
 experiences peak amplification (dampening) are not locked-in to the long-wave
 crests (troughs), as they are in the L-HS solution.
 
-\begin{figure}[h]
-\label{fig:modulation_3panel_infinite}
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/fig_modulation_3panel_infinite_wave_train.png}
 \caption{
@@ -616,10 +612,11 @@ crests (troughs), as they are in the L-HS solution.
   relative to their initial values as function of initial long-wave phase and time.
   $k_L = 1$, $k = 10$, $\varepsilon_L = 0.1$.
 }
+\label{fig:modulation_3panel_infinite}
 \end{figure}
 
 Why does this unsteady growth of short-wave action occur?
-As \citeA{peureux2021unsteady} explain, "the additional change in advection
+As \citet{peureux2021unsteady} explain, "the additional change in advection
 velocity due to the modulation of the short wave group speed gives an additional
 amplification."
 That is, it is the inhomogeneity term $N \dfrac{\partial C_g}{\partial x}$ that
@@ -631,31 +628,30 @@ such that their wavenumber (and optionally, action) is higher on the crests
 and lower in the troughs, akin to the L-HS solution, the instability does not
 occur.
 
-\begin{figure}[h]
-\label{fig:modulation_3panel_ramp}
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/fig_modulation_3panel_linear_ramp.png}
 \caption{
   Same as Fig. \ref{fig:modulation_3panel_infinite} but with a linear ramp
   applied to $a_L$ during the initial five long-wave periods.
 }
+\label{fig:modulation_3panel_ramp}
 \end{figure}
 
 Why is it, then, that the solution is so different depending on the short-wave
 initial conditions?
-\citeA{peureux2021unsteady} did not provide an explanation for this behavior.
+\citet{peureux2021unsteady} did not provide an explanation for this behavior.
 At first, it may seem that there is something special about the uniform initial
 conditions that makes its solutions grow unsteadily and indefinitely.
-\citeA{peureux2021unsteady} describe this scenario as "...the sudden appearance
+\citet{peureux2021unsteady} describe this scenario as "...the sudden appearance
 of a long wave perturbation in the middle of a homogeneous short wave field".
 The sudden appearance of long waves may be a clue.
 The exact numerical simulation as shown in Fig. \ref{fig:modulation_3panel_infinite},
 except for a linear ramp applied to $a_L$ (and consequently, $U$ and $W$ as well)
-for the first five periods reveals that the unsteady growh no longer occurs
+for the first five periods reveals that the unsteady growth no longer occurs
 (Fig. \ref{fig:modulation_3panel_ramp}).
 
-\begin{figure}[h]
-  \label{fig:unsteady_growth_timeseries}
+\begin{figure}
   \centering
   \includegraphics[width=0.6\textwidth]{figures/fig_modulation_ramp_timeseries.png}
   \caption{
@@ -665,13 +661,13 @@ for the first five periods reveals that the unsteady growh no longer occurs
     line corresponds to the short-wave steepness of 0.4 at which most waves are
     expected to break.
   }
-  \end{figure}
+  \label{fig:unsteady_growth_timeseries}
+\end{figure}
 
 \subsection{Short-wave modulation by long-wave groups}
 \label{subsection:wave_groups}
 
-\begin{figure}[h]
-\label{fig:modulation_3panel_groups}
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/fig_modulation_3panel_wave_group.png}
 \caption{
@@ -679,6 +675,7 @@ for the first five periods reveals that the unsteady growh no longer occurs
   causing the long-wave amplitude to gradually increase and peak at $a_L = 0.1$
   after five long-wave periods, and then conversely decay back to a calm sea state.
 }
+\label{fig:modulation_3panel_groups}
 \end{figure}
 
 \section{Scale analysis}
@@ -693,10 +690,42 @@ TODO
 \section{Conclusions}
 \label{section:conclusions}
 
-\acknowledgments
+In this paper we revisited the problem of short-wave modulation by long waves
+from a linear wave theory perspective.
+Using the linearized wave crest and action conservation equations, coupled with
+the nonlinear gravity modulation for short waves that includes the the curvature
+effects of the long wave, we derived new analytical solutions for the modulation
+of short wave wavenumber, amplitude, steepness, intrinsic frequency, and phase
+speed.
+The latter two have not been previously examined in the context of short-wave
+modulation, but are important for correctly calculating the wind input into
+short waves, which is proportional to the wind speed relative to the wave
+celerity.
+
+\backsection[Acknowledgements]{
 Thanks to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan for the
 helpful discussions.
+}
 
-\bibliography{references.bib}
+\backsection[Funding]{
+  Milan Curcic has been partially supported by the National Science Foundation
+  under grant number AGS-1745384.
+}
+
+\backsection[Declaration of interests]{The author reports no conflict of interest.}
+
+\backsection[Data availability statement]{
+  The data and code to generate the figures and run the numerical simulations
+  are available at [TODO].
+  The numerical model is available as a standalone package at [TODO].
+  %See JFM's \href{https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/information/journal-policies/research-transparency}{research transparency policy} for more information
+}
+
+\backsection[Author ORCIDs]{M. Curcic, https://orcid.org/0000-0002-8822-7749}
+
+%\backsection[Author contributions]{Authors may include details of the contributions made by each author to the manuscript}
+
+\bibliographystyle{jfm}
+\bibliography{references}
 
 \end{document}
