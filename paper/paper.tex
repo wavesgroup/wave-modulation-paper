@@ -1,4 +1,3 @@
-
 \documentclass[lineno]{jfm}
 
 \usepackage{graphicx}
@@ -117,16 +116,15 @@ ZM 1990     & Nonlinear Schr\" odinger & Yes & Yes & Yes & Numerical \\
 PAG 2021    & Crest and action         & Yes & No & No  & Numerical \\
             & conservation             &     &     &     &           \\
 \hline
-This paper  & Crest and action         & Yes & Yes* & No  & Analytical \\
-            & conservation             &     &      &     & and numerical \\
+This paper  & Crest and action         & Yes & Yes & No  & Analytical \\
+            & conservation             &     &     &     & and numerical \\
 \hline
 \end{tabular}
 \caption{
   Summary of prior
-  \citep{longuet1960changes,phillips1981dispersion,longuet1987propagation,zhang1990evolution,peureux2021unsteady}
+  \citep{longuet1960changes,phillips1981dispersion,longuet1987propagation,henyey1988energy,zhang1990evolution,peureux2021unsteady}
   and present (this paper) approaches to calculating the modulation of short
   waves by long waves.
-  *: long 3rd order Stokes wave is considered only in numerical simulations.
 }
 \label{table:modulation_literature_summary}
 \end{center}
@@ -701,6 +699,26 @@ The latter two have not been previously examined in the context of short-wave
 modulation, but are important for correctly calculating the wind input into
 short waves, which is proportional to the wind speed relative to the wave
 celerity.
+The approximate steady solutions yield higher wavenumber and amplitude
+modulation than that of \citet{longuet1960changes}, and somewhat lower than 
+the numerical solutions of \citet{longuet1987propagation} and
+\citet{zhang1990evolution}.
+This is mainly due to the analytical solution requiring the crest and action
+conservation equations to be linearized, and the nonlinearity arising only due
+to the evaluation of short waves on the surface of the long wave (as opposed to
+the mean water level) and due to nonlinear effective gravity.
+
+The numerical solutions of the full wave crest and action conservation equations
+are consistent with the analytical solutions for $\varepsilon_L < 0.2$.
+The simulations also reveal that the unsteady growth of short-wave steepness
+reported by \citet{peureux2021unsteady} is due to the sudden appearance of
+long waves in a homogeneous short-wave field, a scenario that is unlikely to
+occur in nature.
+A more likely conditions, such as that of a long-wave groups, are only mildly
+destabilizing for the short waves.
+These results suggest that for mildly-to-moderately steep short waves,
+the analytical steady solutions presented here are sufficient to describe the
+modulation of short waves by long waves.
 
 \backsection[Acknowledgements]{
 Thanks to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan for the
