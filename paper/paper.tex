@@ -68,31 +68,47 @@ solution in long-wave steepness up to $\approx 0.2$.
 \section{Introduction}
 
 Short ocean surface waves are modulated by longer swell.
-Following the result by \citet{unna1941white,unna1942waves,unna1947sea},
-\citet{longuet1960changes} introduced an analytical solution for hydrodynamic
-modulation of short waves at the crest of an underlying longer wave:
+Following \citet{unna1941white,unna1942waves,unna1947sea},
+\citet{longuet1960changes} introduced a steady, approximate solution for
+hydrodynamic modulation of short waves by longer waves:
 
 \begin{equation}
 \label{eq:lhs1960wavenumber}
 \widetilde{k} = k (1 + \varepsilon_L)
 \end{equation}
-where $\widetilde{k}$ and $k$ are modulated and unmodulated short-wave wavenumbers,
+where $\widetilde{k}$ and $k$ are the modulated and unmodulated short-wave wavenumbers,
 respectively, and $\varepsilon_L = a_L k_L$ is the steepness of the long wave with
 wavenumber $k_L$ and amplitude $a_L$.
-This result has been influential on the development of remote sensing of ocean
+This result influenced the development of remote sensing of ocean
 surface waves and currents \citep{keller1975microwave,hara1994hydrodynamic}.
-\citet{longuet1987propagation} revisited this problem by considering variation
-in the gravitational acceleration and fully non-linear wave numerical solutions
-to find significantly stronger modulation than that predicted by
-Eq. \ref{eq:lhs1960wavenumber}.
-\citet{zhang1990evolution} evaluated the effects of nonlinearity of short waves
-using a non-linear Schr\" odinger equation and found higher wavenumber
-modulation but lesser amplitude modulation than those predicted by
+\citet{phillips1981dispersion} and \citet{longuet1987propagation} revisited this
+problem by nonlinear long waves and variations in the effective gravity of short
+waves, yielding significantly stronger modulation than previously predicted.
+\citet{henyey1988energy} derived an analytical solution for the modulation of
+short waves by long waves using Hamiltonian mechanics and reported the modulation
+of similar magnitude to that of \citet{longuet1987propagation}.
+\citet{zhang1990evolution} considered weakly nonlinear short waves
+using a non-linear Schr\" odinger equation and found stronger wavenumber
+modulation but weaker amplitude modulation than those predicted by
 \citet{longuet1987propagation}.
-More recently, \citep{peureux2021unsteady} simulated the full wave conservation
-equations and found that the short waves grow unsteadily due to the propagation of
+The variety of analytical and numerical frameworks (Eulerian, Hamiltonian,
+Schr\" odinger) that relatively closely reproduce steady solutions for short-wave
+modulation suggests that the solutions are robust.
+Nevertheless, alternative analytical and numerical approaches to the modulation
+problem are still of interest, especially if higher degrees of nonlinearity
+can be considered using simpler approaches.
+
+More recently, \citep{peureux2021unsteady} asked whether the steady solutions
+of short-wave modulation are realistic by simulating the full wave conservation
+equations
+They found that the short waves grow unsteadily due to the propagation of
 longer waves, suggesting that the steady-state solutions may only be valid for
-a few long-wave periods before the short waves are steep enough to break. 
+a few long-wave periods before the short waves begin to break due to excessive
+steepness.
+However, the unsteadiness of their solutions occurs in a specific scenario of
+a uniform short-wave field that suddenly appears in a uniform long-wave train,
+and the numerical simulations stabilize if the short-wave field is initialized
+from existing steady solutions.
 
 \begin{table}
 \begin{center}
@@ -101,23 +117,22 @@ a few long-wave periods before the short waves are steep enough to break.
 Reference   & Governing & Gravity & Nonlinear  & Nonlinear   & Solution \\
             & equations & varies  & long waves & short waves &          \\
 \hline
-L-HS 1960   & Velocity potential       & No  & No  & No  & Analytical \\
+L-HS 1960   & Velocity potential  & No  & No  & No  & Analytical \\
 \hline
-P 1981      & Crest and energy         & Yes & Yes & No  & Numerical \\
-            & conservation             &     &     &     &           \\
+P 1981      & Crest and action    & Yes & Yes & No  & Numerical \\
+            & conservation        &     &     &     &           \\
 \hline
-L-H 1987    & Velocity potential       & Yes & Yes & No  & Numerical \\
+L-H 1987    & Velocity potential  & Yes & Yes & No  & Numerical \\
 \hline
-H 1988      & Hamiltonian              & Yes & Yes & No  & Analytical \\
+HCDSW 1988  & Hamiltonian         & Yes & Yes & No  & Analytical \\
 \hline
-ZM 1990     & Nonlinear Schr\" odinger & Yes & Yes & Yes & Numerical \\
-            & equation                 &     &     &     &           \\
+ZM 1990     & Schr\" odinger      & Yes & Yes & Yes & Numerical \\
 \hline
-PAG 2021    & Crest and action         & Yes & No & No  & Numerical \\
-            & conservation             &     &     &     &           \\
+PAG 2021    & Crest and action    & Yes & No  & No  & Numerical \\
+            & conservation        &     &     &     &           \\
 \hline
-This paper  & Crest and action         & Yes & Yes & No  & Analytical \\
-            & conservation             &     &     &     & and numerical \\
+This paper  & Crest and action    & Yes & Yes & No  & Analytical \\
+            & conservation        &     &     &     & and numerical \\
 \hline
 \end{tabular}
 \caption{
