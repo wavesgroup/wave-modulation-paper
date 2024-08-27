@@ -1,5 +1,4 @@
+2wave
 matplotlib
 numpy
-rich
 sympy
-xarray

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
 
-import model
+import twowave
 
 matplotlib.rc("font", size=12)
 
@@ -76,11 +76,11 @@ def calculate_tendencies(a_L: float):
     Cp = omega / k
     Cg = Cp / 2
 
-    dkdx = model.diff(k) / dx
-    dgdx = model.diff(g) / dx
-    dUdx = model.diff(U) / dx
-    dCgdx = model.diff(Cg) / dx
-    dNdx = model.diff(N) / dx
+    dkdx = twowave.diff(k) / dx
+    dgdx = twowave.diff(g) / dx
+    dUdx = twowave.diff(U) / dx
+    dCgdx = twowave.diff(Cg) / dx
+    dNdx = twowave.diff(N) / dx
 
     k_propagation = -Cg * dkdx
     k_advection = -U * dkdx

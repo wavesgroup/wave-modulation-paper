@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from model import WaveModulationModel
+from twowave import WaveModulationModel
 import numpy as np
 import matplotlib
 

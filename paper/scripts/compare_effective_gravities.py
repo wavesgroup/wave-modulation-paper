@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
-from model import gravity_linear, gravity_stokes, gravity_curvilinear
+from twowave import gravity, gravity_curvilinear
 
 matplotlib.rc("font", size=16)
 
@@ -17,8 +17,8 @@ def plot_effective_gravities(a: float):
     t = 0
 
     g1 = g0 * (1 - ak * np.cos(phase))
-    g2 = gravity_linear(x, t, a, k, omega, g0)
-    g3 = gravity_stokes(x, t, a, k, omega, g0)
+    g2 = gravity(x, t, a, k, omega, g0, "linear")
+    g3 = gravity(x, t, a, k, omega, g0, "stokes")
     g4 = gravity_curvilinear(x, t, a, k, omega, g0, "linear")
     g5 = gravity_curvilinear(x, t, a, k, omega, g0, "stokes")
 
@@ -129,8 +129,8 @@ def plot_effective_gravities(a: float):
     for a in np.arange(0, 0.41, 0.01):
         ak = a * k
         g1 = g0 * (1 - ak * np.cos(phase))
-        g2 = gravity_linear(x, t, a, k, omega, g0)
-        g3 = gravity_stokes(x, t, a, k, omega, g0)
+        g2 = gravity(x, t, a, k, omega, g0, "linear")
+        g3 = gravity(x, t, a, k, omega, g0, "stokes")
         g4 = gravity_curvilinear(x, t, a, k, omega, g0, "linear")
         g5 = gravity_curvilinear(x, t, a, k, omega, g0, "stokes")
         g1_max.append(np.max(g1))
