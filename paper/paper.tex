@@ -94,9 +94,9 @@ modulation but weaker amplitude modulation than those predicted by
 The variety of analytical and numerical frameworks (Eulerian, Hamiltonian,
 Schr\" odinger) that relatively closely reproduce steady solutions for short-wave
 modulation suggests that the solutions are robust.
-Nevertheless, alternative analytical and numerical approaches to the modulation
-problem are still of interest, especially if higher degrees of nonlinearity
-can be considered using simpler approaches.
+Alternative analytical and numerical approaches to the modulation problem remain
+of interest, especially if higher degrees of nonlinearity can be considered
+using simpler approaches.
 
 More recently, \citep{peureux2021unsteady} asked whether the steady solutions
 of short-wave modulation are realistic by simulating the full wave conservation
@@ -109,6 +109,25 @@ However, the unsteadiness of their solutions occurs in a specific scenario of
 a uniform short-wave field that suddenly appears in a uniform long-wave train,
 and the numerical simulations stabilize if the short-wave field is initialized
 from existing steady solutions.
+Nevertheless, their results do put into question whether the short-wave
+modulation predicted by theory is generally steady over many long-wave periods
+or not.
+
+In this paper, we revisit this problem from linear wave theory and
+derive alternative non-linear solutions for the modulation of short waves,
+evaluated at the long-wave surface.
+The analytical solutions yield modulations that are stronger than the original solution
+by \citet{longuet1960changes}, but similar to the nonlinear numerical solutions
+by \citet{longuet1987propagation} and \citet{zhang1990evolution} in long-wave
+steepness up to $\approx 0.2$.
+We also perform numerical simulations of the full wave crest and action
+conservation laws and evaluate the effect of long-wave groups on the short waves.
+The numerical simulations are used to determine the validity of the approximate
+steady solution and to investigate the unsteadiness of the short-wave modulation
+found by \citet{peureux2021unsteady}.
+The main prior studies on hydrodynamic modulation, and their assumptions and
+approaches to the solution, are summarized in Table
+\ref{table:modulation_literature_summary}.
 
 \begin{table}
 \begin{center}
@@ -145,15 +164,11 @@ This paper  & Crest and action    & Yes & Yes & No  & Analytical \\
 \end{center}
 \end{table}
 
-In this paper, we revisit this problem from a linear wave theory perspective and
-derive new non-linear solutions for the modulation of short waves, evaluated
-at the long-wave surface.
-We also perform numerical simulations of the full wave crest and action
-conservation laws and evaluate the effect of long-wave groups on the short waves.
-The next section presents the governing equations, followed by the analytical
-solutions in section \ref{section:analytical_solutions}.
-In section \ref{section:numerical_solutions} we present the numerical solutions
-and compare them to the analytical solutions.
+This paper first presents the governing equations and then the analytical
+solutions for the modulation of short waves by long waves and compares them to
+the original solution by \citet{longuet1960changes}.
+Then, we compare the analytical solutions to numerical solutions of the full
+wave conservation equations in section \ref{section:numerical_solutions}.
 In section \ref{section:scale_analysis} we perform a scale analysis of the
 analytical solutions to quantify the relative importance of the terms in the
 full equation set.
@@ -163,7 +178,7 @@ Finally, we summarize the results and discuss their implications in section
 \section{Governing equations}
 \label{section:governing_equations}
 
-In this paper we consider inviscid, irrotational, and incompressible flow.
+We consider inviscid, irrotational, and incompressible flow.
 In these conditions the linear (sine-like), deep-water, surface gravity waves
 obey the dispersion relation:
 
@@ -174,15 +189,14 @@ obey the dispersion relation:
 where $\omega$ is the angular frequency, $g$ is the gravitational acceleration,
 $k$ is the wavenumber, and $U$ is the mean advective current in the direction
 of the wave propagation.
-A current in the direction of the waves thus increases its absolution frequency,
-wavenumber remaining unchanged.
-An important limitation here is that $U$ must be slow-varying on the scales of
+A current in the direction of the waves increases its absolute frequency,
+while the wavenumber remains unchanged.
+An important limitation here is that $U$ must be slowly varying on the scales of
 the wave period \citep{bretherton1968wavetrains}.
 In the context of short waves riding on long waves, the mean advective current
 is the horizontal near-surface orbital velocity of the long wave.
-
-The second important relation is the conservation of wave crests
-\citep{phillips1981dispersion}:
+The evolution of the short-wave wavenumber is described by the conservation of
+wave crests \citep{phillips1981dispersion}:
 
 \begin{equation}
 \label{eq:wave_crests}
@@ -208,12 +222,14 @@ action in absence of sources (e.g. due to wind) and sinks (e.g. due to whitecapp
 where $N$ is the action density, and $C_g = \partial \omega / \partial k$ is the
 group speed.
 In deep water, the group speed is half the phase speed, so $C_g = 1/2\sqrt{g/k}$.
+Although the absence of wave growth and dissipation is not generally realistic
+in the open ocean, it is a helpful approximation that allows us to isolate the
+hydrodynamic modulation effects solely due to the motion of the long waves.
 
-As the short waves ride on the surface of the long wave,
-they move in an accelerated reference frame and will thus experience effective
-gravitational acceleration that changes in both space and time
-\citep{longuet1986eulerian,longuet1987propagation}.
-Inserting Eq. (\ref{eq:dispersion}) into (\ref{eq:wave_action}) we obtain:
+Short waves that ride on the surface of the longer waves move in an accelerated
+reference frame and thus experience effective gravitational acceleration that
+changes in space and time \citep{phillips1981dispersion,longuet1986eulerian,longuet1987propagation}.
+From Eqs. (\ref{eq:dispersion}) and (\ref{eq:wave_action}) we obtain:
 
 \begin{equation}
 \label{eq:wavenumber}
@@ -227,9 +243,8 @@ From left to right, the terms in this equation represent the change in wavenumbe
 due to the propagation and advection by ambient current $U$, the convergence of
 the ambient current, and the spatial inhomogeneity of the gravitational acceleration.
 In a non-accelerated reference frame (i.e. in absence of longer waves), the last
-term is zero.
-However, if gravitational acceleration varies in space, this term is necessary
-to conserve the wave crests.
+term vanishes.
+Otherwise, this term is necessary to conserve the wave crests.
 
 Similar to Eq. \ref{eq:wavenumber}, we expand Eq. \ref{eq:wave_action} to obtain:
 
@@ -245,16 +260,17 @@ This equation is similar to Eq. \ref{eq:wavenumber}, except for the last term
 which here represents the inhomogeneity of the group speed.
 As \citet{peureux2021unsteady} explained, this term is responsible for unstable
 growth of wave action in infinite long-wave trains.
-Eqs. \ref{eq:wavenumber} and \ref{eq:wave_action2} will be the governing equations
-that we solve numerically in section \ref{section:numerical_solutions}.
+Eqs. \ref{eq:wavenumber} and \ref{eq:wave_action2} are the governing equations
+that we approximate and solve analytically in section \ref{section:analytical_solutions},
+and solve numerically in their full form in section \ref{section:numerical_solutions}.
 
 For the ambient forcing, we consider a train of monochromatic long wave
 defined, to the first order in steepness, by the elevation $\eta_L = a_L cos{\psi}$,
 where $a_L$ is the long-wave amplitude, $\psi = k_L x - \omega_L t$ is the
 long-wave phase, and $\omega_L$ its angular frequency.
-
 At this time we define the long-wave steepness $\varepsilon_L = a_L k_L$ which
-we will use thoughout the rest of the paper as a scaling parameter.
+we will use throughout the rest of the paper as a scaling parameter, as is common
+in the literature.
 The long wave induces horizontal and vertical orbital velocities whose values
 at the surface $\eta_L$ are:
 
@@ -269,13 +285,13 @@ W = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \sin{\psi}
 \end{equation}
 
 Eqs. \ref{eq:dispersion}-\ref{eq:w_L} is the full system of equations that we
-exploit in the remainder of this paper.
+use in this paper.
 Note that here we derive the solutions from a different starting set of
 equations than that of \citet{longuet1960changes}.
 Rather than starting from the conservation of crests and wave action, as we do
 here, they derived their solution from the linear superposition of the velocity
 potential of two waves.
-It appears the starting from the conservation of crests and wave action allows
+It appears that starting from the conservation of crests and wave action allows
 for a simpler and more intuitive derivation.
 
 \section{Analytical solutions}
