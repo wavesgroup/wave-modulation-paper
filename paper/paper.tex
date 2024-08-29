@@ -47,14 +47,15 @@ crest and action conservation equations.
 The nonlinear analytical solutions of short-wave wavenumber, amplitude, and
 steepness modulation significantly deviate from the linear analytical solutions
 of \citet{longuet1960changes}, and are similar to the nonlinear numerical
-solutions by \citet{zhang1990evolution}.
-We also discuss the result of \citet{peureux2021unsteady} who found through
+solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution}.
+We also examine the result of \citet{peureux2021unsteady} who found through
 numerical simulations that the short-wave modulation grows unsteadily with
 each long-wave phase.
-Here we show that this unsteady growth only occurs for homogeneous initial
+We show that this unsteady growth only occurs for homogeneous initial
 conditions and does not occur for more realistic long-wave groups.
-Finally, the combined analytical and numerical framework allows us to quantify
-the contribution of various terms in the full wave conservation equations.
+The combined analytical and numerical framework presented here allows us to
+quantify the importance of various terms in the full wave conservation
+equations.
 The new analytical solutions are a good approximation of the full numerical
 solution in long-wave steepness up to $\approx 0.2$.
 \end{abstract}
@@ -266,11 +267,8 @@ and solve numerically in their full form in section \ref{section:numerical_solut
 
 For the ambient forcing, we consider a train of monochromatic long wave
 defined, to the first order in steepness, by the elevation $\eta_L = a_L cos{\psi}$,
-where $a_L$ is the long-wave amplitude, $\psi = k_L x - \omega_L t$ is the
-long-wave phase, and $\omega_L$ its angular frequency.
-At this time we define the long-wave steepness $\varepsilon_L = a_L k_L$ which
-we will use throughout the rest of the paper as a scaling parameter, as is common
-in the literature.
+where $\psi = k_L x - \omega_L t$ is the long-wave phase and $\omega_L$ its
+angular frequency.
 The long wave induces horizontal and vertical orbital velocities whose values
 at the surface $\eta_L$ are:
 
@@ -300,6 +298,19 @@ for a simpler and more intuitive derivation.
 We now describe the analytical solutions for the short-wave wavenumber,
 effective gravitational acceleration, amplitude, steepness, intrinsic frequency,
 and intrinsic phase speed in presence of long waves.
+The wavenumber is derived by linearizing the conservation of wave crests
+(Eq. \ref{eq:wave_crests}) and neglecting the spatial gradients of $k$.
+The effective gravity is derived by projecting the long-wave induced surface
+accelerations onto the axis that is normal to the long-wave surface.
+(Eq. \ref{eq:wave_action2}) and using the expression for the long-wave orbital
+velocities.
+The amplitude is derived by first evaluation the short-wave action from the
+action conservation equation (Eq. \ref{eq:wave_action}) and then applying the
+modulated effective gravity to obtain the amplitude.
+From the modulated wavenumber, amplitude, and effective gravity, the steepness,
+frequency, and phase speed readily follow from the usual wave relationships.
+Going forward we will use the tilde over the variables to denote the modulated
+quantities (e.g. $\widetilde{k}$ for wavenumber).
 
 \subsection{Wavenumber modulation}
 \label{subsection:wavenumber_modulation}
@@ -321,32 +332,26 @@ yields:
 
 \begin{equation}
 \label{eq:k_short_exact}
-\widetilde{k}(\psi) = k e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
+\widetilde{k} = k e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
 \end{equation}
 
 Notice that the Taylor expansion of Eq. \ref{eq:k_short_exact} to the first order
-recovers the original solution by L-HS:
+recovers the original solution by \citet{longuet1960changes}:
 
 \begin{equation}
 \label{eq:k_short_lhs}
-\widetilde{k}(\psi) = k (1 + \varepsilon_L \cos{\psi})
+\widetilde{k} = k (1 + \varepsilon_L \cos{\psi})
 \end{equation}
-
-The L-HS solution requires two approximations in their solution:
-First, evaluating the long-wave velocity at $z = 0$
-rather than $z = \eta_L$; and second, evaluating the solution to the first order
-of the Taylor expansion series.
-Both of these approximations cause an underestimate of the short-wave
-modulation magnitude (Fig. \ref{fig:wavenumber_modulation}).
-The original L-HS solution is a cosine wave with an amplitude equal
-to the long-wave steepness.
-The other two solutions both introduce an increase in wave modulation
-on the crest and a decrease in the trough.
-At the crest, the relative modulation predicted by the exact L-HS solution
-is 10.7\% larger than that predicted by the 1st order approximate L-HS
-solution, while the solution that evaluates the long-wave orbital velocity
-at the water surface rather than $z = 0$ is 38.4\% larger than that of the
-1$^{st}$ order approximate L-HS solution.
+Coming from the conservation of wave crests, as opposed to the velocity potential
+superposition approach, the L-HS solution requires two approximations in their
+solution:
+First, evaluating the long-wave velocity at $z = 0$ rather than $z = \eta_L$; and
+second, further truncating the Taylor expansion series beyond the first order term.
+These approximations cause an underestimate of the short-wave modulation
+magnitude (Fig. \ref{fig:analytical_solutions_ak0.1}a).
+At the wave crest, Eq. \ref{eq:k_short_exact} yields the wavenumber modulation
+that is 16.9\%, 38.5\%, 66.4\%, and 104\% larger than that of \citet{longuet1960changes}
+for $\varepsilon_L = 0.1, 0.2, 0.3, 0.4$, respectively.
 
 \begin{figure}
 \centering
