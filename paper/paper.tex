@@ -332,7 +332,7 @@ yields:
 
 \begin{equation}
 \label{eq:k_short_exact}
-\widetilde{k} = k e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
+\frac{\widetilde{k}}{k} = e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
 \end{equation}
 
 Notice that the Taylor expansion of Eq. \ref{eq:k_short_exact} to the first order
@@ -340,7 +340,7 @@ recovers the original solution by \citet{longuet1960changes}:
 
 \begin{equation}
 \label{eq:k_short_lhs}
-\widetilde{k} = k (1 + \varepsilon_L \cos{\psi})
+\frac{\widetilde{k}}{k} = 1 + \varepsilon_L \cos{\psi}
 \end{equation}
 Coming from the conservation of wave crests, as opposed to the velocity potential
 superposition approach, the L-HS solution requires two approximations in their
@@ -365,11 +365,11 @@ across the long-wave phase, as we will see later from the numerical simulations.
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_analytical_solutions_ak0.1.png}
 \caption{
-  Modulation of short-wave (a) wavenumber, (b) gravitational acceleration,
-  (c) amplitude, (d) steepness, (e) intrinsic frequency, and (d) intrinsic phase
-  speed as function of long-wave phase for $\varepsilon_L = 0.1$, based on
-  analytical solutions by \citet{longuet1960changes} (L-HS 1960, black)
-  and this paper (blue).
+  Steady solutions for the modulation of short-wave (a) wavenumber, (b)
+  gravitational acceleration, (c) amplitude, (d) steepness, (e) intrinsic
+  frequency, and (f) intrinsic phase speed as function of long-wave phase for
+  $\varepsilon_L = 0.1$, based on
+  \citet{longuet1960changes} (L-HS 1960, black) and this paper (blue).
   Long-wave crest and trough are located at $\psi = 0$ and $\psi = \pi$,
   respectively.
 }
@@ -393,8 +393,8 @@ and likewise for the long-wave orbital accelerations:
 
 \begin{equation}
 \label{eq:gravity_modulation_general}
-\widetilde{g}
-  = g \cos{\alpha} 
+\frac{\widetilde{g}}{g}
+  = \cos{\alpha} 
   + \dfrac{\partial W_{z=\eta}}{\partial t} \cos{\alpha}
   + \dfrac{\partial U_{z=\eta}}{\partial t} \sin{\alpha}
 \end{equation}
@@ -408,8 +408,8 @@ For a linear long wave, the effective gravity is:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear}
-\widetilde{g}
-  = g 
+\frac{\widetilde{g}}{g}
+  = 
   \frac{
     1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}
     \left[ 1 + \left(\varepsilon_L \sin{\psi}\right)^2 \right]
@@ -423,14 +423,14 @@ In that case, Eq. \ref{eq:gravity_modulation_general} simplifies to:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear_no_curvature}
-\widetilde{g} = g \left( 1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}} \right)
+\frac{\widetilde{g}}{g} = \left( 1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}} \right)
 \end{equation}
 Further, if we evaluate the orbital accelerations at the mean water level $z=0$,
 this further simplifies to:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear_no_curvature_mean_level}
-\widetilde{g} = g \left( 1 - \varepsilon_L \cos{\psi} \right)
+\widetilde{g} = \left( 1 - \varepsilon_L \cos{\psi} \right)
 \end{equation}
 which is the form used by \citet{peureux2021unsteady}, for example.
 
@@ -456,8 +456,8 @@ the gravitational acceleration at the surface of a Stokes wave is, to the
 
 \begin{equation}
 \label{eq:gravity_modulation_stokes}
-\widetilde{g}(\psi) =
-g \left\{
+\frac{\widetilde{g}}{g} =
+\left\{
   1 - \varepsilon_L e^{k \eta_{St}}
   \left[ \cos{\psi} -
     \varepsilon_L \sin{\psi} \left(
@@ -475,8 +475,8 @@ and inserting them into Eq. \ref{eq:gravity_modulation_general}:
 
 \begin{equation}
 \label{eq:gravity_modulation_general_stokes}
-\widetilde{g}
-  = g \cos{\alpha} 
+\frac{\widetilde{g}}{g}
+  = \cos{\alpha} 
   + \dfrac{\partial W_{z=\eta_{St}}}{\partial t} \cos{\alpha_{St}}
   + \dfrac{\partial U_{z=\eta_{St}}}{\partial t} \sin{\alpha_{St}}
 \end{equation}
@@ -517,7 +517,7 @@ covariance between the local slope and the horizontal accelerations are greatest
   Black is for linear wave evaluated at $z=0$,
   blue and green are for linear and Stokes waves, respectively, evaluated at $z=\eta$ and without curvature effects,
   and orange and green are for linear and Stokes waves, respectively, evaluated at $z=\eta$ and with curvature effects.
-  (b) As in (a) but normalized by the modulation of the linear wave evaluated at $z=0$.
+  (b) As in (a) but normalized by the modulation of the linear wave evaluated at $z=0$, $g_1$.
 }
 \label{fig:effective_gravities}
 \end{figure}
@@ -532,10 +532,20 @@ reduced.
 This reduction, in case of a long Stokes wave, is $\approx 3\%$ for
 $\varepsilon_L = 0.2$ and $\approx 14\%$ for $\varepsilon_L = 0.4$.
 As the effective gravity minima and maxima occur at crests and troughs,
-respectively, the curvature effects only affect the phase-averaged values but
-not the extremes.
-The effective gravity at the crest of the steepest ($\varepsilon_L = 0.4$) long
-Stokes wave is reduced by $\approx 64\%$.
+respectively, the curvature affects the phase-averaged values but not the extremes.
+The effective gravity reduction at the crests is $\approx 11\%$, $25\%$, and $66\%$
+for $\varepsilon_L = 0.1$, $0.2$, and $0.4$, respectively.
+These are similar to the fully-nonlinear numerical estimates of
+\citet{longuet1986eulerian,longuet1987propagation}.
+Note that these are strictly Eulerian values, evaluated at fixed positions in
+space.
+As \citet{longuet1986eulerian} pointed out, the effective gravity in the
+Lagrangian frame is smoother and less amplified because the moving particles
+spend a longer time riding near the crests and less time returning through the
+troughs.
+However, when we solve the short-wave crest and action conservation equations
+in an Eulerian frame, it is the Eulerian effective gravity that must be applied
+to conserve the short-wave properties across the long-wave phase.
 
 \begin{figure}
 \centering
@@ -554,18 +564,18 @@ Stokes wave is reduced by $\approx 64\%$.
 \subsection{Amplitude and steepness modulation}
 \label{subsection:amplitude_modulation}
 
-The modulation of short-wave amplitude can be derived in the same way by
-dropping the non-linear terms in the wave action balance equation
-(Eq. \ref{eq:wave_action2}) and integrating wave action in time:
+The modulation of short-wave amplitude can be derived in a similar way as we did
+for the wavenumber, except that here we linearize the wave action balance and
+integrate wave action in time:
 
 \begin{equation}
 \label{eq:wave_action_modulation}
-\widetilde{N}(\psi) = N e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
+\frac{\widetilde{N}}{N} = e^{\varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}}
 \end{equation}
 
 Since wave action is energy divided by the intrinsic frequency $\sigma$,
-and energy scales with $ga^2$, the modulation of the amplitude is readily
-related to the modulations of gravity, wavenumber, and action:
+and energy scales with $ga^2$, the modulation of the amplitude is related to the
+modulations of gravity, wavenumber, and action:
 
 \begin{equation}
 \label{eq:wave_amplitude_modulation}
@@ -578,8 +588,8 @@ related to the modulations of gravity, wavenumber, and action:
   \left( \dfrac{\widetilde{k}}{k} \right)^{0.25}
   \left( \dfrac{\widetilde{N}}{N} \right)^{0.5}
 \end{equation}
-To the 1$^{st}$ order in $\varepsilon_L$, and using Eqs. \ref{eq:k_short_exact}
-and \ref{eq:wave_action_modulation}, we get:
+To the first order in $\varepsilon_L$, and using Eqs. \ref{eq:k_short_exact}
+and \ref{eq:wave_action_modulation}, the above simplifies to:
 
 \begin{equation}
 \label{eq:wave_amplitude_modulation_order1}
@@ -587,6 +597,23 @@ and \ref{eq:wave_action_modulation}, we get:
   \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
   \left( 1 + \varepsilon_L \right)^{0.75}
 \end{equation}
+
+The amplitude and steepness modulation of the short waves as a function of the
+long-wave phase for $\varepsilon_L = 0.1$, $0.2$, and $0.4$ are shown and compared
+to the \citet{longuet1960changes} solutions in Figs.
+\ref{fig:analytical_solutions_ak0.1}, \ref{fig:analytical_solutions_ak0.2},
+and \ref{fig:analytical_solutions_ak0.4}, respectively.
+Also shown are the modulation of the short-wave intrinsic frequency and phase
+speed in panels (e) and (f), respectively.
+As the wavenumber and gravity modulations are out of phase, with the latter
+being somewhat larger in magnitude, the overall intrinsic frequency of the
+short waves is reduced across the entire long-wave phase, with highest reduction
+at the long-wave crests.
+For the short-wave phase speed modulation, the wavenumber and gravity modulations
+work in tandem and cause the short-wave phase speed to be reduced on the long-wave
+crests and increased in the troughs.
+We will discuss the implications of this effect later in the context of wind
+input into short waves.
 
 \begin{figure}
 \centering
@@ -605,40 +632,39 @@ and \ref{eq:wave_action_modulation}, we get:
 \section{Numerical solutions}
 \label{section:numerical_solutions}
 
-We now proceed to integrate the full numerical solutions for the short-wave
-wavenumber and action density in presence of long waves, and in absence of
-sources or sinks of wave energy.
+To quantify the contribution of the nonlinear terms in Eqs. \ref{eq:wavenumber}
+and \ref{eq:wave_action2}, and to evaluate the steadiness assumption of the
+analytical solutions, we now proceed to numerically integrate the full set of
+crest and action conservation equations.
 Equations (\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are discretized using
-2$^{nd}$  order central finite difference in space and integrated in time using the
-4$^{th}$ order Runge-Kutta method \citep{butcher1996runge}.
+second-order central finite difference in space and integrated in time using the
+forth-order Runge-Kutta method \citep{butcher1996runge}.
 The space is divided into 100 grid points.
 This is effectively the same equation set and numerical configuration as that of
-\citet{peureux2021unsteady}, except that, like \citet{longuet1960changes}, their
-long-wave orbital velocities are evaluated at $z=0$ instead of $z=\eta_L$.
-The key difference is that evaluating orbital velocities at $z=0$ neglects the
-Stokes drift of short-wave groups.
-Although not significantly consequential for the modulation results here, there
-is no good reason to exclude it given that its implementation is trivial.
-
+\citet{peureux2021unsteady}, except that their long-wave orbital velocities are
+evaluated at $z=0$ instead of $z=\eta_L$, which neglects the Stokes drift of
+short-wave groups.
+Their gravity modulation also does not consider the nonlinear or the curvature
+effects, however, this difference does not qualitatively affect the results.
 Another difference is the choice of the numerical scheme for spatial differences,
-which in their case is the MUSCL4 scheme by Kurganov and Tadmor (2000 TODO).
-Although the 2$^{nd}$ order central finite difference is not appropriate for many
+which in their case is the MUSCL4 scheme by \citet{kurganov2000new}.
+Although the second-order central finite difference is not appropriate for many
 numerical problems, in our case it is sufficient because it is conservative and
 the fields that we compute derivatives of are smooth and continuous.
-We show in the next section that our numerical results in infinite long-wave
+We show in the next section that our numerical solutions for infinite long-wave
 trains are qualitatively equivalent to those of \citet{peureux2021unsteady}.
 
 Finally, the numerical equations here are integrated in a fixed reference frame,
-rather than one that moves with the long wave phase speed.
-Either approach produces qualitatively equivalent results, but we find that
-a fixed reference frame allows for more intuitive interpretation of the results.
-However, this difference is important to keep in mind when comparing the results
-of \citet{peureux2021unsteady} and those presented here--in their Fig. 1 the
+rather than that moving with the long-wave phase speed.
+Either approach produces qualitatively equivalent results, however a fixed
+reference frame may allow for a more intuitive interpretation of the results.
+This difference is important to keep in mind when comparing the results
+of \citet{peureux2021unsteady} and those presented here; in their Fig. 1 the
 long-wave phase is fixed and the short waves are moving leftward
-with the speed of $C_{pL} - C_g - U$ (neglecting any group speed inhomogeneity),
+with the speed of $C_{pL} - C_g - U$ (neglecting group speed inhomogeneity),
 whereas in the figures that follow, the long wave is moving rightward with its
 phase speed $C_{pL}$ and the short waves (that is, their energy) are moving
-rightward with the speed of $C_g + U$ (neglecting any group wave inhomogeneity).
+rightward with the speed of $C_g + U$ (neglecting group speed inhomogeneity).
 
 \subsection{Comparison with analytical solutions}
 \label{subsection:comparison_with_analytical_solutions}
@@ -655,21 +681,21 @@ rightward with the speed of $C_g + U$ (neglecting any group wave inhomogeneity).
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_k.png}
+\includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_k.png}
 \caption{}
 \label{fig:numerical_vs_analytical_k}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_a.png}
+\includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_a.png}
 \caption{}
 \label{fig:numerical_vs_analytical_a}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{figures/numerical_vs_analytical_solutions_ak.png}
+\includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_ak.png}
 \caption{}
 \label{fig:numerical_vs_analytical_ak}
 \end{figure}
