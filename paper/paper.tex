@@ -19,7 +19,7 @@
 
 % {\MakeUppercase{\romannumeral #1}}
 
-\title{Revisiting the hydrodynamic wave modulation from linear wave theory}
+\title{Revisiting the hydrodynamic modulation of short waves by longer waves}
 
 \author{
   Milan Curcic\aff{1}
@@ -101,7 +101,7 @@ using simpler approaches.
 
 More recently, \citep{peureux2021unsteady} asked whether the steady solutions
 of short-wave modulation are realistic by simulating the full wave conservation
-equations
+equations.
 They found that the short waves grow unsteadily due to the propagation of
 longer waves, suggesting that the steady-state solutions may only be valid for
 a few long-wave periods before the short waves begin to break due to excessive
@@ -352,6 +352,14 @@ magnitude (Fig. \ref{fig:analytical_solutions_ak0.1}a).
 At the wave crest, Eq. \ref{eq:k_short_exact} yields the wavenumber modulation
 that is 16.9\%, 38.5\%, 66.4\%, and 104\% larger than that of \citet{longuet1960changes}
 for $\varepsilon_L = 0.1, 0.2, 0.3, 0.4$, respectively.
+Although not immediately obvious from the expressions, the modulated wavenumber
+in Eq. \ref{eq:k_short_lhs} is conservative across the long-wave phase, whereas
+the higher-order solution in Eq. \ref{eq:k_short_exact} is not.
+This is due to the fact that combining the orbital velocities evaluated at
+$z=\eta$ and the linearized conservation of wave crests in Eq. \ref{eq:wavenumber}
+results in excess short-wave wavenumber being created.
+The solution of the full Eq. \ref{eq:wavenumber} of course must be conservative
+across the long-wave phase, as we will see later from the numerical simulations.
 
 \begin{figure}
 \centering
@@ -375,8 +383,8 @@ Long waves induce orbital accelerations, so the short waves that ride on their
 surface move in an accelerated reference frame and experience effective
 gravitational acceleration that is lower at the crests and higher in the troughs
 \citep{longuet1986eulerian,longuet1987propagation}.
-Further, a smaller but non-negligible effect is that of the centripetal force
-due to the curvature of the long wave
+Further, centripetal force due to the curvature of the long wave induces small
+but non-negligible effects on the short-wave effective gravity
 \citep{phillips1981dispersion,zhang1990evolution}.
 These effects are completely described by projecting the gravitational
 acceleration from the coordinate that is perpendicular to the mean water surface
@@ -396,7 +404,7 @@ and likewise for the long-wave orbital accelerations:
 \alpha = \tan^{-1}{\dfrac{\partial \eta}{\partial x}}
 \end{equation}
 where $\alpha$ is the local slope of the long-wave surface.
-For a linear wave, the effective gravity is:
+For a linear long wave, the effective gravity is:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear}
@@ -409,18 +417,30 @@ For a linear wave, the effective gravity is:
   {\sqrt{\left(\varepsilon_L \sin{\psi}\right)^2 + 1}}
 \end{equation}
 
-Curvilinear effects on effective gravity can be neglected by setting $\alpha = 0$.
+Curvilinear effects on effective gravity can be removed altogether by setting
+$\alpha = 0$.
+In that case, Eq. \ref{eq:gravity_modulation_general} simplifies to:
 
-The first-order term in $a_L k_L$ is in phase with the long-wave elevation,
-so the apparent gravity of the short waves is increased at the long-wave crests
-and decreased in the troughs.
-The second-order term in $a_L k_L$ is positive-definite and phase-shifted by
-$\pi/2$ relative to the crests.
-The second-order term thus increases the apparent gravity on the front and rear
-faces of the long wave (Fig. \ref{fig:gravity_modulation}).
+\begin{equation}
+\label{eq:gravity_modulation_linear_no_curvature}
+\widetilde{g} = g \left( 1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}} \right)
+\end{equation}
+Further, if we evaluate the orbital accelerations at the mean water level $z=0$,
+this further simplifies to:
 
-We can also derive the short-wave gravitational acceleration on the surface of
-a non-linear Stokes wave with the elevation (to the third order in $\varepsilon_L$):
+\begin{equation}
+\label{eq:gravity_modulation_linear_no_curvature_mean_level}
+\widetilde{g} = g \left( 1 - \varepsilon_L \cos{\psi} \right)
+\end{equation}
+which is the form used by \citet{peureux2021unsteady}, for example.
+
+The general form of the gravity modulation in Eq. \ref{eq:gravity_modulation_general}
+is convenient because it allows us to easily attribute the effects of the different
+processes on the gravity modulation.
+It also makes it straightforward to evaluate the gravity modulation for a different
+form of the long-wave elevation, by evaluating the orbital accelerations and the
+local elevation slope at the appropriate level.
+For a third-order Stokes wave, for example, the elevation is:
 
 \begin{equation}
 \label{eq:eta_stokes}
@@ -466,9 +486,31 @@ and inserting them into Eq. \ref{eq:gravity_modulation_general}:
 \alpha_{St} = \tan^{-1}{\dfrac{\partial \eta_{St}}{\partial x}}
 \end{equation}
 
+Let us now examine the contributions of the different terms to the short-wave
+effective gravity modulation.
+Fig. \ref{fig:effective_gravities}a shows the effective gravity modulation of
+short-wave as a function of the long-wave phase for $\varepsilon_L = 0.2$, for
+a variety of the gravity modulation forms.
+This value of $\varepsilon_L$ allows easier visualization of the modulation
+differences, while still being relatively moderate.
+To the first order in $\varepsilon_L$, the gravity modulation is out of phase
+with the long-wave elevation, with the short waves experiencing a lower effective
+gravity on the long-wave crests and a higher effective gravity in the troughs.
+Evaluating the orbital accelerations at $z=\eta$ causes a gravity reduction
+around the crests ($\approx6\%$) and the troughs ($\approx 3\%$), and an
+increase on the front and rear faces ($\approx 4\%$) of the long wave, due to
+the exponential change in the orbital accelerations away from the mean water level
+(Fig. \ref{fig:effective_gravities}b).
+The difference between the linear and Stokes long waves at this steepness is
+negligible.
+The long-wave elevation curvature has a second-order effect in $\varepsilon_L$.
+Naturally, there is no curvature exactly at the crests and troughs, and its
+effects are largest at the front and rear faces of the long wave, where the
+covariance between the local slope and the horizontal accelerations are greatest.
+
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{figures/fig_effective_gravities.png}
+\includegraphics[width=0.8\textwidth]{figures/fig_effective_gravities.png}
 \caption{
   (a) Analytical solutions for the effective gravitational acceleration
   modulation by long waves, as function of long-wave phase, for $\varepsilon_L = 0.2$.
@@ -480,6 +522,21 @@ and inserting them into Eq. \ref{eq:gravity_modulation_general}:
 \label{fig:effective_gravities}
 \end{figure}
 
+It is instructive to also examine the mean, maximum, and minimum values of the
+effective gravity as function of long-wave steepness $\varepsilon_L$
+(Fig. \ref{fig:effective_gravities_mean_max_min}).
+The long-wave averaged effective gravity of short waves remains equal to the
+resting value of $g$ for all values of $\varepsilon_L$, except if the effects
+of curvature are considered, in which case the average effective gravity is
+reduced.
+This reduction, in case of a long Stokes wave, is $\approx 3\%$ for
+$\varepsilon_L = 0.2$ and $\approx 14\%$ for $\varepsilon_L = 0.4$.
+As the effective gravity minima and maxima occur at crests and troughs,
+respectively, the curvature effects only affect the phase-averaged values but
+not the extremes.
+The effective gravity at the crest of the steepest ($\varepsilon_L = 0.4$) long
+Stokes wave is reduced by $\approx 64\%$.
+
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_effective_gravities_mean_max_min.png}
@@ -487,6 +544,9 @@ and inserting them into Eq. \ref{eq:gravity_modulation_general}:
   As Fig. \ref{fig:effective_gravities} but showing the mean (solid),
   maximum (dashed), and minimum (dotted) short-wave gravity modulation as
   function of long-wave steepness $\varepsilon_L$.
+  The minimum and maximum values for the cases with curvature effects
+  ($\alpha=\frac{\partial \eta}{\partial x}$) are equivalent to those without
+  curvature effects ($\alpha=0$) and obscure them in the plot.
 }
 \label{fig:effective_gravities_mean_max_min}
 \end{figure}
@@ -762,7 +822,7 @@ helpful discussions.
 }
 
 \backsection[Funding]{
-  Milan Curcic has been partially supported by the National Science Foundation
+  Milan Curcic was partially supported by the National Science Foundation
   under grant number AGS-1745384.
 }
 

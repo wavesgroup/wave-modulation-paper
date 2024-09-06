@@ -107,6 +107,23 @@ def plot_effective_gravities(a: float):
         ax.set_xticks(np.linspace(0, 2 * np.pi, 5))
         ax.set_xticklabels(["0", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
 
+    axes[0].text(
+        0.,
+        1.05,
+        "(a)",
+        transform=axes[0].transAxes,
+        fontsize=16,
+        va="top",
+    )
+    axes[1].text(
+        0.,
+        1.05,
+        "(b)",
+        transform=axes[1].transAxes,
+        fontsize=16,
+        va="top",
+    )
+
     plt.subplots_adjust(left=0.12, right=0.95, bottom=0.05, top=0.95)
     plt.savefig("../figures/fig_effective_gravities.png", dpi=150)
     plt.close()
