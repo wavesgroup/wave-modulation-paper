@@ -108,7 +108,7 @@ def plot_effective_gravities(a: float):
         ax.set_xticklabels(["0", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
 
     axes[0].text(
-        0.,
+        0.0,
         1.05,
         "(a)",
         transform=axes[0].transAxes,
@@ -116,7 +116,7 @@ def plot_effective_gravities(a: float):
         va="top",
     )
     axes[1].text(
-        0.,
+        0.0,
         1.05,
         "(b)",
         transform=axes[1].transAxes,
