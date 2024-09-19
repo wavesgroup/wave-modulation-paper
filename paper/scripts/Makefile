@@ -4,10 +4,10 @@ all: figures
 
 figures: analytical_solutions_with_phase \
          numerical_vs_analytical_solutions \
-		 effective_gravities \
+	 effective_gravities \
          numerical_simulations \
          numerical_simulations_with_phase \
-		 numerical_simulations_ramp_properties
+	 numerical_simulations_ramp_properties
 
 analytical_solutions_with_phase: plot_analytical_solutions_with_phase.py
 	python3 plot_analytical_solutions_with_phase.py

@@ -53,11 +53,11 @@ numerical simulations that the short-wave modulation grows unsteadily with
 each long-wave phase.
 We show that this unsteady growth only occurs for homogeneous initial
 conditions and does not occur for more realistic long-wave groups.
-The combined analytical and numerical framework presented here allows us to
-quantify the importance of various terms in the full wave conservation
+The combined analytical and numerical framework presented here allows
+quantifying the importance of various terms in the full wave conservation
 equations.
-The new analytical solutions are a good approximation of the full numerical
-solution in long-wave steepness up to $\approx 0.2$.
+The proposed analytical solutions are a good approximation of the fully
+nonlinear numerical solutions in long-wave steepness up to $\approx 0.2$.
 \end{abstract}
 
 \begin{keywords}
@@ -642,8 +642,9 @@ forth-order Runge-Kutta method \citep{butcher1996runge}.
 The space is divided into 100 grid points.
 This is effectively the same equation set and numerical configuration as that of
 \citet{peureux2021unsteady}, except that their long-wave orbital velocities are
-evaluated at $z=0$ instead of $z=\eta_L$, which neglects the Stokes drift of
-short-wave groups.
+evaluated at $z=0$ instead of $z=\eta_L$, thus neglecting the Stokes drift
+induced by long waves on short-wave groups
+\citep{stokes1846,van2018stokes,monismith2020stokes}.
 Their gravity modulation also does not consider the nonlinear or the curvature
 effects, however, this difference does not qualitatively affect the results.
 Another difference is the choice of the numerical scheme for spatial differences,
@@ -763,20 +764,22 @@ long-wave train.
 The steepening is driven by the progressive increase in the action of short
 waves (as opposed to their wavenumber), and is centered on the group of short
 waves that begins its journey in the trough of the long wave.
-This is because the unmodulated short waves that begin in the trough enter into
-the area where the surface velocities are converging.
-Inversely, the short waves that begin around the crest of the long-wave will
-enter into the area of surface divergence and will thus have their wave action
-and wavenumber, decreased.
+This is because the unmodulated short waves that begin their journey in the
+trough first enter the convergence region before reaching the divergence region.
+Inversely, the short waves that begin around the crest of the long-wave first
+enter the divergence region and will thus have their action and wavenumber
+decreased.
 We reproduce this behavior in Fig. \ref{fig:modulation_3panel_infinite}, which
 shows the evolution of the short-wave action, wavenumber, and steepness
 modulation (here defined as the change of a quantity relative to its initial value).
+The long waves have $\varepsilon_L = 0.1$ and $k_L = 1$, and the short waves
+have $k = 10$.
 After 10 long-wave periods, the short-wave action modulation $\widetilde{N}/N$
-is approximately doubled, which almost exactly corresponds to the unsteady growth
-reported by \citet{peureux2021unsteady} in their Fig. 1.
+is approximately doubled, consistent with the unsteady growth reported by
+\citet{peureux2021unsteady}.
 Another important property of this solution is that the short-wave group that
-experiences peak amplification (dampening) are not locked-in to the long-wave
-crests (troughs), as they are in the L-HS solution.
+experiences peak amplification (dampening) are not locked in to the long-wave
+crests (troughs), as they are in the solution by \citet{longuet1960changes}.
 
 \begin{figure}
 \centering
@@ -799,8 +802,8 @@ However, the instability only occurs if the short waves are initialized as a
 uniform field.
 If they are initialized instead as a periodic function of the long-wave phase
 such that their wavenumber (and optionally, action) is higher on the crests
-and lower in the troughs, akin to the L-HS solution, the instability does not
-occur.
+and lower in the troughs, akin to the prior steady solutions, the instability
+does not occur.
 
 \begin{figure}
 \centering
@@ -812,18 +815,40 @@ occur.
 \label{fig:modulation_3panel_ramp}
 \end{figure}
 
-Why is it, then, that the solution is so different depending on the short-wave
+Why is it, then, that the solution for short-wave modulation is not only
+quantitatively, but also qualitatively, different depending on the short-wave
 initial conditions?
-\citet{peureux2021unsteady} did not provide an explanation for this behavior.
-At first, it may seem that there is something special about the uniform initial
+It may at first seem that there is something special about the uniform initial
 conditions that makes its solutions grow unsteadily and indefinitely.
-\citet{peureux2021unsteady} describe this scenario as "...the sudden appearance
+\citet{peureux2021unsteady} described this scenario as "...the sudden appearance
 of a long wave perturbation in the middle of a homogeneous short wave field".
-The sudden appearance of long waves may be a clue.
-The exact numerical simulation as shown in Fig. \ref{fig:modulation_3panel_infinite},
-except for a linear ramp applied to $a_L$ (and consequently, $U$ and $W$ as well)
-for the first five periods reveals that the unsteady growth no longer occurs
-(Fig. \ref{fig:modulation_3panel_ramp}).
+However, such a scenario is not realistic in the ocean where waves tend to
+organize into groups due to their dispersive nature.
+To test whether it is the sudden onset of long-wave forcing that causes the
+unstable growth, we repeat the numerical simulation of Fig.
+\ref{fig:modulation_3panel_infinite}, except for a linear ramp applied to $a_L$
+(and consequently, $U$ and $W$ as well) for the first five periods:
+$a_L(t) = min(a_L, a_L t / \left(5 T_L\right))$, where $T_L$ is the long-wave period.
+This result is shown in Fig. \ref{fig:modulation_3panel_ramp}.
+The key distinction that arises with the introduction of the ramp is that the
+modulation pattern of short waves is now locked in with the long-wave crests,
+and their indefinite steepening vanishes.
+The stabilization effect of the long-wave ramp is more readily assessed in
+Fig. \ref{fig:unsteady_growth_timeseries}, which shows the maximum short-wave
+steepness modulation as function of time over 30 long-wave periods, for the
+infinite long-wave train case and that when applying the linear ramp to the
+long-wave forcing.
+Comparing the wave action propagation ($C_g \frac{\partial N}{\partial x}$) and
+inhomogeneity ($N \frac{\partial C_g}{\partial x}$) tendencies reveals that
+after only one long-wave period, the propagation and inhomogeneity tendencies
+are unbalanced and amplify the steepening of short waves
+(Fig. \ref{fig:inhomogeneity_tendencies}).
+Although \citet{peureux2021unsteady} correctly pointed out that the unstable
+growth of short-wave steepness occurs due to the resonance of the inhomogeneity
+tendency with the short-wave action perturbation, in case of a gentle ramp
+up of the long-wave forcing, the propagation and inhomogeneity tendencies
+mostly balance each other out, thus allowing the short-wave steepening to
+lock in to the long-wave crests.
 
 \begin{figure}
   \centering
@@ -838,6 +863,21 @@ for the first five periods reveals that the unsteady growth no longer occurs
   \label{fig:unsteady_growth_timeseries}
 \end{figure}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/inhomogeneity_tendencies.png}
+  \caption{
+    Propagation ($C_g \frac{\partial N}{\partial x}$) (blue) and inhomogeneity
+    ($N \frac{\partial C_g}{\partial x}$) (orange) tendencies and their sum
+    (green) for the short-wave action after one long-wave period, in the case of
+    (a) infinite long-wave train and (b) linear ramp of long-wave amplitude.
+    Dashed line is the long-wave elevation and the dotted line is the short-wave
+    action modulation minus 1.
+  }
+  \label{fig:inhomogeneity_tendencies}
+\end{figure}
+
+
 \subsection{Short-wave modulation by long-wave groups}
 \label{subsection:wave_groups}
 
@@ -851,6 +891,9 @@ for the first five periods reveals that the unsteady growth no longer occurs
 }
 \label{fig:modulation_3panel_groups}
 \end{figure}
+
+\section{Sensitivity to wavenumber ratios}
+\label{section:sensitivity_to_wavenumber_ratios}
 
 \section{Scale analysis}
 \label{section:scale_analysis}
