@@ -99,7 +99,7 @@ Alternative analytical and numerical approaches to the modulation problem remain
 of interest, especially if higher degrees of nonlinearity can be considered
 using simpler approaches.
 
-More recently, \citep{peureux2021unsteady} asked whether the steady solutions
+More recently, \citet{peureux2021unsteady} asked whether the steady solutions
 of short-wave modulation are realistic by simulating the full wave conservation
 equations.
 They found that the short waves grow unsteadily due to the propagation of
@@ -452,7 +452,7 @@ For a third-order Stokes wave, for example, the elevation is:
 \end{equation}
 Without considering the curvilinear effects in Eq. \ref{eq:gravity_modulation_general},,
 the gravitational acceleration at the surface of a Stokes wave is, to the
-4$^{th}$ order:
+fourth order:
 
 \begin{equation}
 \label{eq:gravity_modulation_stokes}
@@ -671,6 +671,26 @@ rightward with the speed of $C_g + U$ (neglecting group speed inhomogeneity).
 \subsection{Comparison with analytical solutions}
 \label{subsection:comparison_with_analytical_solutions}
 
+The first set of simulations is performed for the long-wave steepness of
+$\varepsilon_L = 0.1$, $0.2$, and $0.4$ (Fig. \ref{fig:numerical_solutions}).
+The long-waves are initialized from rest ($a_L = 0$) and are ramped up
+to their target steepness after 5 long-wave periods, thus mimicking the
+passage of a long-wave group
+(we explain in more detail the importance of ramping up the long-wave forcing
+in the next subsection).
+At $\varepsilon = 0.1$, the numerical solutions for the wavenumber, amplitude,
+and steepness modulation are all remarkably similar to the analytical solutions
+(Fig. \ref{fig:numerical_solutions}a,d,g).
+This suggests that at low long-wave steepness that steady analytical solution
+is a reasonable proxy for the fully-nonlinear crest-action conservation
+equation solutions.
+The numerical solutions diverge more notably from the analytical ones at
+moderate steepness of 0.2 (Fig. \ref{fig:numerical_solutions}b,e,h), and are
+considerably different at very high steepness of 0.4
+(Fig. \ref{fig:numerical_solutions}c,f,i).
+These differences suggest that at high steepness the inhomogeneity of
+gravitational acceleration and group speed become important.
+
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/numerical_vs_analytical_solutions_with_phase.png}
@@ -681,24 +701,56 @@ rightward with the speed of $C_g + U$ (neglecting group speed inhomogeneity).
 \label{fig:numerical_solutions}
 \end{figure}
 
+The maximum modulations of the short-wave wavenumber, amplitude, and steepness
+from the analytical and numerical solutions, are shown on Figs.
+\ref{fig:numerical_vs_analytical_k},
+\ref{fig:numerical_vs_analytical_a}, and
+\ref{fig:numerical_vs_analytical_ak}, respectively, as function of the long-wave
+steepness $\varepsilon_L$.
+Overall, the numerical solutions, based on the linear and third-order Stokes long wave
+alike, begin to diverge from the analytical solution at $\varepsilon_L \approx 0.2$.
+The numerical solution using the Stokes long wave is quantitatively very similar
+to the fully-nonlinear solutions of \citet{longuet1987propagation} in amplitude
+modulation, however with somewhat lower wavenumber and steepness modulations.
+For example, at $\varepsilon_L = 0.4$, the steepness modulation in our solutions
+is close to 6, whereas \citet{longuet1987propagation} finds it close to 8.
+The underestimate in the wavenumber modulation at high long-wave steepness
+relative to the results of \citet{longuet1987propagation}
+is likely due to his long wave velocities being evaluated to a higher order
+than they are here.
+Nevertheless, the overall steepness modulation between the two numerical
+approaches are remarkably similar, and either solution would cause the
+short-waves of even low steepness to break \citep{banner1993wave}.
+
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_k.png}
-\caption{}
+\caption{
+  Maximum wavenumber modulation as function of long-wave steepness $\varepsilon_L$.
+  Black line and circles are for the analytical and numerical solutions from
+  \citet{longuet1960changes} and \citet{longuet1987propagation}, respectively.
+  Blue line is based on the analytical solutions from this paper.
+  Green and orange lines are for the numerical solutions from this paper
+  using linear and third-order Stokes long waves, respectively.
+}
 \label{fig:numerical_vs_analytical_k}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_a.png}
-\caption{}
+\caption{
+  As Fig. \ref{fig:numerical_vs_analytical_k} but for the amplitude modulation.
+}
 \label{fig:numerical_vs_analytical_a}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_ak.png}
-\caption{}
+\caption{
+  As Fig. \ref{fig:numerical_vs_analytical_k} but for the steepness modulation.
+}
 \label{fig:numerical_vs_analytical_ak}
 \end{figure}
 
