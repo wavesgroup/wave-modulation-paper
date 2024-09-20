@@ -8,8 +8,8 @@ matplotlib.rc("font", size=16)
 m1 = WaveModulationModel(num_periods=30)
 m2 = WaveModulationModel(num_periods=30)
 
-m1.run(ramp_type=None, wave_type="stokes")
-m2.run(ramp_type="linear", wave_type="stokes")
+m1.run(ramp_type=None, wave_type="linear")
+m2.run(ramp_type="linear", wave_type="linear")
 
 ds1 = m1.to_xarray()
 ds2 = m2.to_xarray()
