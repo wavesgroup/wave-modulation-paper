@@ -318,8 +318,8 @@ quantities (e.g. $\widetilde{k}$ for wavenumber).
 \subsection{Wavenumber modulation}
 \label{subsection:wavenumber_modulation}
 
-Solving analytically for the wavenumber requires dropping spatial gradients of
-$k$ in Eq. \ref{eq:wavenumber} and assuming homogeneous $g$:
+Solving analytically for the wavenumber requires dropping the spatial derivatives
+of $k$ in Eq. \ref{eq:wavenumber} and assuming homogeneous $g$:
 
 \begin{equation}
 \label{eq:wavenumber2}
@@ -888,11 +888,16 @@ applied as a long-wave group.
 The wave group is simulated as a non-dispersive train of long waves whose
 amplitude scales with $\cos{2 \pi t / (N T_L)}$, where $N$ is the number of
 long waves in the group.
-The elevation of the long waves thus gradually ramps up from rest to $a_L$ at $t = N/2 T_L$, after which it gradually decreases toward zero.
-In this simulation, $N = 10$ and $\varepsilon = 0.1$ as in the previous two simulations.
-The modulations of short-wave wavenumber, amplitude, and steepness in response to such long-wave group is shown in Fig. \ref{fig:modulation_3panel_groups}.
-Like in the case of a linear ramp, the modulation pattern here is locked in to the long-wave crest and peaks at approximately 1.2 for short-wave steepness.
-After the peak of the long-wave group passes, the short-wave modulation recedes back toward the resting state.
+The elevation of the long waves thus gradually ramps up from rest to $a_L$ at
+$t = N/2 T_L$, after which it gradually decreases toward zero.
+In this simulation, $N = 10$ and $\varepsilon = 0.1$ as in the previous two
+simulations.
+The modulations of short-wave wavenumber, amplitude, and steepness in response
+to such long-wave group is shown in Fig. \ref{fig:modulation_3panel_groups}.
+Like in the case of a linear ramp, the modulation pattern here is locked in to
+the long-wave crest and peaks at approximately 1.2 for short-wave steepness.
+After the peak of the long-wave group passes, the short-wave modulation recedes
+back toward the resting state.
 
 \begin{figure}
 \centering
@@ -908,14 +913,36 @@ After the peak of the long-wave group passes, the short-wave modulation recedes 
 \section{Discussion}
 \label{section:discussion}
 
+Limitations of this study; no wind or dissipation. Only considering deep water
+gravity waves, but the results could be extended to gravity-capillary waves
+in arbitrary depth.
+Although it is impossible to isolate the hydrodynamic modulation effects
+from other modulation effects in the field and laboratory data, it is
+nevertheless useful to study this process in isolation from other processes
+in a theoretical and numerical framework.
+
+Discuss that we examined r = 10, 100 and find very similar results,
+consistent with \citet{longuet1987propagation}
+
+Results are very similar to prior work, but provide an easy to use analytical
+solution to calculate modulations without numerical iteration.
+
+Discuss the group velocity results of \citet{Willebrand1975energy}.
+What do we get for group velocity modulation?
+Should the short-wave modulations be considered for inclusion in spectral wave
+models?
+
+Implications for spectral wave models and wind input to short waves.
+
 \section{Conclusions}
 \label{section:conclusions}
 
 In this paper we revisited the problem of short-wave modulation by long waves
 from a linear wave theory perspective.
-Using the linearized wave crest and action conservation equations coupled with nonlinear solutions for the effective gravity, we derived steady analytical solutions for the modulation
-of short wave wavenumber, amplitude, steepness, intrinsic frequency, and phase
-speed.
+Using the linearized wave crest and action conservation equations coupled with
+nonlinear solutions for the effective gravity, we derived steady analytical
+solutions for the modulation of short wave wavenumber, amplitude, steepness,
+intrinsic frequency, and phase speed.
 The latter two have not been previously examined in the context of short-wave
 modulation, but are important for correctly calculating the wind input into
 short waves, which is proportional to the wind speed relative to the wave
@@ -954,9 +981,10 @@ helpful discussions.
 \backsection[Declaration of interests]{The author reports no conflict of interest.}
 
 \backsection[Data availability statement]{
-  The data and code to generate the figures and run the numerical simulations
-  are available at [TODO].
-  The numerical model is available as a standalone package at [TODO].
+  The code to run the numerical simulations and generate the figures in this
+  paper is available at \url{https://github.com/wavesgroup/wave-modulation-paper}.
+  The numerical model is available as a standalone package at
+  \url{https://github.com/wavesgroup/2wave}.
   %See JFM's \href{https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/information/journal-policies/research-transparency}{research transparency policy} for more information
 }
 
