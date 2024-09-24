@@ -40,7 +40,7 @@ a well-known ocean surface process that affects remote sensing, the
 interpretation of \textit{in situ} wave measurements, and numerical wave
 forecasting.
 In this paper, we revisit the linear wave theory and derive higher-order
-solutions for the change of short-wave wavenumber, action density, and
+steady solutions for the change of short-wave wavenumber, action density, and
 gravitational acceleration due to the presence of longer waves.
 We validate the analytical solutions with numerical simulations of the full wave
 crest and action conservation equations.
@@ -48,16 +48,20 @@ The nonlinear analytical solutions of short-wave wavenumber, amplitude, and
 steepness modulation significantly deviate from the linear analytical solutions
 of \citet{longuet1960changes}, and are similar to the nonlinear numerical
 solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution}.
-We also examine the result of \citet{peureux2021unsteady} who found through
+We further examine the result of \citet{peureux2021unsteady} who found through
 numerical simulations that the short-wave modulation grows unsteadily with
-each long-wave phase.
-We show that this unsteady growth only occurs for homogeneous initial
-conditions and does not occur for more realistic long-wave groups.
+each long-wave passage.
+We show that this unsteady growth only occurs only for homogeneous initial
+conditions as a special case and does not generally occur, for example in more
+realistic long-wave groups.
 The combined analytical and numerical framework presented here allows
 quantifying the importance of various terms in the full wave conservation
 equations.
 The proposed analytical solutions are a good approximation of the fully
 nonlinear numerical solutions in long-wave steepness up to $\approx 0.2$.
+As a corollary, except for a subset of initial conditions, the solutions to
+fully nonlinear crest-action conservation equations are mostly steady in the
+reference frame of the long waves.
 \end{abstract}
 
 \begin{keywords}
@@ -83,10 +87,10 @@ hydrodynamic modulation of short waves by longer waves:
 where $\widetilde{k}$ and $k$ are the modulated and unmodulated short-wave wavenumbers,
 respectively, and $\varepsilon_L = a_L k_L$ is the steepness of the long wave with
 wavenumber $k_L$ and amplitude $a_L$.
-This hydrodynamic modulation process was instrumental for the development and
+Hydrodynamic modulation is a key process for the development and
 interpretation of remote sensing of ocean surface waves and currents
 \citep{keller1975microwave,hara1994hydrodynamic}, and is distinguished
-from the aerodynamic modulation process \citep{donelan1987effect,belcher1999wave,chen2000effects}.
+from aerodynamic modulation \citep{donelan1987effect,belcher1999wave,chen2000effects}.
 \citet{phillips1981dispersion} and \citet{longuet1987propagation} revisited the
 hydrodynamic modulation problem by considering nonlinear long waves and
 variations in the effective gravity of short waves.
@@ -297,6 +301,15 @@ here, they derived their solution from the linear superposition of the velocity
 potential of two waves.
 It appears that starting from the conservation of crests and wave action allows
 for a simpler and more intuitive derivation.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_hydrodynamic_modulation_diagram.pdf}
+\caption{
+  Diagram of the hydrodynamic modulation process.
+}
+\label{fig:hydrodynamic_modulation_diagram}
+\end{figure}
 
 \section{Analytical solutions}
 \label{section:analytical_solutions}
