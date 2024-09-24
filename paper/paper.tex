@@ -916,26 +916,75 @@ back toward the resting state.
 \section{Discussion}
 \label{section:discussion}
 
-Limitations of this study; no wind or dissipation. Only considering deep water
-gravity waves, but the results could be extended to gravity-capillary waves
-in arbitrary depth.
-Although it is impossible to isolate the hydrodynamic modulation effects
-from other modulation effects in the field and laboratory data, it is
-nevertheless useful to study this process in isolation from other processes
-in a theoretical and numerical framework.
+The solutions presented here, analytical and numerical alike, are valid only
+for certain scales of short and long waves.
+Specifically, the wave action conservation equation, introduced by
+\citet{bretherton1968wavetrains}, requires that the ambient velocity is slowly
+varying on the time scales of short waves, \textit{i.e.}
+$|\partial U / \partial x| \ll k |U|$
+and $|\partial U / \partial t| \ll \sigma |U|$.
+This implies $k_L \ll k$ and $|\sigma_L| \ll \sigma|$, respectively.
+Another requirement is for the short-waves to remain linear, which implies
+$a k \ll 1$.
+Furthermore, the short waves examined here do not include the effects of
+surface tension (gravity-capillary waves) or intermediate or shallow water.
+Within these limits, the crest-action conservation equations provide an
+elegant and relatively simple framework to study the hydrodynamic modulation
+of short waves by longer waves.
+This approach, of course, isolates this particular process from others
+dominant modulation and nonlinear transfer processes, such as wave growth
+by wind, wave dissipation, and aerodynamic sheltering by the longer waves.
 
-Discuss that we examined r = 10, 100 and find very similar results,
-consistent with \citet{longuet1987propagation}
+Although in this paper we only explored the wavenumbers 1 and 10 for the long
+and short waves, respectively ($k/k_L = 10$), the results are not sensitive
+to different values of $k_L$, provided that the amplitude $a_L$ is set such that
+the long-wave steepness $\varepsilon_L = a_L / k_L$ is the same.
+Numerical simulations with that compare $k/k_L = 10$ and $k/k_L = 100$ show
+very little sensitivity $k/k_L$ (not shown), consistent with the results of
+\citet{longuet1987propagation}.
+Specifically, the short-wave steepness modulation is 1\% larger at
+$\varepsilon_L = 0.27$ for $k/k_L = 10$ compared to $k/k_L = 100$, and 4\%
+larger at $\varepsilon_L = 0.4$.
+This suggests that as long as $k/k_L \gg 1$, the modulation amplitude is
+largely independent of the ratio $k/k_L$.
 
-Results are very similar to prior work, but provide an easy to use analytical
-solution to calculate modulations without numerical iteration.
+Despite several studies that provided qualitatively similar steady solutions
+for the short-wave modulation by long waves
+\citep{longuet1960changes,phillips1981dispersion,longuet1987propagation,henyey1988energy,zhang1990evolution},
+it was not obvious from the governing equations that the fully-nonlinear
+steady solutions should exist.
+\citet{peureux2021unsteady} examined this problem numerically and found that
+the solutions are stable only if the short-wave field is initialized from
+a prior steady solution of the form of that from \citet{longuet1960changes}.
+If the short-wave field is instead initialized from a uniform field, they
+found that the short-wave amplitude, and thus steepness as well, grow
+unsteadily.
+However, in this study we demonstrate that the unsteady steepening of short
+waves only occurs in the case of a sudden appearance of long waves, where
+the velocity fields induced by the long waves act in their full capacity
+on the short waves that have not yet had time to "lock in" to the long-wave
+crests.
+In such a hypothetical scenario, sudden forcing on short waves causes the
+modulation pattern to detach itself from the long-wave crests and to propagate
+at the short-wave group speed.
+When this occurs, the modulated short-waves are no longer in a stabilizing
+resonance with the surface convergence and divergence induced by the long-wave
+orbital velocity, and each long-wave passage further destabilizes the short-wave
+field, causing it to steepen indefinitely.
 
-Discuss the group velocity results of \citet{Willebrand1975energy}.
-What do we get for group velocity modulation?
-Should the short-wave modulations be considered for inclusion in spectral wave
-models?
+Another important consideration of the hydrodynamic modulation process is
+whether it should somehow be accounted for in phase-averaged spectral wave
+models used for regional and global wave forecasting. 
+In the early days of spectral wave modeling, \citet{willebrand1975energy}
+examined the effect of a wave spectrum on the short-wave group velocity,
+and found the effect of up to several percent modulation.
+For a practical implementation in a spectral wave model, this would have to
+incur an additional loop over all frequencies for each short-wave frequency.
+It was thus not deemed practical to include this effect in wave models at the time.
+However, with the recent advances in machine learning and phase-resolving modeling
+of short waves, the effect of wave-modulation deserves re-examination.
 
-Implications for spectral wave models and wind input to short waves.
+TODO Implications for spectral wave models and wind input to short waves.
 
 \section{Conclusions}
 \label{section:conclusions}
