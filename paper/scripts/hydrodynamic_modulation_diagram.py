@@ -62,10 +62,10 @@ for pos in arrow_positions:
     )
 
     ax.arrow(
-        pos,
-        np.sin(pos) - y_offset,
-        -1.5 * dx,
-        -1.5 * dy,
+        pos - 0.25 * np.pi,
+        np.sin(pos - 0.25 * np.pi) - y_offset,
+        1.5 * dx,
+        1.5 * dy,
         head_width=0.12,
         head_length=0.2,
         fc="k",
