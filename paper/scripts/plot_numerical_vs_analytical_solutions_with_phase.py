@@ -21,7 +21,9 @@ def calculate_modulation(ak_L: float):
     m.run(ramp_type="groups")
     ds = m.to_xarray()
 
-    ind = 1002  # Exactly 5 periods
+    T = 2 * np.pi / np.sqrt(m.grav0 * k_long)
+
+    ind = np.argmin((m.time - 5 * T) ** 2)
 
     phase = ds.space * k_long
 
