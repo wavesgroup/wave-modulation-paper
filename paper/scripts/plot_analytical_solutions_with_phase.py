@@ -83,6 +83,7 @@ def plot_analytical_solutions(a_L: float):
 
     for ax in axes[-2:]:
         ax.set_xticklabels(["0", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
+        ax.set_xlabel(r"$\psi$")
 
     axes[0].set_title(r"$\widetilde{k}/k$")
     axes[1].set_title(r"$\widetilde{g}/g$")
@@ -90,7 +91,7 @@ def plot_analytical_solutions(a_L: float):
     axes[3].set_title(r"$\widetilde{ak}/(ak)$")
     axes[4].set_title(r"$\widetilde{\sigma}/\sigma$")
     axes[5].set_title(r"$\widetilde{C_p}/C_p$")
-
+    
     for n, ax in enumerate(axes):
         ax.text(
             0,

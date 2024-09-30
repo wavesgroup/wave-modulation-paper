@@ -126,7 +126,7 @@ axes[2, 0].set_ylabel(r"$\widetilde{ak}/(ak)$")
 
 for ax in axes[-1]:
     ax.set_xticklabels(["0", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
-    ax.set_xlabel("Phase")
+    ax.set_xlabel(r"$\psi$")
 
 plt.savefig("../figures/numerical_vs_analytical_solutions_with_phase.png", dpi=200)
 plt.close()

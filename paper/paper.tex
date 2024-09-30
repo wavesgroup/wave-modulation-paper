@@ -19,7 +19,7 @@
 
 % {\MakeUppercase{\romannumeral #1}}
 
-\title{Revisiting the hydrodynamic modulation of short waves by longer waves}
+\title{Revisiting the hydrodynamic modulation of short surface waves by longer waves}
 
 \author{
   Milan Curcic\aff{1}
@@ -306,6 +306,13 @@ unstable growth of wave action in infinite long-wave trains.
 (\ref{eq:wavenumber}) and (\ref{eq:wave_action2}) are the governing equations
 that we approximate and solve analytically in \S\ref{section:analytical_solutions},
 and numerically in their full form in \S\ref{section:numerical_solutions}.
+It is worth noting that this system of equations is semi-coupled, meaning that
+it is possible to solve (\ref{eq:wavenumber}) on its own, but solving
+(\ref{eq:wave_action2}) requires also the solution of (\ref{eq:wavenumber}).
+In other words, the wave kinematics (the wavenumber distribution) are not
+concerned with the wave action.
+In contrast, the wave action is governed, among others, by the
+group velocity and thus depends on the wavenumber.
 
 For the ambient forcing, we consider a train of monochromatic long wave
 defined, to the first order in steepness, by the elevation $\eta_L = a_L cos{\psi}$,
@@ -712,15 +719,14 @@ rightward with the speed of $C_g + U$ (neglecting group speed inhomogeneity).
 
 The first set of simulations is performed for the long-wave steepness of
 $\varepsilon_L = 0.1$, $0.2$, and $0.4$ (Fig. \ref{fig:numerical_solutions}).
-The long-waves are initialized from rest ($a_L = 0$) and are ramped up
-to their target steepness after 5 long-wave periods, thus mimicking the
-passage of a long-wave group
-(we explain in more detail the importance of ramping up the long-wave forcing
-in the next subsection).
+The long-waves are initialized from rest ($a_L = 0$) and gradually ramped up
+to their target steepness over 5 long-wave periods, thus emulating the passage
+of a long-wave group
+(the importance of which we discuss in more detail in the next subsection).
 At $\varepsilon = 0.1$, the numerical solutions for the wavenumber, amplitude,
 and steepness modulation are all remarkably similar to the analytical solutions
 (Fig. \ref{fig:numerical_solutions}a,d,g).
-This suggests that at low long-wave steepness that steady analytical solution
+This suggests that at low long-wave steepness that the steady analytical solution
 is a reasonable proxy for the fully-nonlinear crest-action conservation
 equation solutions.
 The numerical solutions diverge more notably from the analytical ones at
@@ -728,14 +734,16 @@ moderate steepness of 0.2 (Fig. \ref{fig:numerical_solutions}b,e,h), and are
 considerably different at very high steepness of 0.4
 (Fig. \ref{fig:numerical_solutions}c,f,i).
 These differences suggest that at high steepness the inhomogeneity of
-gravitational acceleration and group speed become important.
+gravitational acceleration and group speed, otherwise ignored in the steady
+solutions, become important.
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/numerical_vs_analytical_solutions_with_phase.png}
 \caption{
-  Comparison of numerical solutions of wavenumber, amplitude, and steepness modulation
-  with their analytical solutions, for $\varepsilon_L$ = 0.1, 0.2, and 0.4.
+  Comparison of numerical solutions (orange) of wavenumber (top), amplitude
+  (middle), and steepness (bottom) modulation with their analytical solutions
+  (blue), for $\varepsilon_L$ = 0.1, 0.2, and 0.4.
 }
 \label{fig:numerical_solutions}
 \end{figure}
@@ -746,8 +754,9 @@ from the analytical and numerical solutions, are shown on Figs.
 \ref{fig:numerical_vs_analytical_a}, and
 \ref{fig:numerical_vs_analytical_ak}, respectively, as function of the long-wave
 steepness $\varepsilon_L$.
-Overall, the numerical solutions, based on the linear and third-order Stokes long wave
-alike, begin to diverge from the analytical solution at $\varepsilon_L \approx 0.2$.
+Overall, the numerical solutions, based on the linear and the third-order Stokes
+long waves alike, begin to diverge from the analytical solution at
+$\varepsilon_L \approx 0.2$.
 The numerical solution using the Stokes long wave is quantitatively very similar
 to the fully-nonlinear solutions of \citet{longuet1987propagation} in amplitude
 modulation, however with somewhat lower wavenumber and steepness modulations.
@@ -755,11 +764,16 @@ For example, at $\varepsilon_L = 0.4$, the steepness modulation in our solutions
 is close to 6, whereas \citet{longuet1987propagation} finds it close to 8.
 The underestimate in the wavenumber modulation at high long-wave steepness
 relative to the results of \citet{longuet1987propagation}
-is likely due to his long wave velocities being evaluated to a higher order
-than they are here.
+is likely due to his long wave velocities being evaluated to a higher order in
+$\varepsilon_L$ than they are here.
 Nevertheless, the overall steepness modulation between the two numerical
 approaches are remarkably similar, and either solution would cause the
 short-waves of even low steepness to break \citep{banner1993wave}.
+Where the two modulation solutions differ (at $\varepsilon_L > 0.2$),
+either solution would lead to short-wave breaking after one long-wave period.
+This suggests that in the cases where the short-waves would survive the
+modulation and persist over multiple long-wave periods, the two solutions are
+effectively equivalent.
 
 \begin{figure}
 \centering
@@ -800,8 +814,8 @@ The key result of \citet{peureux2021unsteady} is that of unsteady steepening of
 short waves when a homogeneous field of short waves is forced by an infinite
 long-wave train.
 The steepening is driven by the progressive increase in the action of short
-waves (as opposed to their wavenumber), and is centered on the group of short
-waves that begins its journey in the trough of the long wave.
+waves (as opposed to their wavenumber), and is centered on the short-wave group
+that begins its journey in the trough of the long wave.
 This is because the unmodulated short waves that begin their journey in the
 trough first enter the convergence region before reaching the divergence region.
 Inversely, the short waves that begin around the crest of the long-wave first
@@ -812,12 +826,12 @@ shows the evolution of the short-wave action, wavenumber, and steepness
 modulation (here defined as the change of a quantity relative to its initial value).
 The long waves have $\varepsilon_L = 0.1$ and $k_L = 1$, and the short waves
 have $k = 10$.
-After 10 long-wave periods, the short-wave action modulation $\widetilde{N}/N$
-is approximately doubled, consistent with the unsteady growth reported by
-\citet{peureux2021unsteady}.
+After 10 long-wave periods, the short-wave action is approximately doubled,
+consistent with \citet{peureux2021unsteady}.
 Another important property of this solution is that the short-wave group that
-experiences peak amplification (dampening) are not locked in to the long-wave
-crests (troughs), as they are in the solution by \citet{longuet1960changes}.
+experiences peak amplification (dampening) are not locked-in to the long-wave
+crests (troughs), as they are in the prior steady solutions
+\citep{longuet1960changes,longuet1987propagation,zhang1990evolution}.
 
 \begin{figure}
 \centering
@@ -831,17 +845,18 @@ crests (troughs), as they are in the solution by \citet{longuet1960changes}.
 \end{figure}
 
 Why does this unsteady growth of short-wave action occur?
-As \citet{peureux2021unsteady} explain, "the additional change in advection
-velocity due to the modulation of the short wave group speed gives an additional
-amplification."
-That is, it is the inhomogeneity term $N \dfrac{\partial C_g}{\partial x}$ that
-is responsible for the instability.
+\citet{peureux2021unsteady} explain that the change in advection velocity due to
+the modulation of the short-wave group speed yields an additional amplification
+of the short-wave action.
+That is, the inhomogeneity term $N \dfrac{\partial C_g}{\partial x}$ is
+responsible for the instability.
 However, the instability only occurs if the short waves are initialized as a
 uniform field.
 If they are initialized instead as a periodic function of the long-wave phase
 such that their wavenumber (and optionally, action) is higher on the crests
 and lower in the troughs, akin to the prior steady solutions, the instability
-does not occur.
+vanishes and the short-wave modulation pattern locks-in to the long-wave
+crests.
 
 \begin{figure}
 \centering
@@ -861,32 +876,32 @@ conditions that makes its solutions grow unsteadily and indefinitely.
 \citet{peureux2021unsteady} described this scenario as "...the sudden appearance
 of a long wave perturbation in the middle of a homogeneous short wave field".
 However, such a scenario is not realistic in the ocean where waves tend to
-organize into groups due to their dispersive nature.
-To test whether it is the sudden onset of long-wave forcing that causes the
-unstable growth, we repeat the numerical simulation of Fig.
+organize into groups due to dispersion.
+To test whether the sudden onset of long-wave forcing causes the unstable growth,
+we repeat the numerical simulation of Fig.
 \ref{fig:modulation_3panel_infinite}, except for a linear ramp applied to $a_L$
-(and consequently, $U$ and $W$ as well) for the first five periods:
+(and consequently, the other long-wave properties including the orbital
+velocities and the local steepness) for the first five periods:
 $a_L(t) = min(a_L, a_L t / \left(5 T_L\right))$, where $T_L$ is the long-wave period.
 This result is shown in Fig. \ref{fig:modulation_3panel_ramp}.
 The key distinction that arises with the introduction of the ramp is that the
-modulation pattern of short waves is now locked in with the long-wave crests,
+modulation pattern of short waves is now locked-in to the long-wave crests,
 and their indefinite steepening vanishes.
 The stabilization effect of the long-wave ramp is more readily assessed in
 Fig. \ref{fig:unsteady_growth_timeseries}, which shows the maximum short-wave
 steepness modulation as function of time over 30 long-wave periods, for the
-infinite long-wave train case and that when applying the linear ramp to the
-long-wave forcing.
+infinite long-wave train case and the case of applying a linear ramp.
 Comparing the wave action propagation ($C_g \frac{\partial N}{\partial x}$) and
 inhomogeneity ($N \frac{\partial C_g}{\partial x}$) tendencies reveals that
 after only one long-wave period, the propagation and inhomogeneity tendencies
 are unbalanced and amplify the steepening of short waves
 (Fig. \ref{fig:inhomogeneity_tendencies}).
-Although \citet{peureux2021unsteady} correctly pointed out that the unstable
+\citet{peureux2021unsteady} correctly pointed out that the unstable
 growth of short-wave steepness occurs due to the resonance of the inhomogeneity
-tendency with the short-wave action perturbation, in case of a gentle ramp
-up of the long-wave forcing, the propagation and inhomogeneity tendencies
-mostly balance each other out, thus allowing the short-wave steepening to
-lock in to the long-wave crests.
+tendency with the short-wave action perturbation.
+However, in the case of a gentle ramp-up of the long-wave forcing, the
+propagation and inhomogeneity tendencies mostly balance each other and allow
+the short-wave steepening to lock-in to the long-wave crests.
 
 \begin{figure}
   \centering
@@ -921,11 +936,11 @@ lock in to the long-wave crests.
 We now proceed to examine the numerical solutions with the long-wave forcing
 applied as a long-wave group.
 The wave group is simulated as a non-dispersive train of long waves whose
-amplitude scales with $\cos{2 \pi t / (N T_L)}$, where $N$ is the number of
+amplitude scales with $\sin[\pi t / (n T_L)]$, where $n$ is the number of
 long waves in the group.
 The elevation of the long waves thus gradually ramps up from rest to $a_L$ at
 $t = N/2 T_L$, after which it gradually decreases toward zero.
-In this simulation, $N = 10$ and $\varepsilon = 0.1$ as in the previous two
+In this simulation, $n = 10$ and $\varepsilon_L = 0.1$ as in the previous two
 simulations.
 The modulations of short-wave wavenumber, amplitude, and steepness in response
 to such long-wave group is shown in Fig. \ref{fig:modulation_3panel_groups}.
@@ -959,26 +974,29 @@ This implies $k_L \ll k$ and $|\sigma_L| \ll \sigma|$, respectively.
 Another requirement is for the short-waves to remain linear, which implies
 $a k \ll 1$.
 Furthermore, the short waves examined here do not include the effects of
-surface tension (gravity-capillary waves) or intermediate or shallow water.
+surface tension (gravity-capillary waves) or intermediate or shallow water
+(although the solutions can be extended to those conditions, as
+\citet{phillips1981dispersion} did, for example).
 Within these limits, the crest-action conservation equations provide an
 elegant and relatively simple framework to study the hydrodynamic modulation
 of short waves by longer waves.
-This approach, of course, isolates this particular process from others
+This approach, of course, isolates this particular process from other
 dominant modulation and nonlinear transfer processes, such as wave growth
 by wind, wave dissipation, and aerodynamic sheltering by the longer waves.
 
-Although in this paper we only explored the wavenumbers 1 and 10 for the long
-and short waves, respectively ($k/k_L = 10$), the results are not sensitive
-to different values of $k_L$, provided that the amplitude $a_L$ is set such that
-the long-wave steepness $\varepsilon_L = a_L / k_L$ is the same.
-Numerical simulations with that compare $k/k_L = 10$ and $k/k_L = 100$ show
-very little sensitivity $k/k_L$ (not shown), consistent with the results of
+Although in this paper we only explored the solutions for $k_L = 1$ and $k=10$
+the results are not sensitive to different values of $k_L$, provided that the
+amplitude $a_L$ is set such that the long-wave steepness $\varepsilon_L = a_L / k_L$
+is the same.
+Numerical simulations with $k/k_L = 10$ and $k/k_L = 100$ show little
+sensitivity to the ratio $k/k_L$ (not shown), consistent with the results of
 \citet{longuet1987propagation}.
 Specifically, the short-wave steepness modulation is 1\% larger at
 $\varepsilon_L = 0.27$ for $k/k_L = 10$ compared to $k/k_L = 100$, and 4\%
 larger at $\varepsilon_L = 0.4$.
 This suggests that as long as $k/k_L \gg 1$, the modulation amplitude is
 largely independent of the ratio $k/k_L$.
+These results can be reproduced with the companion numerical model.
 
 Despite several studies that provided qualitatively similar steady solutions
 for the short-wave modulation by long waves
@@ -991,10 +1009,10 @@ a prior steady solution of the form of that from \citet{longuet1960changes}.
 If the short-wave field is instead initialized from a uniform field, they
 found that the short-wave amplitude, and thus steepness as well, grow
 unsteadily.
-However, in this study we demonstrate that the unsteady steepening of short
+However, here we demonstrate that the unsteady steepening of short
 waves only occurs in the case of a sudden appearance of long waves, where
 the velocity fields induced by the long waves act in their full capacity
-on the short waves that have not yet had time to "lock in" to the long-wave
+on the short waves that have not yet had time to lock-in to the long-wave
 crests.
 In such a hypothetical scenario, sudden forcing on short waves causes the
 modulation pattern to detach itself from the long-wave crests and to propagate
@@ -1008,16 +1026,23 @@ Another important consideration of the hydrodynamic modulation process is
 whether it should somehow be accounted for in phase-averaged spectral wave
 models \citep{group1988wam,tolman1991third,donelan2012modeling} used for global
 and regional wave forecasting.
+Currently, most spectral wave models used for research or forecasting
+do not consider the preferential steepening of short waves in the context
+of their dispersion properties or the wind input
+(\textit{i.e.} via the short-wave phase speed).
+Some dissipation source functions use the cumulative mean squared slope
+to quantify preferential dissipation of short waves due to this effect
+\citep{donelan2012modeling,romero2019distribution}.
 In the early days of spectral wave modeling, \citet{willebrand1975energy}
 examined the effect of a wave spectrum on the short-wave group velocity,
 and found the effect of up to several percent modulation.
-For a practical implementation in a spectral wave model, this would have to
-incur an additional loop over all frequencies for each short-wave frequency.
+For a practical implementation, this would incur an additional loop over all
+frequencies longer than the considered short-wave frequency.
 It was thus not deemed practical to include this effect in wave models at the time.
-However, with the recent advances in machine learning and phase-resolving modeling
-of short waves, the effect of wave-modulation deserves re-examination.
-
-TODO Implications for spectral wave models and wind input to short waves.
+However, with the recent advances in computing power, machine learning for
+acceleration of complex functions, and phase-resolved modeling of short waves,
+considering the effect of wave-modulation beyond the simple cumulative mean
+squared slope deserves re-examination.
 
 \section{Conclusions}
 \label{section:conclusions}
@@ -1029,7 +1054,7 @@ nonlinear solutions for the effective gravity, we derived steady analytical
 solutions for the modulation of short wave wavenumber, amplitude, steepness,
 intrinsic frequency, and phase speed.
 The latter two have not been previously examined in the context of short-wave
-modulation, but are important for correctly calculating the wind input into
+modulation, but may be important for correctly calculating the wind input into
 short waves, which is proportional to the wind speed relative to the wave
 celerity.
 The approximate steady solutions yield higher wavenumber and amplitude
@@ -1042,7 +1067,7 @@ to the evaluation of short waves on the surface of the long wave (as opposed to
 the mean water level) and due to nonlinear effective gravity.
 
 The numerical solutions of the full wave crest and action conservation equations
-are consistent with the analytical solutions for $\varepsilon_L < 0.2$.
+are consistent with the analytical solutions for $\varepsilon_L \lesssim 0.2$.
 The simulations also reveal that the unsteady growth of short-wave steepness
 reported by \citet{peureux2021unsteady} is due to the sudden appearance of
 long waves in a homogeneous short-wave field, a scenario that is unlikely to
@@ -1052,6 +1077,10 @@ destabilizing for the short waves.
 These results suggest that for mildly-to-moderately steep short waves,
 the analytical steady solutions presented here are sufficient to describe the
 modulation of short waves by long waves.
+It may be worthwhile to revisit a more systematic inclusion of the hydrodynamic
+modulation effects in phase-averaged spectral wave models, beyond the simple
+cumulative mean squared slope for wave dissipation, but also for modulating
+the dispersion and wind input into short waves.
 
 \backsection[Acknowledgements]{
 Thanks to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan for the
