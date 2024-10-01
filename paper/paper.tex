@@ -145,7 +145,7 @@ steepness.
 However, the unsteadiness of their solutions occurs in a specific scenario in
 which a long-wave train suddenly appears to modulate a uniform field of short
 waves.
-The numerical simulations stabilize if the short-wave field is initialized
+The numerical simulations stabilise if the short-wave field is initialised
 from existing steady solutions, like those by \citet{longuet1960changes}.
 Nevertheless, their results do put into question whether the short-wave
 modulation predicted by theory is generally steady over many long-wave periods
@@ -169,7 +169,7 @@ The numerical simulations are used to determine the validity of the approximate
 steady solution and to investigate the unsteadiness of the short-wave modulation
 found by \citet{peureux2021unsteady}.
 The main prior studies on hydrodynamic modulation, and their assumptions and
-approaches to the solution, are summarized in Table
+approaches to the solution, are summarised in Table
 \ref{table:modulation_literature_summary}.
 We first present the governing equations in \S\ref{section:governing_equations},
 and then the analytical solutions for the modulation of short waves by long waves
@@ -315,7 +315,7 @@ In contrast, the wave action is governed, among others, by the
 group velocity and thus depends on the wavenumber.
 
 For the ambient forcing, we consider a train of monochromatic long wave
-defined, to the first order in steepness, by the elevation $\eta_L = a_L cos{\psi}$,
+defined, to the first order in steepness, by the elevation $\eta_L = a_L \cos{\psi}$,
 where $\psi = k_L x - \sigma_L t$ is the long-wave phase and $\sigma_L$ its
 angular frequency.
 The long wave induces horizontal and vertical orbital velocities whose values
@@ -342,7 +342,7 @@ crest-action conservation balances allows for a simpler derivation.
 We now describe the analytical solutions for the short-wave wavenumber,
 effective gravitational acceleration, amplitude, steepness, intrinsic frequency,
 and intrinsic phase speed in presence of long waves.
-The wavenumber is derived by linearizing the conservation of wave crests
+The wavenumber is derived by linearising the conservation of wave crests
 (\ref{eq:wave_crests}) and neglecting the spatial gradients of $k$.
 The effective gravity is derived by projecting the long-wave induced surface
 accelerations onto the local vertical axis (that is, the axis normal to the
@@ -399,7 +399,7 @@ Although not immediately obvious from the expressions, the modulated wavenumber
 (\ref{eq:k_short_lhs}) is conserved across the long-wave phase, whereas
 the higher-order solution (\ref{eq:k_short_exact}) is not.
 This is because combining the orbital velocities evaluated at $z=\eta$ and the
-linearized conservation of wave crests in (\ref{eq:wavenumber}) results in
+linearised conservation of wave crests in (\ref{eq:wavenumber}) results in
 excess short-wave wavenumber being created.
 The solution of (\ref{eq:wavenumber}) must be conservative across the long-wave
 phase, as we will see later from the numerical simulations.
@@ -534,7 +534,7 @@ effective gravity modulation.
 Fig. \ref{fig:effective_gravities}a shows the effective gravity modulation of
 short-wave as a function of the long-wave phase for $\varepsilon_L = 0.2$, for
 a variety of the gravity modulation forms.
-This value of $\varepsilon_L$ allows easier visualization of the modulation
+This value of $\varepsilon_L$ allows easier visualisation of the modulation
 differences, while still being relatively moderate.
 To the first order in $\varepsilon_L$, the gravity modulation is out of phase
 with the long-wave elevation, with the short waves experiencing a lower effective
@@ -560,7 +560,7 @@ covariance between the local slope and the horizontal accelerations are largest.
   Black is for linear wave evaluated at $z=0$,
   blue and green are for linear and Stokes waves, respectively, evaluated at $z=\eta$ and without curvature effects,
   and orange and green are for linear and Stokes waves, respectively, evaluated at $z=\eta$ and with curvature effects.
-  (b) As in (a) but normalized by the modulation of the linear wave evaluated at $z=0$, $g_1$.
+  (b) As in (a) but normalised by the modulation of the linear wave evaluated at $z=0$, $g_1$.
 }
 \label{fig:effective_gravities}
 \end{figure}
@@ -608,7 +608,7 @@ to conserve the short-wave properties across the long-wave phase.
 \label{subsection:amplitude_modulation}
 
 The modulation of short-wave amplitude can be derived in a similar way as we did
-for the wavenumber, except that here we linearize the wave action balance
+for the wavenumber, except that here we linearise the wave action balance
 (\ref{eq:wave_action2}) and integrate it in time:
 
 \begin{equation}
@@ -681,7 +681,7 @@ To quantify the contribution of the nonlinear terms in (\ref{eq:wavenumber})
 and (\ref{eq:wave_action2}), and to evaluate the steadiness assumption of the
 analytical solutions, we now proceed to numerically integrate the full set of
 crest and action conservation equations.
-(\ref{eq:wavenumber}) and (\ref{eq:wave_action2}) are discretized using
+(\ref{eq:wavenumber}) and (\ref{eq:wave_action2}) are discretised using
 second-order central finite difference in space and integrated in time using the
 fourth-order Runge-Kutta method \citep{butcher1996runge}.
 The space is divided into 100 grid points.
@@ -697,12 +697,12 @@ which in their case is the more sophisticated MUSCL4 scheme \citep{kurganov2000n
 Although the second-order central finite difference is not appropriate for many
 numerical problems, in our case it is sufficient because it is conservative and
 the fields that we compute derivatives of are smooth and continuous.
-The maximum relative error of the centered finite difference in this model
+The maximum relative error of the centred finite difference in this model
 is $\approx 0.066\%$.
 We show in the next section that our numerical solutions for infinite long-wave
 trains are qualitatively equivalent to those of \citet{peureux2021unsteady}.
 
-Finally, the numerical equations here are integrated in a fixed reference frame,
+The numerical equations here are integrated in a fixed reference frame,
 rather than that moving with the long-wave phase speed.
 Either approach produces equivalent modulation results, however a fixed
 reference frame may allow for a more intuitive interpretation of the results.
@@ -713,13 +713,16 @@ with the speed of $C_{pL} - C_g - U$ (neglecting group speed inhomogeneity),
 whereas in the figures that follow, the long wave is moving rightward with its
 phase speed $C_{pL}$ and the short waves (that is, their action) are moving
 rightward with the speed of $C_g + U$ (neglecting group speed inhomogeneity).
+The crest and action conservation equations are integrated in the curvilinear
+coordinate system in which the horizontal coordinate follows the long-wave
+surface, akin to \citet{zhang1990evolution}.
 
 \subsection{Comparison with analytical solutions}
 \label{subsection:comparison_with_analytical_solutions}
 
 The first set of simulations is performed for the long-wave steepness of
 $\varepsilon_L = 0.1$, $0.2$, and $0.4$ (Fig. \ref{fig:numerical_solutions}).
-The long-waves are initialized from rest ($a_L = 0$) and gradually ramped up
+The long-waves are initialised from rest ($a_L = 0$) and gradually ramped up
 to their target steepness over 5 long-wave periods, thus emulating the passage
 of a long-wave group
 (the importance of which we discuss in more detail in the next subsection).
@@ -814,14 +817,14 @@ The key result of \citet{peureux2021unsteady} is that of unsteady steepening of
 short waves when a homogeneous field of short waves is forced by an infinite
 long-wave train.
 The steepening is driven by the progressive increase in the action of short
-waves (as opposed to their wavenumber), and is centered on the short-wave group
+waves (as opposed to their wavenumber), and is centred on the short-wave group
 that begins its journey in the trough of the long wave.
 This is because the unmodulated short waves that begin their journey in the
 trough first enter the convergence region before reaching the divergence region.
 Inversely, the short waves that begin around the crest of the long-wave first
 enter the divergence region and will thus have their action and wavenumber
 decreased.
-We reproduce this behavior in Fig. \ref{fig:modulation_3panel_infinite}, which
+We reproduce this behaviour in Fig. \ref{fig:modulation_3panel_infinite}, which
 shows the evolution of the short-wave action, wavenumber, and steepness
 modulation (here defined as the change of a quantity relative to its initial value).
 The long waves have $\varepsilon_L = 0.1$ and $k_L = 1$, and the short waves
@@ -840,6 +843,8 @@ crests (troughs), as they are in the prior steady solutions
   Change in the short-wave action (left), wavenumber (middle), and steepness (right)
   relative to their initial values as function of initial long-wave phase and time.
   $k_L = 1$, $k = 10$, $\varepsilon_L = 0.1$.
+  The black contour follows the value of 1, which corresponds to no change
+  from the initial values.
 }
 \label{fig:modulation_3panel_infinite}
 \end{figure}
@@ -850,9 +855,9 @@ the modulation of the short-wave group speed yields an additional amplification
 of the short-wave action.
 That is, the inhomogeneity term $N \dfrac{\partial C_g}{\partial x}$ is
 responsible for the instability.
-However, the instability only occurs if the short waves are initialized as a
+However, the instability only occurs if the short waves are initialised as a
 uniform field.
-If they are initialized instead as a periodic function of the long-wave phase
+If they are initialised instead as a periodic function of the long-wave phase
 such that their wavenumber (and optionally, action) is higher on the crests
 and lower in the troughs, akin to the prior steady solutions, the instability
 vanishes and the short-wave modulation pattern locks-in to the long-wave
@@ -876,7 +881,7 @@ conditions that makes its solutions grow unsteadily and indefinitely.
 \citet{peureux2021unsteady} described this scenario as "...the sudden appearance
 of a long wave perturbation in the middle of a homogeneous short wave field".
 However, such a scenario is not realistic in the ocean where waves tend to
-organize into groups due to dispersion.
+organise into groups due to dispersion.
 To test whether the sudden onset of long-wave forcing causes the unstable growth,
 we repeat the numerical simulation of Fig.
 \ref{fig:modulation_3panel_infinite}, except for a linear ramp applied to $a_L$
@@ -887,7 +892,7 @@ This result is shown in Fig. \ref{fig:modulation_3panel_ramp}.
 The key distinction that arises with the introduction of the ramp is that the
 modulation pattern of short waves is now locked-in to the long-wave crests,
 and their indefinite steepening vanishes.
-The stabilization effect of the long-wave ramp is more readily assessed in
+The stabilisation effect of the long-wave ramp is more readily assessed in
 Fig. \ref{fig:unsteady_growth_timeseries}, which shows the maximum short-wave
 steepness modulation as function of time over 30 long-wave periods, for the
 infinite long-wave train case and the case of applying a linear ramp.
@@ -982,7 +987,9 @@ elegant and relatively simple framework to study the hydrodynamic modulation
 of short waves by longer waves.
 This approach, of course, isolates this particular process from other
 dominant modulation and nonlinear transfer processes, such as wave growth
-by wind, wave dissipation, and aerodynamic sheltering by the longer waves.
+by wind, wave dissipation, and aerodynamic sheltering by the longer waves,
+that are otherwise present in most measurements
+\citep{plant1986two,laxague2017gravity}. 
 
 Although in this paper we only explored the solutions for $k_L = 1$ and $k=10$
 the results are not sensitive to different values of $k_L$, provided that the
@@ -1004,9 +1011,9 @@ for the short-wave modulation by long waves
 it was not obvious from the governing equations that the fully-nonlinear
 steady solutions should exist.
 \citet{peureux2021unsteady} examined this problem numerically and found that
-the solutions are stable only if the short-wave field is initialized from
+the solutions are stable only if the short-wave field is initialised from
 a prior steady solution of the form of that from \citet{longuet1960changes}.
-If the short-wave field is instead initialized from a uniform field, they
+If the short-wave field is instead initialised from a uniform field, they
 found that the short-wave amplitude, and thus steepness as well, grow
 unsteadily.
 However, here we demonstrate that the unsteady steepening of short
@@ -1017,9 +1024,9 @@ crests.
 In such a hypothetical scenario, sudden forcing on short waves causes the
 modulation pattern to detach itself from the long-wave crests and to propagate
 at the short-wave group speed.
-When this occurs, the modulated short-waves are no longer in a stabilizing
+When this occurs, the modulated short-waves are no longer in a stabilising
 resonance with the surface convergence and divergence induced by the long-wave
-orbital velocity, and each long-wave passage further destabilizes the short-wave
+orbital velocity, and each long-wave passage further destabilises the short-wave
 field, causing it to steepen indefinitely.
 
 Another important consideration of the hydrodynamic modulation process is
@@ -1033,14 +1040,14 @@ of their dispersion properties or the wind input
 Some dissipation source functions use the cumulative mean squared slope
 to quantify preferential dissipation of short waves due to this effect
 \citep{donelan2012modeling,romero2019distribution}.
-In the early days of spectral wave modeling, \citet{willebrand1975energy}
+In the early days of spectral wave modelling, \citet{willebrand1975energy}
 examined the effect of a wave spectrum on the short-wave group velocity,
 and found the effect of up to several percent modulation.
 For a practical implementation, this would incur an additional loop over all
 frequencies longer than the considered short-wave frequency.
 It was thus not deemed practical to include this effect in wave models at the time.
 However, with the recent advances in computing power, machine learning for
-acceleration of complex functions, and phase-resolved modeling of short waves,
+acceleration of complex functions, and phase-resolved modelling of short waves,
 considering the effect of wave-modulation beyond the simple cumulative mean
 squared slope deserves re-examination.
 
@@ -1049,7 +1056,7 @@ squared slope deserves re-examination.
 
 In this paper we revisited the problem of short-wave modulation by long waves
 from a linear wave theory perspective.
-Using the linearized wave crest and action conservation equations coupled with
+Using the linearised wave crest and action conservation equations coupled with
 nonlinear solutions for the effective gravity, we derived steady analytical
 solutions for the modulation of short wave wavenumber, amplitude, steepness,
 intrinsic frequency, and phase speed.
@@ -1062,7 +1069,7 @@ modulation than that of \citet{longuet1960changes}, and somewhat lower than
 the numerical solutions of \citet{longuet1987propagation} and
 \citet{zhang1990evolution}.
 This is mainly due to the analytical solution requiring the crest and action
-conservation equations to be linearized, and the nonlinearity arising due
+conservation equations to be linearised, and the nonlinearity arising due
 to the evaluation of short waves on the surface of the long wave (as opposed to
 the mean water level) and due to nonlinear effective gravity.
 
@@ -1073,7 +1080,7 @@ reported by \citet{peureux2021unsteady} is due to the sudden appearance of
 long waves in a homogeneous short-wave field, a scenario that is unlikely to
 occur in the open ocean.
 A more likely condition such as that of a long-wave groups, are only mildly
-destabilizing for the short waves.
+destabilising for the short waves.
 These results suggest that for mildly-to-moderately steep short waves,
 the analytical steady solutions presented here are sufficient to describe the
 modulation of short waves by long waves.
@@ -1089,7 +1096,7 @@ helpful discussions.
 
 \backsection[Funding]{
   Milan Curcic was partially supported by the National Science Foundation
-  under grant number AGS-1745384.
+  under the grant number AGS-1745384.
 }
 
 \backsection[Declaration of interests]{The author reports no conflict of interest.}
