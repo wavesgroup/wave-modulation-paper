@@ -91,7 +91,7 @@ def plot_analytical_solutions(a_L: float):
     axes[3].set_title(r"$\widetilde{ak}/(ak)$")
     axes[4].set_title(r"$\widetilde{\sigma}/\sigma$")
     axes[5].set_title(r"$\widetilde{C_p}/C_p$")
-    
+
     for n, ax in enumerate(axes):
         ax.text(
             0,

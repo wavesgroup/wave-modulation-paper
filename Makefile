@@ -12,4 +12,4 @@ paper: paper.tex references.bib
 	pdflatex -halt-on-error $@
 
 clean:
-	$(RM) *.aux *.bbl *.blg *.cut *fdb_latexmk *.fls *.log *.out *.pdf figures/*.png
+	$(RM) *.aux *.bbl *.blg *.cut *fdb_latexmk *.fls *.log *.out *.pdf figures/*

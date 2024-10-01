@@ -1,0 +1,4 @@
+git+https://github.com/wavesgroup/2wave
+matplotlib
+numpy
+sympy
