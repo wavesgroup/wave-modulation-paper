@@ -57,11 +57,11 @@ realistic long-wave groups.
 The combined analytical and numerical framework presented here allows
 quantifying the importance of various terms in the full wave conservation
 equations.
-The proposed analytical solutions are a good approximation of the fully
+The proposed steady solutions are a good approximation of the fully
 nonlinear numerical solutions in long-wave steepness up to $\approx 0.2$.
 As a corollary, except for a subset of initial conditions, the solutions to
-fully nonlinear crest-action conservation equations are mostly steady in the
-reference frame of the long waves.
+the fully nonlinear crest-action conservation equations are mostly steady in
+the reference frame of the long waves.
 \end{abstract}
 
 \begin{keywords}
@@ -302,7 +302,7 @@ For the wave action, expand (\ref{eq:wave_action}) to get:
 This equation is similar to (\ref{eq:wavenumber}), except for the last term
 which represents the inhomogeneity of the group speed.
 As \citet{peureux2021unsteady} explained, the presence of this term causes
-unstable growth of wave action in infinite long-wave trains.
+unsteady growth of wave action in infinite long-wave trains.
 (\ref{eq:wavenumber}) and (\ref{eq:wave_action2}) are the governing equations
 that we approximate and solve analytically in \S\ref{section:analytical_solutions},
 and numerically in their full form in \S\ref{section:numerical_solutions}.
@@ -810,8 +810,8 @@ effectively equivalent.
 \label{fig:numerical_vs_analytical_ak}
 \end{figure}
 
-\subsection{Unstable growth in Pereux et al. (2021)}
-\label{subsection:unstable_growth}
+\subsection{Unsteady growth in Pereux et al. (2021)}
+\label{subsection:unsteady_growth}
 
 The key result of \citet{peureux2021unsteady} is that of unsteady steepening of
 short waves when a homogeneous field of short waves is forced by an infinite
@@ -880,9 +880,10 @@ It may at first seem that there is something special about the uniform initial
 conditions that makes its solutions grow unsteadily and indefinitely.
 \citet{peureux2021unsteady} described this scenario as "...the sudden appearance
 of a long wave perturbation in the middle of a homogeneous short wave field".
-However, such a scenario is not realistic in the ocean where waves tend to
-organise into groups due to dispersion.
-To test whether the sudden onset of long-wave forcing causes the unstable growth,
+However, it is not obvious whether such a scenario is realistic as waves tend to
+disperse into groups, and the time scales of incoming swell fronts are much
+longer than those of short-wave generation by wind.
+To test whether the sudden onset of long-wave forcing causes the unsteady growth,
 we repeat the numerical simulation of Fig.
 \ref{fig:modulation_3panel_infinite}, except for a linear ramp applied to $a_L$
 (and consequently, the other long-wave properties including the orbital
@@ -901,8 +902,8 @@ inhomogeneity ($N \frac{\partial C_g}{\partial x}$) tendencies reveals that
 after only one long-wave period, the propagation and inhomogeneity tendencies
 are unbalanced and amplify the steepening of short waves
 (Fig. \ref{fig:inhomogeneity_tendencies}).
-\citet{peureux2021unsteady} correctly pointed out that the unstable
-growth of short-wave steepness occurs due to the resonance of the inhomogeneity
+\citet{peureux2021unsteady} correctly pointed out that the unsteady growth of
+short-wave steepness occurs due to the resonance of the inhomogeneity
 tendency with the short-wave action perturbation.
 However, in the case of a gentle ramp-up of the long-wave forcing, the
 propagation and inhomogeneity tendencies mostly balance each other and allow
@@ -944,7 +945,7 @@ The wave group is simulated as a non-dispersive train of long waves whose
 amplitude scales with $\sin[\pi t / (n T_L)]$, where $n$ is the number of
 long waves in the group.
 The elevation of the long waves thus gradually ramps up from rest to $a_L$ at
-$t = N/2 T_L$, after which it gradually decreases toward zero.
+$t = n T_L / 2$, after which it gradually decreases toward zero.
 In this simulation, $n = 10$ and $\varepsilon_L = 0.1$ as in the previous two
 simulations.
 The modulations of short-wave wavenumber, amplitude, and steepness in response
@@ -975,13 +976,13 @@ Specifically, the wave action conservation equation, introduced by
 varying on the time scales of short waves, \textit{i.e.}
 $|\partial U / \partial x| \ll k |U|$
 and $|\partial U / \partial t| \ll \sigma |U|$.
-This implies $k_L \ll k$ and $|\sigma_L| \ll \sigma|$, respectively.
+This implies $k_L \ll k$ and $\sigma_L \ll \sigma$, respectively.
 Another requirement is for the short-waves to remain linear, which implies
 $a k \ll 1$.
 Furthermore, the short waves examined here do not include the effects of
-surface tension (gravity-capillary waves) or intermediate or shallow water
-(although the solutions can be extended to those conditions, as
-\citet{phillips1981dispersion} did, for example).
+surface tension (gravity-capillary waves) or intermediate or shallow water,
+although the solutions can be extended to those conditions, as
+\citet{phillips1981dispersion} did, for example.
 Within these limits, the crest-action conservation equations provide an
 elegant and relatively simple framework to study the hydrodynamic modulation
 of short waves by longer waves.
@@ -1021,9 +1022,9 @@ waves only occurs in the case of a sudden appearance of long waves, where
 the velocity fields induced by the long waves act in their full capacity
 on the short waves that have not yet had time to lock-in to the long-wave
 crests.
-In such a hypothetical scenario, sudden forcing on short waves causes the
-modulation pattern to detach itself from the long-wave crests and to propagate
-at the short-wave group speed.
+In such a scenario, sudden forcing on short waves causes the modulation
+pattern to detach itself from the long-wave crests and to propagate at the
+short-wave group speed.
 When this occurs, the modulated short-waves are no longer in a stabilising
 resonance with the surface convergence and divergence induced by the long-wave
 orbital velocity, and each long-wave passage further destabilises the short-wave
@@ -1035,17 +1036,17 @@ models \citep{group1988wam,tolman1991third,donelan2012modeling} used for global
 and regional wave forecasting.
 Currently, most spectral wave models used for research or forecasting
 do not consider the preferential steepening of short waves in the context
-of their dispersion properties or the wind input
-(\textit{i.e.} via the short-wave phase speed).
+of their dispersion properties or the wind input via the short-wave phase speed.
 Some dissipation source functions use the cumulative mean squared slope
 to quantify preferential dissipation of short waves due to this effect
 \citep{donelan2012modeling,romero2019distribution}.
 In the early days of spectral wave modelling, \citet{willebrand1975energy}
-examined the effect of a wave spectrum on the short-wave group velocity,
-and found the effect of up to several percent modulation.
+examined the effect of a wave spectrum on the short-wave group velocity
+and found the modulation effect to be up to several percent.
 For a practical implementation, this would incur an additional loop over all
 frequencies longer than the considered short-wave frequency.
-It was thus not deemed practical to include this effect in wave models at the time.
+It was thus not deemed practical to include this effect in wave models at the
+time.
 However, with the recent advances in computing power, machine learning for
 acceleration of complex functions, and phase-resolved modelling of short waves,
 considering the effect of wave-modulation beyond the simple cumulative mean
