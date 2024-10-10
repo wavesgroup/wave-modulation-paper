@@ -25,7 +25,7 @@ ax.plot(x, combined_wave, "k-", lw=3, zorder=1)
 
 # Add surface velocity arrows
 arrow_positions = np.arange(np.pi, 4 * np.pi, np.pi)
-for pos in arrow_positions:
+for i, pos in enumerate(arrow_positions):
     # Calculate wave slope at this position
     slope = np.cos(pos)  # Derivative of sin(x)
     angle = np.arctan(slope)
@@ -38,28 +38,52 @@ for pos in arrow_positions:
     # Position arrow slightly below the wave
     y_offset = -0.25
 
-    ax.arrow(
-        pos - 1.6 * dx,
-        np.sin(pos - 1.6 * dx) + y_offset,
-        dx,
-        dy * 0.9,
-        head_width=0.2,
-        head_length=0.2,
-        fc="tab:blue",
-        ec="tab:blue",
-        width=0.1,
-    )
-    ax.arrow(
-        pos + 1.6 * dx,
-        np.sin(pos + 1.6 * dx) + y_offset,
-        -dx,
-        -dy,
-        head_width=0.2,
-        head_length=0.2,
-        fc="tab:blue",
-        ec="tab:blue",
-        width=0.1,
-    )
+    if i % 2 == 0:  # Even positions (arrows pointing inward)
+        ax.arrow(
+            pos - 1.6 * dx,
+            np.sin(pos - 1.6 * dx) + y_offset,
+            dx,
+            dy * 0.9,
+            head_width=0.2,
+            head_length=0.2,
+            fc="tab:blue",
+            ec="tab:blue",
+            width=0.1,
+        )
+        ax.arrow(
+            pos + 1.6 * dx,
+            np.sin(pos + 1.6 * dx) + y_offset,
+            -dx,
+            -dy,
+            head_width=0.2,
+            head_length=0.2,
+            fc="tab:blue",
+            ec="tab:blue",
+            width=0.1,
+        )
+    else:  # Odd positions (arrows pointing outward)
+        ax.arrow(
+            pos - 0.4 * dx,
+            np.sin(pos - 0.4 * dx) + y_offset,
+            -dx,
+            -dy * 0.9,
+            head_width=0.2,
+            head_length=0.2,
+            fc="tab:blue",
+            ec="tab:blue",
+            width=0.1,
+        )
+        ax.arrow(
+            pos + 0.4 * dx,
+            np.sin(pos + 0.4 * dx) + y_offset,
+            dx,
+            dy,
+            head_width=0.2,
+            head_length=0.2,
+            fc="tab:blue",
+            ec="tab:blue",
+            width=0.1,
+        )
 
     ax.arrow(
         pos - 0.25 * np.pi,
@@ -141,7 +165,6 @@ ax.set_aspect("equal", adjustable="box")
 ax.set_xlim(0, 3.5 * np.pi)
 ax.set_ylim(-1.5, 2)
 
-# Show the plot
 plt.tight_layout()
 plt.savefig("../figures/fig_hydrodynamic_modulation_diagram.pdf")
 plt.close()
