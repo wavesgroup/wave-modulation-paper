@@ -82,11 +82,11 @@ hydrodynamic modulation of short waves by longer waves:
 
 \begin{equation}
 \label{eq:lhs1960wavenumber}
-\widetilde{k} = k (1 + \varepsilon_L)
+\widetilde{k} = k (1 + \varepsilon_L \cos{\psi})
 \end{equation}
 where $\widetilde{k}$ and $k$ are the modulated and unmodulated short-wave wavenumbers,
 respectively, and $\varepsilon_L = a_L k_L$ is the steepness of the long wave with
-wavenumber $k_L$ and amplitude $a_L$.
+wavenumber $k_L$ and amplitude $a_L$, and $\psi$ is the long-wave phase.
 This process is illustrated in Fig. \ref{fig:hydrodynamic_modulation_diagram}.
 Hydrodynamic modulation is a key process for the development and
 interpretation of remote sensing of ocean surface waves and currents
@@ -100,7 +100,7 @@ Their results yielded significantly stronger modulation than previously predicte
 short waves using Hamiltonian mechanics and reported similar modulation magnitudes
 to that of \citet{longuet1987propagation}.
 \citet{zhang1990evolution} considered weakly nonlinear short waves
-using a non-linear Schr\" odinger equation and found stronger wavenumber
+using a nonlinear Schr\" odinger equation and found stronger wavenumber
 modulation but weaker amplitude modulation than those predicted by
 \citet{longuet1987propagation}.
 The variety of analytical and numerical frameworks (Eulerian crest and action
@@ -155,7 +155,7 @@ Looking at the conservation equations alone, it is not obvious that it is.
 In this paper, we revisit this problem from linear wave theory but consider
 the long-wave slope to be significant enough to require evaluating the
 short-waves at the long-wave surface rather than at the mean water level.
-This allows us to derive alternative, steady, non-linear solutions for the
+This allows us to derive alternative, steady, nonlinear solutions for the
 modulation of short waves.
 The analytical solutions yield modulations that are stronger than the original
 solution by \citet{longuet1960changes}, but similar to the nonlinear numerical
@@ -183,8 +183,8 @@ Finally, we discuss the results and their implications in
 \begin{center}
 \def~{\hphantom{0}}
 \begin{tabular}{cccccc}
-Reference   & Governing & Gravity & Nonlinear  & Nonlinear   & Solution \\
-            & equations & varies  & long waves & short waves &          \\
+Reference   & Analysis   & Gravity & Nonlinear  & Nonlinear   & Solution \\
+            & frameworks & varies  & long waves & short waves &          \\
 \hline
 \citet{longuet1960changes} & Velocity potential  & No  & No  & No  & Analytical \\
 \hline
@@ -205,8 +205,8 @@ This paper  & Crest and action & Yes & Yes & No  & Analytical \\
 \hline
 \end{tabular}
 \caption{
-  Summary of prior and present (this paper) approaches to calculating the
-  modulation of short waves by long waves.
+  Non-exhaustive summary of prior and present (this paper) approaches to
+  calculating the modulation of short waves by long waves.
 }
 \label{table:modulation_literature_summary}
 \end{center}
@@ -250,7 +250,7 @@ where $t$ and $x$ are time and space, respectively.
 This relation states that the wavenumber must change locally when the frequency
 varies in space.
 
-(\ref{eq:dispersion}) and (\ref{eq:wave_crests}) only describe the evolution of
+(\ref{eq:dispersion}) and (\ref{eq:wave_crests}) describe the evolution of
 the short-wave wavenumber.
 To describe the evolution of the wave amplitude, use the wave action balance
 \citep{bretherton1968wavetrains} in absence of sources (e.g. due to wind) and
@@ -262,10 +262,15 @@ sinks (e.g. due to whitecapping):
 + \dfrac{\partial}{\partial x} \left[\left(C_g + U\right)N\right]
 = 0
 \end{equation}
-where $N$ is the action density, and $C_g = 1/2\sqrt{g/k}$ is the group speed
-in deep water.
-Although the absence of wave growth and dissipation is not generally realistic
-in the open ocean, it is a useful approximation here to isolate the effects
+where $N$ is the action density of short waves defined as the ratio of their
+energy density to their intrinsic frequency, $E/\sigma$,
+and $C_g = 1/2\sqrt{g/k}$ is their group speed in deep water.
+The wave action density expressed as $E/\sigma$ is commonly taken as
+conservative in wave modulation theory
+\citep{phillips1981dispersion,longuet1987propagation}, however as
+\citet{dysthe1988orbiting} show, it is conservative only for gently sloped waves.
+Although the absence of wave growth and dissipation is not generally realistic in
+the open ocean, it is a useful approximation here to isolate the effects
 of hydrodynamic modulation solely due to the motion of the long waves.
 
 Short waves that ride on the surface of the longer waves move in an accelerated
@@ -314,12 +319,18 @@ concerned with the wave action.
 In contrast, the wave action is governed, among others, by the
 group velocity and thus depends on the wavenumber.
 
-For the ambient forcing, we consider a train of monochromatic long wave
-defined, to the first order in steepness, by the elevation $\eta_L = a_L \cos{\psi}$,
-where $\psi = k_L x - \sigma_L t$ is the long-wave phase and $\sigma_L$ its
-angular frequency.
-The long wave induces horizontal and vertical orbital velocities whose values
-at the surface $\eta_L$ are:
+For the ambient forcing, we consider a train of monochromatic long waves
+defined, to the first order in $\varepsilon_L$, by the elevation
+$\eta_L = a_L \cos{\psi}$, where $\psi = k_L x - \sigma_L t$ is the long-wave
+phase and $\sigma_L$ its angular frequency.
+The velocity potential of the long wave is:
+
+\begin{equation}
+\label{eq:phi_L}
+\phi_L = \dfrac{a_L \omega_L}{k_L} e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
+\end{equation}
+so, up to the third order in $\varepsilon_L$, the long-wave induced horizontal
+and vertical orbital velocities, evaluated at the wave surface $z = \eta_L$, are:
 
 \begin{equation}
 \label{eq:U_L}
@@ -330,9 +341,14 @@ U = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \cos{\psi}
 \label{eq:w_L}
 W = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \sin{\psi}
 \end{equation}
+Evaluating these velocities at the wave surface $z = \eta_L$ rather than at
+the mean water level $z=0$ is a departure from the linear theory, making the
+treatment of the long waves here as weakly nonlinear.
 
-(\ref{eq:dispersion})-(\ref{eq:w_L}) are the governing equations used in this paper.
-Note that rather than deriving the modulation solution from the velocity
+(\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are the governing equations used
+in this paper, with (\ref{eq:U_L})-(\ref{eq:w_L}) describing the long-wave
+induced ambient velocity forcing for the short waves. 
+Rather than deriving the modulation solution from the velocity
 potential of two waves, as \citet{longuet1960changes} did, starting from the
 crest-action conservation balances allows for a simpler derivation.
 
@@ -1005,6 +1021,9 @@ larger at $\varepsilon_L = 0.4$.
 This suggests that as long as $k/k_L \gg 1$, the modulation amplitude is
 largely independent of the ratio $k/k_L$.
 These results can be reproduced with the companion numerical model.
+Also not considered here are the short-wave trains that are oblique to the
+longer waves, which is relatively straightforward to include
+\citep{peureux2021unsteady}.
 
 Despite several studies that provided qualitatively similar steady solutions
 for the short-wave modulation by long waves
