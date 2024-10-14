@@ -39,7 +39,7 @@ Hydrodynamic modulation of short ocean surface waves by longer ambient waves is
 a well-known ocean surface process that affects remote sensing, the
 interpretation of \textit{in situ} wave measurements, and numerical wave
 forecasting.
-In this paper, we revisit the linear wave theory and derive higher-order
+In this paper, we revisit the linear (Airy) wave theory and derive higher-order
 steady solutions for the change of short-wave wavenumber, action density, and
 gravitational acceleration due to the presence of longer waves.
 We validate the analytical solutions with numerical simulations of the full wave
@@ -104,8 +104,9 @@ using a nonlinear Schr\" odinger equation and found stronger wavenumber
 modulation but weaker amplitude modulation than those predicted by
 \citet{longuet1987propagation}.
 The variety of analytical and numerical frameworks (Eulerian crest and action
-conservation, Hamiltonian, Schr\" odinger) that relatively closely reproduce
-steady solutions for short-wave modulation suggests that the solutions are robust.
+conservation, Hamiltonian, Schr\" odinger) that tackle the same fundamental
+physics and that relatively closely reproduce steady solutions for short-wave
+modulation suggests that the solutions are robust.
 Nevertheless, alternative analytical and numerical approaches to the modulation
 problem remain of interest, especially if higher degrees of nonlinearity can be
 considered using simpler approaches.
@@ -152,11 +153,11 @@ modulation predicted by theory is generally steady over many long-wave periods
 or not.
 Looking at the conservation equations alone, it is not obvious that it is.
 
-In this paper, we revisit this problem from linear wave theory but consider
-the long-wave slope to be significant enough to require evaluating the
-short-waves at the long-wave surface rather than at the mean water level.
+In this paper, we revisit this problem from the perspective of linear wave theory
+but consider the long-wave slope to be significant enough to require evaluating
+the short-waves at the long-wave surface rather than at the mean water level.
 This allows us to derive alternative, steady, nonlinear solutions for the
-modulation of short waves.
+modulation of short waves, within the limits of small $\varepsilon_L$.
 The analytical solutions yield modulations that are stronger than the original
 solution by \citet{longuet1960changes}, but similar to the nonlinear numerical
 solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution} in
@@ -277,7 +278,9 @@ Short waves that ride on the surface of the longer waves move in an accelerated
 reference frame (due to the centripetal acceleration at the long-wave surface)
 and thus experience effective gravitational acceleration that varies in space
 and time \citep{phillips1981dispersion,longuet1986eulerian,longuet1987propagation}.
-Combine (\ref{eq:dispersion}) and (\ref{eq:wave_crests}) to get:
+Inserting (\ref{eq:dispersion}) into (\ref{eq:wave_crests}) and noting that
+$\partial \sqrt{gk} / \partial x = 1/2 \sqrt{g/k} \partial k / \partial x + 1/2 \sqrt{k/g} \partial g / \partial x$,
+we get:
 
 \begin{equation}
 \label{eq:wavenumber}
@@ -329,21 +332,27 @@ The velocity potential of the long wave is:
 \label{eq:phi_L}
 \phi_L = \dfrac{a_L \omega_L}{k_L} e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
-so, up to the third order in $\varepsilon_L$, the long-wave induced horizontal
-and vertical orbital velocities, evaluated at the wave surface $z = \eta_L$, are:
+where $z$ is the vertical distance from the mean water level that is positive
+upwards.
+(\ref{eq:phi_L}) is accurate to the third order in $\varepsilon_L$.
+The long-wave induced horizontal and vertical orbital velocities, evaluated at
+the wave surface $z = \eta_L$, are:
 
 \begin{equation}
 \label{eq:U_L}
-U = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \cos{\psi}
+U = a_L \omega_L e^{k_L z} \cos{\psi} + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
 
 \begin{equation}
 \label{eq:w_L}
-W = a_L \omega_L e^{\varepsilon_L \cos{\psi}} \sin{\psi}
+W = a_L \omega_L e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
 Evaluating these velocities at the wave surface $z = \eta_L$ rather than at
 the mean water level $z=0$ is a departure from the linear theory, making the
 treatment of the long waves here as weakly nonlinear.
+As \citet{zhang1990evolution} point out, this is appropriate to do when the
+amplitude of the long waves is of the similar magnitude or large than the
+wavelength of the short waves.
 
 (\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are the governing equations used
 in this paper, with (\ref{eq:U_L})-(\ref{eq:w_L}) describing the long-wave
@@ -507,7 +516,7 @@ For a third-order Stokes wave, for example, the elevation is:
   \cos{\psi} +
   \dfrac{1}{2} \varepsilon_L \cos{2\psi} +
   \varepsilon_L^2 \left( \dfrac{3}{8} \cos{3\psi} - \dfrac{1}{16} \cos{\psi} \right)
-\right]
+\right] + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
 Without considering the curvilinear effects in (\ref{eq:gravity_modulation_general}),
 the gravitational acceleration at the surface of a Stokes wave is, to the third
@@ -648,13 +657,16 @@ modulations of gravity, wavenumber, and action:
   \left( \dfrac{\widetilde{N}}{N} \right)^{0.5}
 \end{equation}
 To the first order in $\varepsilon_L$, and using (\ref{eq:k_short_exact})
-and (\ref{eq:wave_action_modulation}), the above simplifies to:
+and (\ref{eq:wave_action_modulation}), the above simplifies to the result of
+\citet{longuet1960changes}:
 
 \begin{equation}
 \label{eq:wave_amplitude_modulation_order1}
 \dfrac{\widetilde{a}}{a} = 
   \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
   \left( 1 + \varepsilon_L \right)^{0.75}
+  \approx \frac{(1 + \varepsilon_L)^{0.75}}{(1 - \varepsilon_L)^{0.25}}
+  \approx 1 + \varepsilon_L
 \end{equation}
 
 The amplitude and steepness modulation of the short waves as a function of the
@@ -715,6 +727,8 @@ numerical problems, in our case it is sufficient because it is conservative and
 the fields that we compute derivatives of are smooth and continuous.
 The maximum relative error of the centred finite difference in this model
 is $\approx 0.066\%$.
+The wavenumber and wave action are conservative over time within
+$\mathcal{O}(10^{-7})$ and $\mathcal{O}(10^{-5})$ relative error, respectively.
 We show in the next section that our numerical solutions for infinite long-wave
 trains are qualitatively equivalent to those of \citet{peureux2021unsteady}.
 
@@ -1111,7 +1125,7 @@ the dispersion and wind input into short waves.
 
 \backsection[Acknowledgements]{
 Thanks to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan for the
-helpful discussions.
+helpful discussions that improved this paper.
 }
 
 \backsection[Funding]{
