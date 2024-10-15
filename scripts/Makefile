@@ -5,20 +5,24 @@ all: figures
 figures: hydrodynamic_modulation_diagram \
          analytical_solutions_with_phase \
          numerical_vs_analytical_solutions \
-    	 effective_gravities \
-	 inhomogeneity_tendencies \
+         effective_gravity \
+         inhomogeneity_tendencies \
          numerical_simulations \
          numerical_simulations_with_phase \
-	 numerical_simulations_ramp_properties
+         numerical_simulations_ramp_properties \
+         modulation_contributors
 
-hydrodynamic_modulation_diagram: hydrodynamic_modulation_diagram.py
-	python3 hydrodynamic_modulation_diagram.py
+hydrodynamic_modulation_diagram: plot_modulation_diagram.py
+	python3 plot_modulation_diagram.py
 
 analytical_solutions_with_phase: plot_analytical_solutions_with_phase.py
 	python3 plot_analytical_solutions_with_phase.py
 
-effective_gravities: compare_effective_gravities.py
-	python3 compare_effective_gravities.py
+effective_gravity: plot_effective_gravity.py
+	python3 plot_effective_gravity.py
+
+modulation_contributors: plot_modulation_contributors.py
+	python3 plot_modulation_contributors.py
 
 inhomogeneity_tendencies: plot_inhomogeneity_tendencies.py
 	python3 plot_inhomogeneity_tendencies.py

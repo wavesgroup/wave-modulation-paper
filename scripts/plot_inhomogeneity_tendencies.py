@@ -96,5 +96,5 @@ axes[1].text(
 
 plt.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.95)
 
-plt.savefig("../figures/inhomogeneity_tendencies.png", dpi=200)
+plt.savefig("../figures/inhomogeneity_tendencies.pdf")
 plt.close()

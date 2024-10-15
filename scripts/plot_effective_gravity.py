@@ -125,7 +125,7 @@ def plot_effective_gravities(a: float):
     )
 
     plt.subplots_adjust(left=0.12, right=0.95, bottom=0.05, top=0.95)
-    plt.savefig("../figures/fig_effective_gravities.png", dpi=150)
+    plt.savefig("../figures/fig_effective_gravities.pdf")
     plt.close()
 
     g1_mean = []
@@ -250,7 +250,7 @@ def plot_effective_gravities(a: float):
     ax.text(0.15, 1.3, "Max. (troughs)", color="black", fontsize=16)
     ax.text(0.25, 0.4, "Min. (crests)", color="black", fontsize=16)
 
-    plt.savefig("../figures/fig_effective_gravities_mean_max_min.png", dpi=150)
+    plt.savefig("../figures/fig_effective_gravities_mean_max_min.pdf")
     plt.close()
 
 

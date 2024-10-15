@@ -106,12 +106,12 @@ def plot_analytical_solutions(a_L: float):
     fig.suptitle(r"$\varepsilon_L$" + f" = {a_L * k_L}", fontsize=18)
 
     plt.subplots_adjust(left=0.1, right=0.95, top=0.9, bottom=0.05)
-    plt.savefig(f"../figures/fig_analytical_solutions_ak{a_L * k_L}.png", dpi=200)
+    plt.savefig(f"../figures/fig_analytical_solutions_ak{a_L * k_L}.pdf")
     plt.close(fig)
 
 
 if __name__ == "__main__":
     plot_analytical_solutions(0.1)
-    plot_analytical_solutions(0.2)
+    # plot_analytical_solutions(0.2)
     # plot_analytical_solutions(0.3)
-    plot_analytical_solutions(0.4)
+    # plot_analytical_solutions(0.4)
