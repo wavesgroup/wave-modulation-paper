@@ -48,6 +48,8 @@ The nonlinear analytical solutions of short-wave wavenumber, amplitude, and
 steepness modulation significantly deviate from the linear analytical solutions
 of \citet{longuet1960changes}, and are similar to the nonlinear numerical
 solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution}.
+The short-wave steepness modulation is attributed to be 5/8 due to the
+wavenumber, 1/4 due to the wave action, and 1/8 due to the effective gravity.
 We further examine the result of \citet{peureux2021unsteady} who found through
 numerical simulations that the short-wave modulation grows unsteadily with
 each long-wave passage.
@@ -329,23 +331,28 @@ phase and $\sigma_L$ its angular frequency.
 The velocity potential of the long wave is:
 
 \begin{equation}
-\label{eq:phi_L}
-\phi_L = \dfrac{a_L \omega_L}{k_L} e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
+\label{eq:phi}
+\phi = \dfrac{a_L \omega_L}{k_L} e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
 where $z$ is the vertical distance from the mean water level that is positive
 upwards.
-(\ref{eq:phi_L}) is accurate to the third order in $\varepsilon_L$.
-The long-wave induced horizontal and vertical orbital velocities, evaluated at
-the wave surface $z = \eta_L$, are:
+(\ref{eq:phi}) is accurate to the third order in $\varepsilon_L$ in deep water
+because the second- and third-order terms in the Stokes expansion series are
+exactly zero.
+The long-wave induced horizontal and vertical orbital velocities are:
 
 \begin{equation}
 \label{eq:U_L}
-U = a_L \omega_L e^{k_L z} \cos{\psi} + \mathcal{O}(\varepsilon_L^4)
+U =
+\frac{\partial \phi}{\partial x} =
+a_L \omega_L e^{k_L z} \cos{\psi} + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
 
 \begin{equation}
 \label{eq:w_L}
-W = a_L \omega_L e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
+W =
+\frac{\partial \phi}{\partial z} =
+a_L \omega_L e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
 Evaluating these velocities at the wave surface $z = \eta_L$ rather than at
 the mean water level $z=0$ is a departure from the linear theory, making the
@@ -423,9 +430,9 @@ that is 16.9\%, 38.5\%, 66.4\%, and 104\% larger than that of
 Although not immediately obvious from the expressions, the modulated wavenumber
 (\ref{eq:k_short_lhs}) is conserved across the long-wave phase, whereas
 the higher-order solution (\ref{eq:k_short_exact}) is not.
-This is because combining the orbital velocities evaluated at $z=\eta$ and the
-linearised conservation of wave crests in (\ref{eq:wavenumber}) results in
-excess short-wave wavenumber being created.
+This is because combining the orbital velocities evaluated at $z=\eta_L$ and the
+linearised conservation of wave crests in (\ref{eq:wavenumber}) creates excess
+short-wave wavenumber.
 The solution of (\ref{eq:wavenumber}) must be conservative across the long-wave
 phase, as we will see later from the numerical simulations.
 
@@ -491,14 +498,14 @@ In that case, (\ref{eq:gravity_modulation_general}) simplifies to:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear_no_curvature}
-\frac{\widetilde{g}}{g} = \left( 1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}} \right)
+\frac{\widetilde{g}}{g} = 1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}
 \end{equation}
-Further, if we evaluate the orbital accelerations at the mean water level $z=0$,
+If we evaluate the orbital accelerations at the mean water level $z=0$,
 this further simplifies to:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear_no_curvature_mean_level}
-\frac{\widetilde{g}}{g} = \left( 1 - \varepsilon_L \cos{\psi} \right)
+\frac{\widetilde{g}}{g} = 1 - \varepsilon_L \cos{\psi}
 \end{equation}
 which is the form used by \citet{peureux2021unsteady}, for example.
 
@@ -578,7 +585,7 @@ covariance between the local slope and the horizontal accelerations are largest.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/fig_effective_gravities.png}
+\includegraphics[width=0.7\textwidth]{figures/fig_effective_gravities.png}
 \caption{
   (a) Analytical solutions for the effective gravitational acceleration
   modulation by long waves, as function of long-wave phase, for $\varepsilon_L = 0.2$.
@@ -601,6 +608,9 @@ This reduction, in case of a long Stokes wave, is $\approx 3\%$ for
 $\varepsilon_L = 0.2$ and $\approx 14\%$ for $\varepsilon_L = 0.4$.
 As the effective gravity minima and maxima occur at crests and troughs,
 respectively, the curvature affects the phase-averaged values but not the extremes.
+As the slope effects on the effective gravity exist only away from crests and
+troughs, they may be neglected in the steady solutions where modulation is
+typically evaluated at the long-wave crests. 
 The effective gravity reduction at the crests is $\approx 11\%$, $25\%$, and $66\%$
 for $\varepsilon_L = 0.1$, $0.2$, and $0.4$, respectively.
 These are similar to the fully-nonlinear numerical estimates of
@@ -652,9 +662,9 @@ modulations of gravity, wavenumber, and action:
   \dfrac{\widetilde{\sigma}}{\sigma}
   \dfrac{\widetilde{N}}{N}}
 =
-  \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
-  \left( \dfrac{\widetilde{k}}{k} \right)^{0.25}
-  \left( \dfrac{\widetilde{N}}{N} \right)^{0.5}
+  \left( \dfrac{\widetilde{k}}{k} \right)^{\frac{1}{4}}
+  \left( \dfrac{\widetilde{N}}{N} \right)^{\frac{1}{2}}
+  \left( \dfrac{g}{\widetilde{g}} \right)^{\frac{1}{4}}
 \end{equation}
 To the first order in $\varepsilon_L$, and using (\ref{eq:k_short_exact})
 and (\ref{eq:wave_action_modulation}), the above simplifies to the result of
@@ -663,17 +673,16 @@ and (\ref{eq:wave_action_modulation}), the above simplifies to the result of
 \begin{equation}
 \label{eq:wave_amplitude_modulation_order1}
 \dfrac{\widetilde{a}}{a} = 
-  \left( \dfrac{g}{\widetilde{g}} \right)^{0.25}
-  \left( 1 + \varepsilon_L \right)^{0.75}
-  \approx \frac{(1 + \varepsilon_L)^{0.75}}{(1 - \varepsilon_L)^{0.25}}
+  \left( \dfrac{g}{\widetilde{g}} \right)^{\frac{1}{4}}
+  \left( 1 + \varepsilon_L \right)^{\frac{3}{4}}
+  \approx \frac{(1 + \varepsilon_L)^{\frac{3}{4}}}{(1 - \varepsilon_L)^{\frac{1}{4}}}
   \approx 1 + \varepsilon_L
 \end{equation}
 
 The amplitude and steepness modulation of the short waves as a function of the
-long-wave phase for $\varepsilon_L = 0.1$, $0.2$, and $0.4$ are shown and compared
-to the \citet{longuet1960changes} solutions in Figs.
-\ref{fig:analytical_solutions_ak0.1}, \ref{fig:analytical_solutions_ak0.2},
-and \ref{fig:analytical_solutions_ak0.4}, respectively.
+long-wave phase for $\varepsilon_L = 0.1$ are compared to the
+\citet{longuet1960changes} solutions in Fig.
+\ref{fig:analytical_solutions_ak0.1} panels (c) and (d), respectively.
 Also shown are the modulation of the short-wave intrinsic frequency and phase
 speed in panels (e) and (f), respectively.
 As the wavenumber and gravity modulations are out of phase, with the latter
@@ -686,18 +695,46 @@ crests and increased in the troughs.
 We discuss the implications of this effect later in \S\ref{section:discussion}
 in the context of wind input to short waves.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.8\textwidth]{figures/fig_analytical_solutions_ak0.2.png}
-\caption{As Fig. \ref{fig:analytical_solutions_ak0.1} but for $\varepsilon_L = 0.2$.}
-\label{fig:analytical_solutions_ak0.2}
-\end{figure}
+Finally, the short-wave steepness modulation follows from (\ref{eq:k_short_exact})
+and (\ref{eq:wave_amplitude_modulation}):
+
+\begin{equation}
+\label{eq:ak_modulation}
+\dfrac{\widetilde{ak}}{ak} = 
+  \left( \dfrac{\widetilde{k}}{k} \right)^{\frac{5}{4}}
+  \left( \dfrac{\widetilde{N}}{N} \right)^{\frac{1}{2}}
+  \left( \dfrac{g}{\widetilde{g}} \right)^{\frac{1}{4}}
+\end{equation}
+The short-wave steepness modulation at the long-wave crests is thus largely
+controlled by the wavenumber modulation (5/8, or, 62.5\%), followed by the
+convergence of wave action (1/4, or, 25\%), and by least amount by the
+effective gravity reduction (1/8, or, 12.5\%) (Fig. \ref{fig:modulation_contributors}).
+(\ref{eq:ak_modulation}) and Fig. \ref{fig:modulation_contributors} demonstrate
+that more than half of the steepness modulation can be captured by the
+wavenumber modulation alone.
+Further, considering the wavenumber and wave action modulations, while
+neglecting the gravity modulation, captures $\approx$88\% of the steepness
+modulation at the long-wave crests.
+This result may be useful for the interpretation of remote sensing products
+that resolve some but not all of the short-wave modulation effects.
+Finally, the relative contributions of different modulation factors remain
+mostly constant as $\varepsilon_L$ increases, with only a mild increase of the
+effective gravity modulation contribution, and mild increases of the
+wavenumber and wave action modulation contributions.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/fig_analytical_solutions_ak0.4.png}
-\caption{As Fig. \ref{fig:analytical_solutions_ak0.1} but for $\varepsilon_L = 0.4$.}
-\label{fig:analytical_solutions_ak0.4}
+\includegraphics[width=\textwidth]{figures/fig_modulation_contributors.png}
+\caption{
+  Contributions of short-wave wavenumber, action, and effective gravity
+  modulations to the steepness modulation, as function of the long-wave
+  steepness $\varepsilon_L$.
+  Panel (a) shows each modulation factor (colour) and their product (black),
+  and panel (b) shows their relative contributions in percentage, calculated as
+  the ratio of the logarithm of each modulation factor to the logarithm of the
+  product of all modulations.
+}
+\label{fig:modulation_contributors}
 \end{figure}
 
 \section{Numerical solutions}
@@ -883,7 +920,7 @@ Why does this unsteady growth of short-wave action occur?
 \citet{peureux2021unsteady} explain that the change in advection velocity due to
 the modulation of the short-wave group speed yields an additional amplification
 of the short-wave action.
-That is, the inhomogeneity term $N \dfrac{\partial C_g}{\partial x}$ is
+That is, the inhomogeneity term $N \partial C_g / \partial x$ is
 responsible for the instability.
 However, the instability only occurs if the short waves are initialised as a
 uniform field.
@@ -927,8 +964,8 @@ The stabilisation effect of the long-wave ramp is more readily assessed in
 Fig. \ref{fig:unsteady_growth_timeseries}, which shows the maximum short-wave
 steepness modulation as function of time over 30 long-wave periods, for the
 infinite long-wave train case and the case of applying a linear ramp.
-Comparing the wave action propagation ($C_g \frac{\partial N}{\partial x}$) and
-inhomogeneity ($N \frac{\partial C_g}{\partial x}$) tendencies reveals that
+Comparing the wave action propagation ($C_g \partial N / \partial x$) and
+inhomogeneity ($N \partial C_g / \partial x$) tendencies reveals that
 after only one long-wave period, the propagation and inhomogeneity tendencies
 are unbalanced and amplify the steepening of short waves
 (Fig. \ref{fig:inhomogeneity_tendencies}).
@@ -1106,14 +1143,19 @@ This is mainly due to the analytical solution requiring the crest and action
 conservation equations to be linearised, and the nonlinearity arising due
 to the evaluation of short waves on the surface of the long wave (as opposed to
 the mean water level) and due to nonlinear effective gravity.
+In the steady solutions, the short-wave steepness modulation is dominated by
+the wavenumber modulation (5/8), followed by the wave action modulation (1/4),
+and is least affected by the effective gravity modulation (1/8).
 
 The numerical solutions of the full wave crest and action conservation equations
-are consistent with the analytical solutions for $\varepsilon_L \lesssim 0.2$.
+are consistent with the analytical solutions for $\varepsilon_L \lesssim 0.2$,
+and are similar in amplitude to the numerical solutions of
+\citet{longuet1987propagation} and \citet{zhang1990evolution}.
 The simulations also reveal that the unsteady growth of short-wave steepness
 reported by \citet{peureux2021unsteady} is due to the sudden appearance of
 long waves in a homogeneous short-wave field, a scenario that is unlikely to
 occur in the open ocean.
-A more likely condition such as that of a long-wave groups, are only mildly
+A more likely condition such as that of long-wave groups, are only mildly
 destabilising for the short waves.
 These results suggest that for mildly-to-moderately steep short waves,
 the analytical steady solutions presented here are sufficient to describe the
@@ -1124,13 +1166,14 @@ cumulative mean squared slope for wave dissipation, but also for modulating
 the dispersion and wind input into short waves.
 
 \backsection[Acknowledgements]{
-Thanks to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan for the
-helpful discussions that improved this paper.
+I am thankful to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan
+for the discussions that helped improve this paper.
 }
 
 \backsection[Funding]{
-  Milan Curcic was partially supported by the National Science Foundation
-  under the grant number AGS-1745384.
+  Milan Curcic was partly supported by the National Science Foundation
+  grant AGS-1745384, Transatlantic Research Partnership, and the Office of Naval
+  Research Coastal Land Air-Sea Interaction DRI.
 }
 
 \backsection[Declaration of interests]{The author reports no conflict of interest.}
