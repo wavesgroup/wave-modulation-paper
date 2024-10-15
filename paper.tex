@@ -39,7 +39,7 @@ Hydrodynamic modulation of short ocean surface waves by longer ambient waves is
 a well-known ocean surface process that affects remote sensing, the
 interpretation of \textit{in situ} wave measurements, and numerical wave
 forecasting.
-In this paper, we revisit the linear (Airy) wave theory and derive higher-order
+In this paper, we revisit the linear wave theory and derive higher-order
 steady solutions for the change of short-wave wavenumber, action density, and
 gravitational acceleration due to the presence of longer waves.
 We validate the analytical solutions with numerical simulations of the full wave
@@ -56,14 +56,11 @@ each long-wave passage.
 We show that this unsteady growth only occurs only for homogeneous initial
 conditions as a special case and does not generally occur, for example in more
 realistic long-wave groups.
-The combined analytical and numerical framework presented here allows
-quantifying the importance of various terms in the full wave conservation
-equations.
 The proposed steady solutions are a good approximation of the fully
-nonlinear numerical solutions in long-wave steepness up to $\approx 0.2$.
-As a corollary, except for a subset of initial conditions, the solutions to
-the fully nonlinear crest-action conservation equations are mostly steady in
-the reference frame of the long waves.
+nonlinear numerical solutions in long-wave steepness up to $\approx$0.2.
+Except for a subset of initial conditions, the solutions to the fully nonlinear
+crest-action conservation equations are mostly steady in the reference frame of
+the long waves.
 \end{abstract}
 
 \begin{keywords}
@@ -155,33 +152,6 @@ modulation predicted by theory is generally steady over many long-wave periods
 or not.
 Looking at the conservation equations alone, it is not obvious that it is.
 
-In this paper, we revisit this problem from the perspective of linear wave theory
-but consider the long-wave slope to be significant enough to require evaluating
-the short-waves at the long-wave surface rather than at the mean water level.
-This allows us to derive alternative, steady, nonlinear solutions for the
-modulation of short waves, within the limits of small $\varepsilon_L$.
-The analytical solutions yield modulations that are stronger than the original
-solution by \citet{longuet1960changes}, but similar to the nonlinear numerical
-solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution} in
-long-wave steepness up to $\approx 0.2$.
-To validate the steadiness of the analytical solutions, we perform numerical
-simulations of the full wave crest and action conservation laws, and compare
-the results to the analytical solutions presented here, as well as the prior
-numerical results.
-The numerical simulations are used to determine the validity of the approximate
-steady solution and to investigate the unsteadiness of the short-wave modulation
-found by \citet{peureux2021unsteady}.
-The main prior studies on hydrodynamic modulation, and their assumptions and
-approaches to the solution, are summarised in Table
-\ref{table:modulation_literature_summary}.
-We first present the governing equations in \S\ref{section:governing_equations},
-and then the analytical solutions for the modulation of short waves by long waves
-in \S\ref{section:analytical_solutions}.
-Then, we describe the numerical simulations and their results in
-\S\ref{section:numerical_solutions}.
-Finally, we discuss the results and their implications in
-\S\ref{section:discussion} and conclude the paper in \S\ref{section:conclusions}.
-
 \begin{table}
 \begin{center}
 \def~{\hphantom{0}}
@@ -214,6 +184,33 @@ This paper  & Crest and action & Yes & Yes & No  & Analytical \\
 \label{table:modulation_literature_summary}
 \end{center}
 \end{table}
+
+In this paper, we revisit this problem from the perspective of linear wave theory
+but consider the long-wave slope to be significant enough to require evaluating
+the short-waves at the long-wave surface rather than at the mean water level.
+This allows us to derive alternative, steady, nonlinear solutions for the
+modulation of short waves, within the limits of small $\varepsilon_L$.
+The analytical solutions yield modulations that are stronger than the original
+solution by \citet{longuet1960changes}, but similar to the nonlinear numerical
+solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution} in
+long-wave steepness up to $\approx 0.2$.
+To validate the steadiness of the analytical solutions, we perform numerical
+simulations of the full wave crest and action conservation laws, and compare
+the results to the analytical solutions presented here, as well as the prior
+numerical results.
+The numerical simulations are used to determine the validity of the approximate
+steady solution and to investigate the unsteadiness of the short-wave modulation
+found by \citet{peureux2021unsteady}.
+The main prior studies on hydrodynamic modulation, and their assumptions and
+approaches to the solution, are summarised in Table
+\ref{table:modulation_literature_summary}.
+We first present the governing equations in \S\ref{section:governing_equations},
+and then the analytical solutions for the modulation of short waves by long waves
+in \S\ref{section:analytical_solutions}.
+Then, we describe the numerical simulations and their results in
+\S\ref{section:numerical_solutions}.
+Finally, we discuss the results and their implications in
+\S\ref{section:discussion} and conclude the paper in \S\ref{section:conclusions}.
 
 \section{Governing equations}
 \label{section:governing_equations}
@@ -280,8 +277,13 @@ Short waves that ride on the surface of the longer waves move in an accelerated
 reference frame (due to the centripetal acceleration at the long-wave surface)
 and thus experience effective gravitational acceleration that varies in space
 and time \citep{phillips1981dispersion,longuet1986eulerian,longuet1987propagation}.
-Inserting (\ref{eq:dispersion}) into (\ref{eq:wave_crests}) and noting that
-$\partial \sqrt{gk} / \partial x = 1/2 \sqrt{g/k} \partial k / \partial x + 1/2 \sqrt{k/g} \partial g / \partial x$,
+Inserting (\ref{eq:dispersion}) into (\ref{eq:wave_crests}) and noting that:
+
+\begin{equation}
+\label{eq:dispersion_derivative}
+\dfrac{\partial \sqrt{gk}}{\partial x} =
+\dfrac{1}{2} \sqrt{\dfrac{g}{k}} \dfrac{\partial k}{\partial x} + \dfrac{1}{2} \sqrt{\dfrac{k}{g}} \dfrac{\partial g}{\partial x}
+\end{equation}
 we get:
 
 \begin{equation}
@@ -375,7 +377,7 @@ We now describe the analytical solutions for the short-wave wavenumber,
 effective gravitational acceleration, amplitude, steepness, intrinsic frequency,
 and intrinsic phase speed in presence of long waves.
 The wavenumber is derived by linearising the conservation of wave crests
-(\ref{eq:wave_crests}) and neglecting the spatial gradients of $k$.
+(\ref{eq:wave_crests}) and neglecting the spatial gradients of $k$ and $g$.
 The effective gravity is derived by projecting the long-wave induced surface
 accelerations onto the local vertical axis (that is, the axis normal to the
 long-wave surface), akin to \citet{zhang1990evolution}.
@@ -385,7 +387,7 @@ effective gravity to obtain the amplitude.
 From the modulated wavenumber, amplitude, and effective gravity, the steepness,
 frequency, and phase speed readily follow from the usual wave relationships.
 Going forward we will use the tilde over the variables to denote the modulated
-quantities (e.g. $\widetilde{k}$ for wavenumber).
+quantities (\textit{e.g.} $\widetilde{k}$ for wavenumber).
 
 \subsection{Wavenumber modulation}
 \label{subsection:wavenumber_modulation}
@@ -1172,8 +1174,9 @@ for the discussions that helped improve this paper.
 
 \backsection[Funding]{
   Milan Curcic was partly supported by the National Science Foundation
-  grant AGS-1745384, Transatlantic Research Partnership, and the Office of Naval
-  Research Coastal Land Air-Sea Interaction DRI.
+  grant AGS-1745384, Transatlantic Research Partnership by the French Embassy
+  in the United States and the FACE Foundation, and the Office of Naval Research
+  Coastal Land Air-Sea Interaction DRI.
 }
 
 \backsection[Declaration of interests]{The author reports no conflict of interest.}
