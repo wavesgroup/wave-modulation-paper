@@ -167,4 +167,5 @@ ax.set_ylim(-1.5, 2)
 
 plt.tight_layout()
 plt.savefig("../figures/fig_hydrodynamic_modulation_diagram.pdf")
+plt.savefig("../figures/fig_hydrodynamic_modulation_diagram.png", dpi=300)
 plt.close()
