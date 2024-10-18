@@ -4,8 +4,8 @@ Paper and code for the short-wave modulation paper.
 Under review in Journal Fluid Mechanics.
 Preprint [here](https://arxiv.org/abs/2410.12960).
 
-LaTeX source is licensed under CC-BY.
-Python scripts are licensed under MIT.
+LaTeX source is licensed under [CC-BY](LICENSE).
+Python scripts are licensed under [MIT](scripts/LICENSE).
 
 ## Getting started
 
