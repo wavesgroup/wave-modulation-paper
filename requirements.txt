@@ -1,4 +1,5 @@
 git+https://github.com/wavesgroup/2wave
+git+https://github.com/wavesgroup/ssgw
 matplotlib
 numpy
 sympy
