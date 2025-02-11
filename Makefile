@@ -3,7 +3,7 @@
 all: paper
 
 figures:
-	$(MAKE) -j 10 -C scripts
+	$(MAKE) -j 11 -C scripts
 
 paper: paper.tex references.bib
 	pdflatex -halt-on-error $@
