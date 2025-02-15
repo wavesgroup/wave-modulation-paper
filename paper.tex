@@ -1169,6 +1169,7 @@ the dispersion and wind input into short waves.
 \backsection[Acknowledgements]{
 I am thankful to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan
 for the discussions that helped improve this paper.
+I also thank three anonymous reviewers for their helpful comments.
 }
 
 \backsection[Funding]{
@@ -1196,14 +1197,93 @@ for the discussions that helped improve this paper.
 \section{Wave action conservation requirements}
 \label{appendix:wave_action_conservation}
 
-\begin{enumerate}
-  \item Medium stationarity and homogeneity: $k_L \ll k$, $\sigma_L \ll \sigma$
-  \item Wavetrain stationarity and homogeneity:
-  $\frac{\partial k}{\partial x} \ll k^2$,
-  $\frac{\partial k}{\partial t} \ll \sigma k$,
-  $\frac{\partial g}{\partial x} \ll gk$,
-  $\frac{\partial g}{\partial t} \ll g \sigma$,
-\end{enumerate}
+Following the variational approach by \citet{whitham1965general},
+\citet{bretherton1968wavetrains} showed that the wave action is conserved for
+small amplitude (linear) waves propagating in slowly-varying media.
+Although \citet{longuet1987propagation} correctly pointed out both requirements
+(that the medium is slowly-varying and that the short-wave properties are
+approximately homogeneous and stationary) for the wave action conservation to
+hold, he incorrectly stated that there is no explicit restriction on the
+steepness of the long wave, and that it appears necessary to only assume
+small-amplitude short waves and significant separation between $k$ and $k_L$.
+We will show that in the general case, both the homogeneity and the stationarity
+of a short wave quantity $q$ are dependent on the long-wave steepness
+$\varepsilon_L$.
+
+The homogeneity and stationarity of a scalar quantify $q$ can be expressed as
+conditions on the instantaneous fractional rate of change of $q$ being much
+smaller than the short-wave inverse scales:
+
+\begin{equation}
+  \frac{1}{q} \frac{\partial q}{\partial x} \ll k
+  \label{eq:homogeneity_condition}
+\end{equation}
+
+\begin{equation}
+  \frac{1}{q} \frac{\partial q}{\partial t} \ll \sigma
+  \label{eq:stationarity_condition}
+\end{equation}
+The slowly-varying conditions on the medium (in our case, the long-wave orbital
+velocity $U$) are then
+\begin{equation}
+  \frac{1}{U} \frac{\partial U}{\partial x} \ll \widetilde{k},
+\end{equation}
+and
+
+\begin{equation}
+  \frac{1}{U} \frac{\partial U}{\partial t} \ll \widetilde{\sigma},
+\end{equation}
+respectively.
+For a linear long wave, these conditions are equivalent to the scale separation
+between the long and short waves:
+
+\begin{equation}
+  k_L \ll \widetilde{k}
+  \label{eq:k_scale_separation}
+\end{equation}
+
+\begin{equation}
+  \sigma_L \ll \widetilde{\sigma}
+\end{equation}
+\citet{bretherton1968wavetrains} also require that the medium is nearly uniform
+in the vertical, over the vertical scales of motion of the short waves.
+For the ambient velocity being the orbital velocity of the long wave, this is
+trivially satisfied with (\ref{eq:k_scale_separation}).
+
+Now, to address the variation of short-wave properties,
+we apply (\ref{eq:homogeneity_condition})-(\ref{eq:stationarity_condition}) to
+the long-wave phase dependent wavenumber, gravitational acceleration, and
+wave action, and define the homogeneity and stationarity quantities as:
+
+\begin{equation}
+  H_q = 1 - \left| \frac{1}{qk} \frac{\partial q}{\partial x} \right|
+\end{equation}
+
+\begin{equation}
+  S_q = 1 - \left| \frac{1}{q\sigma} \frac{\partial q}{\partial t} \right|
+\end{equation}
+With the above definitions, we consider $q$ to be homogeneous and stationary as
+$H_q \rightarrow 1$ and $S_q \rightarrow 1$, respectively.
+
+For the linearized modulation solutions (\ref{eq:k_short_exact}),
+(\ref{eq:gravity_modulation_linear_no_curvature_mean_level}), and
+(\ref{eq:wave_action_modulation}), the respective homogeneity expressions are:
+
+\begin{equation}
+  H_{k,N} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right)^2} \right|
+\end{equation}
+
+\begin{equation}
+  H_{g} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L^2 \cos^2{\psi}\right)} \right|
+\end{equation}
+
+\begin{equation}
+  S_{k,N} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
+\end{equation}
+
+\begin{equation}
+  S_{g} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
+\end{equation}
 
 \section{Surface velocity errors}
 \label{appendix:surface_velocity_errors}
