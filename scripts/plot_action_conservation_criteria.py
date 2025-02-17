@@ -108,8 +108,8 @@ S_N_values = np.clip(S_N_values, 0.5, None)
 
 
 # Create 6-panel figure for numerical results
-fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, figsize=(10, 15))
-fig.subplots_adjust(hspace=0.3, wspace=0.3)
+fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, figsize=(12, 15))
+fig.subplots_adjust(hspace=0.2, wspace=0.2)
 axes = [ax1, ax2, ax3, ax4, ax5, ax6]
 
 # Common plotting parameters
@@ -262,7 +262,7 @@ fig.subplots_adjust(hspace=0.2, wspace=0.2)
 axes = [ax1, ax2, ax3, ax4]
 
 # Common plotting parameters
-levels = np.arange(0.85, 1.0, 0.01)
+levels = np.linspace(0.85, 1.0, 16)
 cmap = plt.cm.viridis
 
 # Plot homogeneity and stationarity contours

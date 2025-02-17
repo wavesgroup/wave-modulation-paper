@@ -1271,19 +1271,50 @@ For the linearized modulation solutions (\ref{eq:k_short_exact}),
 
 \begin{equation}
   H_{k,N} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right)^2} \right|
+  \label{eq:homogeneity_k}
 \end{equation}
 
 \begin{equation}
   H_{g} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L^2 \cos^2{\psi}\right)} \right|
+  \label{eq:homogeneity_g}
 \end{equation}
 
 \begin{equation}
   S_{k,N} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
+  \label{eq:stationarity_k}
 \end{equation}
 
 \begin{equation}
   S_{g} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
+  \label{eq:stationarity_g}
 \end{equation}
+Notice that the steady, linearised solutions depend on both the the wavenumber
+ratio $k_L/k$ and the long-wave steepness $\varepsilon_L$.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_homogeneity_stationarity_analytical.pdf}
+\caption{
+Homogeneity (left) and stationarity (right) of the short-wave wavenumber (top)
+and effective gravity (bottom) as a function of the long-wave steepness
+$\varepsilon_L$ and the wavenumber ratio $k/k_L$, based on the linearised
+solutions (\ref{eq:homogeneity_k}-\ref{eq:stationarity_g}).
+}
+\label{fig:homogeneity_stationarity_analytical}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_homogeneity_stationarity_numerical.pdf}
+\caption{
+Homogeneity (left) and stationarity (right) of the short-wave wavenumber (top),
+action (middle), and effective gravity (bottom) as a function of the long-wave
+steepness $\varepsilon_L$ and the wavenumber ratio $k/k_L$, based on the
+numerical solutions of the full wave crest and action conservation equations.
+Note that the color ranges are different than those in Fig. \ref{fig:homogeneity_stationarity_analytical}.
+}
+\label{fig:homogeneity_stationarity_numerical}
+\end{figure}
 
 \section{Surface velocity errors}
 \label{appendix:surface_velocity_errors}
