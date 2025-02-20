@@ -79,6 +79,8 @@ a_omega = []
 ak_values = np.arange(0, 0.41, 0.01)
 max_error_linear = []
 max_error_stokes = []
+mean_error_linear = []
+mean_error_stokes = []
 
 for ak in ak_values:
     a = ak / k
@@ -106,29 +108,49 @@ for ak in ak_values:
     max_error_linear.append(error_linear)
     max_error_stokes.append(error_stokes)
 
+    mean_error_linear.append(np.mean(np.abs(U_linear - U)))
+    mean_error_stokes.append(np.mean(np.abs(U_stokes - U)))
 
 # Plot errors vs steepness
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
-ax.semilogy(
+ax.plot(
     ak_values,
-    np.array(max_error_linear) / a_omega,
+    np.array(max_error_linear),
+    lw=2,
     color="tab:blue",
-    lw=2,
-    label="Linear wave",
+    label="1$^{st}$ order, max.",
 )
-ax.semilogy(
+ax.plot(
     ak_values,
-    np.array(max_error_stokes) / a_omega,
-    color="tab:orange",
+    np.array(mean_error_linear),
     lw=2,
-    label=r"3$^{rd}$ order Stokes wave",
+    color="tab:blue",
+    linestyle="--",
+    label="1$^{st}$ order, mean",
 )
-ax.set_xlabel("Wave steepness (ak)")
-ax.set_ylabel("Surface velocity relative error")
+ax.plot(
+    ak_values,
+    np.array(max_error_stokes),
+    lw=2,
+    color="tab:orange",
+    label="3$^{rd}$ order, max.",
+)
+ax.plot(
+    ak_values,
+    np.array(mean_error_stokes),
+    lw=2,
+    color="tab:orange",
+    linestyle="--",
+    label="3$^{rd}$ order, mean",
+)
+ax.plot(ak_values, ak_values**2, "k--", lw=2, label=r"$\varepsilon_L^2$")
+ax.plot(ak_values, ak_values**3, "k:", lw=2, label=r"$\varepsilon_L^3$")
+ax.set_xlabel(r"$\varepsilon_L$")
+ax.set_ylabel("Surface velocity error")
 ax.legend()
 ax.set_xlim(0, 0.4)
+ax.set_ylim(0, 0.3)
 ax.grid()
-
-plt.savefig("../figures/fig_relative_velocity_error.pdf")
+plt.savefig("../figures/fig_velocity_error_by_ak.pdf")
 plt.close()
