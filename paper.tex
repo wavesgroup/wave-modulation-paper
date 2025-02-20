@@ -351,7 +351,7 @@ a_L \omega_L e^{k_L z} \cos{\psi} + \mathcal{O}(\varepsilon_L^4)
 \end{equation}
 
 \begin{equation}
-\label{eq:w_L}
+\label{eq:W_L}
 W =
 \frac{\partial \phi}{\partial z} =
 a_L \omega_L e^{k_L z} \sin{\psi} + \mathcal{O}(\varepsilon_L^4)
@@ -364,7 +364,7 @@ amplitude of the long waves is of the similar magnitude or larger than the
 wavelength of the short waves.
 
 (\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are the governing equations used
-in this paper, with (\ref{eq:U_L})-(\ref{eq:w_L}) describing the long-wave
+in this paper, with (\ref{eq:U_L})-(\ref{eq:W_L}) describing the long-wave
 induced ambient velocity forcing for the short waves. 
 Rather than deriving the modulation solution from the velocity
 potential of two waves, as \citet{longuet1960changes} did, starting from the
@@ -1318,6 +1318,17 @@ Note that the color ranges are different than those in Fig. \ref{fig:homogeneity
 
 \section{Surface velocity errors}
 \label{appendix:surface_velocity_errors}
+
+The long-wave induced velocities (\ref{eq:phi})-(\ref{eq:W_L}) are accurate to
+$\mathcal{O}(\varepsilon_L^3)$ when evaluated at the mean water level.
+However, in this paper we depart from the mean water level and evaluate the
+velocities at the surface of the long wave.
+This introduces an additional error at the order of $\mathcal{O}(\varepsilon_L^2)$.
+To quantify this error exactly, we compare the velocities evaluated at the
+surface for a linear (small-amplitude) wave and a third-order Stokes wave,
+with the surface velocity of a fully nonlinear wave.
+The nonlinear wave surface velocity is calculated numerically using the method
+by \citet{clamond2018accurate}.
 
 \begin{figure}
 \centering
