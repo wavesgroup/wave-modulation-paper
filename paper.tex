@@ -338,9 +338,9 @@ The velocity potential of the long wave is:
 \end{equation}
 where $z$ is the vertical distance from the mean water level that is positive
 upwards.
-(\ref{eq:phi}) is accurate to the third order in $\varepsilon_L$ in deep water
-because the second- and third-order terms in the Stokes expansion series are
-exactly zero.
+When evaluated at the mean water level ($z=0$), (\ref{eq:phi}) is accurate to
+the third order in $\varepsilon_L$ in deep water because the second- and
+third-order terms in the Stokes expansion series are exactly zero.
 The long-wave induced horizontal and vertical orbital velocities are:
 
 \begin{equation}
@@ -362,6 +362,10 @@ treatment of the long waves here as weakly nonlinear.
 As \citet{zhang1990evolution} point out, this is appropriate to do when the
 amplitude of the long waves is of the similar magnitude or larger than the
 wavelength of the short waves.
+However, evaluating these velocities at the free surface $z = \eta_L$ introduces
+an additional error of $\mathcal{O}(\varepsilon_L^2)$.
+The surface velocity errors are described in more detail in Appendix
+\ref{appendix:surface_velocity_errors}.
 
 (\ref{eq:wavenumber})-(\ref{eq:wave_action2}) are the governing equations used
 in this paper, with (\ref{eq:U_L})-(\ref{eq:W_L}) describing the long-wave
@@ -739,6 +743,139 @@ wavenumber and wave action modulation contributions.
 \label{fig:modulation_contributors}
 \end{figure}
 
+\subsection{Limits to the wave action conservation}
+\label{appendix:wave_action_conservation}
+
+Following the variational approach by \citet{whitham1965general},
+\citet{bretherton1968wavetrains} showed that the wave action is conserved for
+small-amplitude (linear) waves that propagate in slowly-varying media.
+\citet{longuet1987propagation} correctly pointed out both
+requirements--that both the medium and the short wavetrain must be
+slowly-varying--for the wave action conservation to hold.
+However, he incorrectly stated that there is no explicit restriction on the
+steepness of the long wave, and that it appears necessary to only assume
+small-amplitude short waves and significant scale separation ($k/k_L$).
+The restriction on $\varepsilon_L$ becomes readily apparent when we recognize
+that the long wave-induced orbital velocity scales with $\varepsilon_L$, and
+that the divergence of this velocity is the dominant term in (\ref{eq:wavenumber})
+and (\ref{eq:wave_action2}).
+Here we show that in the general case both the homogeneity and the stationarity
+of a short wave quantity $q$ depend on the long-wave steepness $\varepsilon_L$.
+
+The homogeneity and stationarity of a scalar quantify $q$ can be expressed as
+conditions on the instantaneous fractional rate of change of $q$ being much
+smaller than the short-wave inverse scales:
+
+\begin{equation}
+  \frac{1}{q} \frac{\partial q}{\partial x} \ll k
+  \label{eq:homogeneity_condition}
+\end{equation}
+
+\begin{equation}
+  \frac{1}{q} \frac{\partial q}{\partial t} \ll \sigma
+  \label{eq:stationarity_condition}
+\end{equation}
+The slowly-varying conditions on the medium (in our case, the long-wave orbital
+velocity $U$) are then
+\begin{equation}
+  \frac{1}{U} \frac{\partial U}{\partial x} \ll \widetilde{k},
+\end{equation}
+and
+
+\begin{equation}
+  \frac{1}{U} \frac{\partial U}{\partial t} \ll \widetilde{\sigma},
+\end{equation}
+respectively.
+For a linear long wave, these conditions are equivalent to the scale separation
+between the long and short waves:
+
+\begin{equation}
+  k_L \ll \widetilde{k}
+  \label{eq:k_scale_separation}
+\end{equation}
+
+\begin{equation}
+  \sigma_L \ll \widetilde{\sigma}
+\end{equation}
+\citet{bretherton1968wavetrains} also require that the medium is nearly uniform
+over the vertical scales of motion of the short waves.
+For the ambient velocity being the orbital velocity of the long wave, this is
+trivially satisfied with (\ref{eq:k_scale_separation}).
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_homogeneity_stationarity_analytical.pdf}
+\caption{
+Homogeneity (left) and stationarity (right) of the short-wave wavenumber (top)
+and effective gravity (bottom) as a function of the long-wave steepness
+$\varepsilon_L$ and the wavenumber ratio $k/k_L$, based on the linearised
+solutions (\ref{eq:homogeneity_k}-\ref{eq:stationarity_g}).
+Solid and dashed lines highlight the 0.99 and 0.90 values, respectively.
+}
+\label{fig:homogeneity_stationarity_analytical}
+\end{figure}
+
+Now, to address the variation of short-wave properties,
+we apply (\ref{eq:homogeneity_condition})-(\ref{eq:stationarity_condition}) to
+the long-wave phase dependent wavenumber, gravitational acceleration, and
+wave action, and define the homogeneity and stationarity quantities as:
+
+\begin{equation}
+  H_q = 1 - \left| \frac{1}{qk} \frac{\partial q}{\partial x} \right|
+\end{equation}
+
+\begin{equation}
+  S_q = 1 - \left| \frac{1}{q\sigma} \frac{\partial q}{\partial t} \right|
+\end{equation}
+With the above definitions, we consider $q$ to be homogeneous and stationary as
+$H_q \rightarrow 1$ and $S_q \rightarrow 1$, respectively.
+
+For the linearized modulation solutions (\ref{eq:k_short_exact}),
+(\ref{eq:gravity_modulation_linear_no_curvature_mean_level}), and
+(\ref{eq:wave_action_modulation}), the respective homogeneity expressions are:
+
+\begin{equation}
+  H_{k,N} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right)^2} \right|
+  \label{eq:homogeneity_k}
+\end{equation}
+
+\begin{equation}
+  H_{g} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L^2 \cos^2{\psi}\right)} \right|
+  \label{eq:homogeneity_g}
+\end{equation}
+
+\begin{equation}
+  S_{k,N} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
+  \label{eq:stationarity_k}
+\end{equation}
+
+\begin{equation}
+  S_{g} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
+  \label{eq:stationarity_g}
+\end{equation}
+Notice that the steady, linearised solutions depend on both the the wavenumber
+ratio $k_L/k$ and the long-wave steepness $\varepsilon_L$.
+
+Fig. \ref{fig:homogeneity_stationarity_analytical} shows the homogeneities and
+stationarities of the short-wave wavenumber and effective gravity based on
+the steady solutions and their derived criteria as minima of
+(\ref{eq:homogeneity_condition})-(\ref{eq:stationarity_condition}).
+Homogeneity is a weaker requirement than stationarity.
+At the lowest scale separation considered ($k/k_L = 10$), short-wave wavenumber,
+action, and effective gravity are all strongly homogeneous ($H_{k,N,g} > 0.99$).
+However, the solutions are only strongly stationary ($S_{k,N,g} > 0.99$) at a
+high scale separation of $k/k_L = 100$ for $\varepsilon_L < 0.1$.
+If we consider weakly stationary conditions as $S_{k,N,g} > 0.9$, then the
+solutions satisfy the requirements for the wave action conservation for
+$\varepsilon_L < 0.3$ at $k/k_L = 10$, and for $\varepsilon_L < 0.4$ at
+$k/k_L > 20$.
+Although \citet{bretherton1968wavetrains} state that the wave action balance
+is valid to the first order in $k_L/k$, applying the general criteria
+(\ref{eq:homogeneity_condition})-(\ref{eq:stationarity_condition}) yields an
+error of $\mathcal{O}(\varepsilon_L k/k_L)$.
+We will revisit these criteria based on the numerical solutions of nonlinear
+wave action and crest conservation equations in the next section.
+
 \section{Numerical solutions}
 \label{section:numerical_solutions}
 
@@ -877,6 +1014,19 @@ effectively equivalent.
   As Fig. \ref{fig:numerical_vs_analytical_k} but for the steepness modulation.
 }
 \label{fig:numerical_vs_analytical_ak}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/fig_homogeneity_stationarity_numerical.pdf}
+\caption{
+Homogeneity (left) and stationarity (right) of the short-wave wavenumber (top),
+action (middle), and effective gravity (bottom) as a function of the long-wave
+steepness $\varepsilon_L$ and the wavenumber ratio $k/k_L$, based on the
+numerical solutions of the full wave crest and action conservation equations.
+Note that the color ranges are different than those in Fig. \ref{fig:homogeneity_stationarity_analytical}.
+}
+\label{fig:homogeneity_stationarity_numerical}
 \end{figure}
 
 \subsection{Unsteady growth in Pereux et al. (2021)}
@@ -1168,8 +1318,9 @@ the dispersion and wind input into short waves.
 
 \backsection[Acknowledgements]{
 I am thankful to Nathan Laxague, Fabrice Ardhuin, Nick Pizzo, and Peisen Tan
-for the discussions that helped improve this paper.
-I also thank three anonymous reviewers for their helpful comments.
+for fruitful discussions.
+I also thank three anonymous reviewers for their expertise that helped improve
+this paper.
 }
 
 \backsection[Funding]{
@@ -1186,6 +1337,8 @@ I also thank three anonymous reviewers for their helpful comments.
   paper is available at \url{https://github.com/wavesgroup/wave-modulation-paper}.
   The numerical model is available as a standalone Python package at
   \url{https://github.com/wavesgroup/2wave}.
+  A Python implementation of SSGW by \citet{clamond2018accurate} is available
+  at \url{https://github.com/wavesgroup/ssgw}.
   %See JFM's \href{https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/information/journal-policies/research-transparency}{research transparency policy} for more information
 }
 
@@ -1194,127 +1347,6 @@ I also thank three anonymous reviewers for their helpful comments.
 %\backsection[Author contributions]{Authors may include details of the contributions made by each author to the manuscript}
 
 \appendix
-\section{Wave action conservation requirements}
-\label{appendix:wave_action_conservation}
-
-Following the variational approach by \citet{whitham1965general},
-\citet{bretherton1968wavetrains} showed that the wave action is conserved for
-small amplitude (linear) waves propagating in slowly-varying media.
-Although \citet{longuet1987propagation} correctly pointed out both requirements
-(that the medium is slowly-varying and that the short-wave properties are
-approximately homogeneous and stationary) for the wave action conservation to
-hold, he incorrectly stated that there is no explicit restriction on the
-steepness of the long wave, and that it appears necessary to only assume
-small-amplitude short waves and significant separation between $k$ and $k_L$.
-We will show that in the general case, both the homogeneity and the stationarity
-of a short wave quantity $q$ are dependent on the long-wave steepness
-$\varepsilon_L$.
-
-The homogeneity and stationarity of a scalar quantify $q$ can be expressed as
-conditions on the instantaneous fractional rate of change of $q$ being much
-smaller than the short-wave inverse scales:
-
-\begin{equation}
-  \frac{1}{q} \frac{\partial q}{\partial x} \ll k
-  \label{eq:homogeneity_condition}
-\end{equation}
-
-\begin{equation}
-  \frac{1}{q} \frac{\partial q}{\partial t} \ll \sigma
-  \label{eq:stationarity_condition}
-\end{equation}
-The slowly-varying conditions on the medium (in our case, the long-wave orbital
-velocity $U$) are then
-\begin{equation}
-  \frac{1}{U} \frac{\partial U}{\partial x} \ll \widetilde{k},
-\end{equation}
-and
-
-\begin{equation}
-  \frac{1}{U} \frac{\partial U}{\partial t} \ll \widetilde{\sigma},
-\end{equation}
-respectively.
-For a linear long wave, these conditions are equivalent to the scale separation
-between the long and short waves:
-
-\begin{equation}
-  k_L \ll \widetilde{k}
-  \label{eq:k_scale_separation}
-\end{equation}
-
-\begin{equation}
-  \sigma_L \ll \widetilde{\sigma}
-\end{equation}
-\citet{bretherton1968wavetrains} also require that the medium is nearly uniform
-in the vertical, over the vertical scales of motion of the short waves.
-For the ambient velocity being the orbital velocity of the long wave, this is
-trivially satisfied with (\ref{eq:k_scale_separation}).
-
-Now, to address the variation of short-wave properties,
-we apply (\ref{eq:homogeneity_condition})-(\ref{eq:stationarity_condition}) to
-the long-wave phase dependent wavenumber, gravitational acceleration, and
-wave action, and define the homogeneity and stationarity quantities as:
-
-\begin{equation}
-  H_q = 1 - \left| \frac{1}{qk} \frac{\partial q}{\partial x} \right|
-\end{equation}
-
-\begin{equation}
-  S_q = 1 - \left| \frac{1}{q\sigma} \frac{\partial q}{\partial t} \right|
-\end{equation}
-With the above definitions, we consider $q$ to be homogeneous and stationary as
-$H_q \rightarrow 1$ and $S_q \rightarrow 1$, respectively.
-
-For the linearized modulation solutions (\ref{eq:k_short_exact}),
-(\ref{eq:gravity_modulation_linear_no_curvature_mean_level}), and
-(\ref{eq:wave_action_modulation}), the respective homogeneity expressions are:
-
-\begin{equation}
-  H_{k,N} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right)^2} \right|
-  \label{eq:homogeneity_k}
-\end{equation}
-
-\begin{equation}
-  H_{g} = 1 - \frac{k_L}{k} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L^2 \cos^2{\psi}\right)} \right|
-  \label{eq:homogeneity_g}
-\end{equation}
-
-\begin{equation}
-  S_{k,N} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 + \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
-  \label{eq:stationarity_k}
-\end{equation}
-
-\begin{equation}
-  S_{g} = 1 - \frac{\sigma_L}{\sigma} \left| \frac{\varepsilon_L \sin{\psi}}{\left(1 - \varepsilon_L \cos{\psi}\right) \sqrt{1 - \varepsilon_L^2 \cos^2{\psi}}} \right|
-  \label{eq:stationarity_g}
-\end{equation}
-Notice that the steady, linearised solutions depend on both the the wavenumber
-ratio $k_L/k$ and the long-wave steepness $\varepsilon_L$.
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{figures/fig_homogeneity_stationarity_analytical.pdf}
-\caption{
-Homogeneity (left) and stationarity (right) of the short-wave wavenumber (top)
-and effective gravity (bottom) as a function of the long-wave steepness
-$\varepsilon_L$ and the wavenumber ratio $k/k_L$, based on the linearised
-solutions (\ref{eq:homogeneity_k}-\ref{eq:stationarity_g}).
-}
-\label{fig:homogeneity_stationarity_analytical}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{figures/fig_homogeneity_stationarity_numerical.pdf}
-\caption{
-Homogeneity (left) and stationarity (right) of the short-wave wavenumber (top),
-action (middle), and effective gravity (bottom) as a function of the long-wave
-steepness $\varepsilon_L$ and the wavenumber ratio $k/k_L$, based on the
-numerical solutions of the full wave crest and action conservation equations.
-Note that the color ranges are different than those in Fig. \ref{fig:homogeneity_stationarity_analytical}.
-}
-\label{fig:homogeneity_stationarity_numerical}
-\end{figure}
 
 \section{Surface velocity errors}
 \label{appendix:surface_velocity_errors}
@@ -1341,10 +1373,10 @@ by \citet{clamond2018accurate}.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/fig_relative_velocity_error.pdf}
+\includegraphics[width=0.8\textwidth]{figures/fig_velocity_error_by_ak.pdf}
 \caption{
 }
-\label{fig:relative_velocity_error}
+\label{fig:velocity_error_by_ak}
 \end{figure}
 
 \bibliographystyle{jfm}
