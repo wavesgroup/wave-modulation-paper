@@ -40,7 +40,7 @@ a well-known ocean surface process that affects remote sensing, the
 interpretation of \textit{in situ} wave measurements, and numerical wave
 forecasting.
 In this paper, we revisit the linear wave theory and derive higher-order
-steady solutions for the change of short-wave wavenumber, action density, and
+steady solutions for the change of short-wave wavenumber, action, and
 gravitational acceleration due to the presence of longer waves.
 We validate the analytical solutions with numerical simulations of the full wave
 crest and action conservation equations.
@@ -116,7 +116,7 @@ considered using simpler approaches.
 \caption{
   A diagram of short waves riding on longer waves that propagate with their
   phase-speed $C_{pL}$ from left to right.
-  The short waves propagate on the long-wave surface, their action density
+  The short waves propagate on the long-wave surface, their action
   moving with the group velocity $C_g$.
   Long waves induce orbital velocities $U$ that cause near-surface convergence
   and divergence on their front and rear faces, respectively.
@@ -262,13 +262,14 @@ sinks (e.g. due to whitecapping):
 + \dfrac{\partial}{\partial x} \left[\left(C_g + U\right)N\right]
 = 0
 \end{equation}
-where $N$ is the action density of short waves defined as the ratio of their
+where $N$ is the action of short waves defined as the ratio of their
 energy density to their intrinsic frequency, $E/\sigma$,
 and $C_g = 1/2\sqrt{g/k}$ is their group speed in deep water.
-The wave action density expressed as $E/\sigma$ is commonly taken as
+The wave action expressed as $E/\sigma$ is commonly taken as
 conservative in wave modulation theory
 \citep{phillips1981dispersion,longuet1987propagation}, however as
 \citet{dysthe1988orbiting} show, it is conservative only for gently sloped waves.
+We describe this requirement on gentle wave slope in more detail further below.
 Although the absence of wave growth and dissipation is not generally realistic in
 the open ocean, it is a useful approximation here to isolate the effects
 of hydrodynamic modulation solely due to the motion of the long waves.
@@ -744,7 +745,7 @@ wavenumber and wave action modulation contributions.
 \end{figure}
 
 \subsection{Limits to the wave action conservation}
-\label{appendix:wave_action_conservation}
+\label{sec:wave_action_conservation}
 
 Following the variational approach by \citet{whitham1965general},
 \citet{bretherton1968wavetrains} showed that the wave action is conserved for
@@ -957,33 +958,6 @@ solutions, become important.
 \label{fig:numerical_solutions}
 \end{figure}
 
-The maximum modulations of the short-wave wavenumber, amplitude, and steepness
-from the analytical and numerical solutions, are shown on Figs.
-\ref{fig:numerical_vs_analytical_k},
-\ref{fig:numerical_vs_analytical_a}, and
-\ref{fig:numerical_vs_analytical_ak}, respectively, as function of the long-wave
-steepness $\varepsilon_L$.
-Overall, the numerical solutions, based on the linear and the third-order Stokes
-long waves alike, begin to diverge from the analytical solution at
-$\varepsilon_L \approx 0.2$.
-The numerical solution using the Stokes long wave is quantitatively very similar
-to the fully-nonlinear solutions of \citet{longuet1987propagation} in amplitude
-modulation, however with somewhat lower wavenumber and steepness modulations.
-For example, at $\varepsilon_L = 0.4$, the steepness modulation in our solutions
-is close to 6, whereas \citet{longuet1987propagation} finds it close to 8.
-The underestimate in the wavenumber modulation at high long-wave steepness
-relative to the results of \citet{longuet1987propagation}
-is likely due to his long wave velocities being evaluated to a higher order in
-$\varepsilon_L$ than they are here.
-Nevertheless, the overall steepness modulation between the two numerical
-approaches are remarkably similar, and either solution would cause the
-short-waves of even low steepness to break \citep{banner1993wave}.
-Where the two modulation solutions differ (at $\varepsilon_L > 0.2$),
-either solution would lead to short-wave breaking after one long-wave period.
-This suggests that in the cases where the short-waves would survive the
-modulation and persist over multiple long-wave periods, the two solutions are
-effectively equivalent.
-
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/numerical_vs_analytical_solutions_k.pdf}
@@ -1015,6 +989,50 @@ effectively equivalent.
 }
 \label{fig:numerical_vs_analytical_ak}
 \end{figure}
+
+The maximum modulations of the short-wave wavenumber, amplitude, and steepness
+from the analytical and numerical solutions, are shown on Figs.
+\ref{fig:numerical_vs_analytical_k},
+\ref{fig:numerical_vs_analytical_a}, and
+\ref{fig:numerical_vs_analytical_ak}, respectively, as function of the long-wave
+steepness $\varepsilon_L$.
+Overall, the numerical solutions, based on the linear and the third-order Stokes
+long waves alike, begin to diverge from the analytical solution at
+$\varepsilon_L \approx 0.2$.
+The numerical solution using the Stokes long wave is quantitatively very similar
+to the fully-nonlinear solutions of \citet{longuet1987propagation} in amplitude
+modulation, however with somewhat lower wavenumber and steepness modulations.
+For example, at $\varepsilon_L = 0.4$, the steepness modulation in our solutions
+is close to 6, whereas \citet{longuet1987propagation} finds it close to 8.
+The underestimate in the wavenumber modulation at high long-wave steepness
+relative to the results of \citet{longuet1987propagation}
+is likely due to his long wave velocities being evaluated to a higher order in
+$\varepsilon_L$ than they are here.
+Nevertheless, the overall steepness modulation between the two numerical
+approaches are remarkably similar, and either solution would cause the
+short-waves of even low steepness to break \citep{banner1993wave}.
+Where the two modulation solutions differ (at $\varepsilon_L > 0.2$),
+either solution would lead to short-wave breaking after one long-wave period.
+This suggests that in the cases where the short-waves would survive the
+modulation and persist over multiple long-wave periods, the two solutions are
+effectively equivalent.
+
+As the numerical solutions are for nonlinear wave action and crest conservation
+equations, it is important to re-evaluate the homogeneity and stationarity
+requirements for the wave action conservation to remain valid.
+Fig. \ref{fig:homogeneity_stationarity_numerical} shows the homogeneities
+and stationarities of the short-wave wavenumber, action, and effective gravity
+as function of the long-wave steepness $\varepsilon_L$ and the wavenumber ratio
+$k/k_L$, based on the numerical simulations.
+Although homogeneity is slightly lower ($H_{k,N,g} \approx 0.92$ for $k/k_L = 10$
+and $\varepsilon_L = 0.4$) compared to the analytical solutions,
+the stationarity is significantly reduced.
+Following the same criteria for strong ($S_{k,N,g} > 0.99$) and weak
+($S_{k,N,g} > 0.9$) stationarity as in subsection \ref{sec:wave_action_conservation},
+the numerical solutions are only weakly stationary for $\varepsilon_L < 0.21$
+at $k/k_L = 10$, and for $\varepsilon_L < 0.36$ at $k/k_L = 100$.
+This provides a quantitative guidance on when the short-wave action can be
+considered to be conserved.
 
 \begin{figure}
 \centering
@@ -1355,17 +1373,40 @@ The long-wave induced velocities (\ref{eq:phi})-(\ref{eq:W_L}) are accurate to
 $\mathcal{O}(\varepsilon_L^3)$ when evaluated at the mean water level.
 However, in this paper we depart from the mean water level and evaluate the
 velocities at the surface of the long wave.
-This introduces an additional error at the order of $\mathcal{O}(\varepsilon_L^2)$.
+This introduces a additional errors at $\mathcal{O}(\varepsilon_L^2)$.
 To quantify this error exactly, we compare the velocities evaluated at the
 surface for a linear (small-amplitude) wave and a third-order Stokes wave,
-with the surface velocity of a fully nonlinear wave.
-The nonlinear wave surface velocity is calculated numerically using the method
-by \citet{clamond2018accurate}.
+with the surface velocity of a fully nonlinear wave
+(Fig. \ref{fig:velocity_error_by_phase}).
+The elevation and the surface velocity for the fully nonlinear wave is
+calculated numerically using the method by \citet{clamond2018accurate},
+which relies on Petviashvili's iterations and in this case uses 2048 Fourier
+modes to represent the wave.
+Both the 1$^{st}$ and the 3$^{rd}$ order waves underestimate the surface velocity
+at the crest and in the trough, and overestimate it on the front and rear faces
+of the crest.
+
+Maximum values of surface velocity errors for both the linear and the
+3$^{rd}$ order Stokes wave asymptote to $\varepsilon_L^3$ for small
+$\varepsilon_L$ (Fig. \ref{fig:velocity_error_by_ak}).
+However, they approach and exceed $\varepsilon_L^2$ at $\varepsilon_L \approx 0.3$
+and beyond.
+Although the maximum error is $\approx 10-20\%$ smaller for the 3$^rd$ order
+Stokes wave relative to the linear wave, its average error is slightly larger.
+The main takeaway from this figure is that evaluating the surface velocity
+of a linear wave carries an error no greater than $\varepsilon_L^2$ for
+$\varepsilon_L < 0.32$.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/fig_velocity_error_by_phase.pdf}
+\includegraphics[width=\textwidth]{figures/fig_velocity_error_by_phase.pdf}
 \caption{
+  Surface elevation (top) and horizontal velocity (middle) for the linear wave
+  (blue), the 3$^{rd}$ order Stokes wave (orange), and the fully nonlinear wave
+  (black) with steepness of $\varepsilon_L = 0.4$.
+  The bottom panel shows the surface velocity error for the linear wave (blue)
+  and the 3$^{rd}$ order Stokes wave (orange), relative to the fully nonlinear
+  wave solution.
 }
 \label{fig:velocity_error_by_phase}
 \end{figure}
@@ -1375,6 +1416,12 @@ by \citet{clamond2018accurate}.
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_velocity_error_by_ak.pdf}
 \caption{
+  Surface velocity error as function of wave steepness $\varepsilon_L$,
+  for the linear wave (blue) and the 3$^{rd}$ order Stokes wave (orange).
+  Maximum and mean errors are indicated with solid and dashed lines,
+  respectively.
+  For reference, $\varepsilon_L^2$ and $\varepsilon_L^3$ curves are shown in
+  black dashed and dotted lines, respectively.
 }
 \label{fig:velocity_error_by_ak}
 \end{figure}

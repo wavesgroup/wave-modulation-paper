@@ -58,7 +58,7 @@ ax3.axhline(y=0, color="k", linestyle="--", alpha=0.5)
 ax3.set_ylabel("Velocity Error (m/s)")
 ax3.legend()
 ax3.grid(True)
-ax3.set_xlabel("Phase")
+ax3.set_xlabel(r"$\Psi$")
 
 # Set x-axis limits and ticks for all subplots
 xticks = np.array([0, np.pi / 2, np.pi, 3 * np.pi / 2, 2 * np.pi])
@@ -119,7 +119,7 @@ ax.plot(
     np.array(max_error_linear),
     lw=2,
     color="tab:blue",
-    label="1$^{st}$ order, max.",
+    label="1$^{st}$ order, maximum error",
 )
 ax.plot(
     ak_values,
@@ -127,14 +127,14 @@ ax.plot(
     lw=2,
     color="tab:blue",
     linestyle="--",
-    label="1$^{st}$ order, mean",
+    label="1$^{st}$ order, mean absolute error",
 )
 ax.plot(
     ak_values,
     np.array(max_error_stokes),
     lw=2,
     color="tab:orange",
-    label="3$^{rd}$ order, max.",
+    label="3$^{rd}$ order, maximum error",
 )
 ax.plot(
     ak_values,
@@ -142,12 +142,12 @@ ax.plot(
     lw=2,
     color="tab:orange",
     linestyle="--",
-    label="3$^{rd}$ order, mean",
+    label="3$^{rd}$ order, mean absolute error",
 )
 ax.plot(ak_values, ak_values**2, "k--", lw=2, label=r"$\varepsilon_L^2$")
 ax.plot(ak_values, ak_values**3, "k:", lw=2, label=r"$\varepsilon_L^3$")
 ax.set_xlabel(r"$\varepsilon_L$")
-ax.set_ylabel("Surface velocity error")
+ax.set_ylabel("Surface velocity error (m/s)")
 ax.legend()
 ax.set_xlim(0, 0.4)
 ax.set_ylim(0, 0.3)
