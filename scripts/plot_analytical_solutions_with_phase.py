@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
-from twowave import gravity_curvilinear
+from twowave import gravity
 
 matplotlib.rc("font", size=12)
 
@@ -17,7 +17,7 @@ def plot_analytical_solutions(a_L: float):
 
     k_lhs = 1 + ak_L * np.cos(phase)
     k_modulation = np.exp(ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase)))
-    g_modulation = gravity_curvilinear(x, t, a_L, k_L, omega, g0, "linear") / g0
+    g_modulation = gravity(x, t, a_L, k_L, omega, g0, "linear") / g0
     N_modulation = k_modulation
     a_modulation = g_modulation ** (-0.25) * k_modulation**0.25 * N_modulation**0.5
     a_lhs = k_lhs

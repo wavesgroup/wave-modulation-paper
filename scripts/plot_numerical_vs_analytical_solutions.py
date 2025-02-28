@@ -29,7 +29,6 @@ for ak in ak_range:
     m.run(wave_type="stokes", ramp_type="groups")
     solutions2.append(m)
 
-
 k_modulation_numerical_linear = np.array(
     [np.max(m.to_xarray().wavenumber) / m.k_short for m in solutions1]
 )
