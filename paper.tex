@@ -164,7 +164,8 @@ Reference   & Analysis   & Gravity & Nonlinear  & Nonlinear   & Solution \\
 \citet{phillips1981dispersion} & Crest and action & Yes & Yes & No  & Numerical \\
                                & conservation     &     &     &     &           \\
 \hline
-\citet{longuet1987propagation} & Velocity potential & Yes & Yes & No  & Numerical \\
+\citet{longuet1987propagation} & Crest and action & Yes & Yes & No  & Numerical \\
+                               & conservation     &     &     &     &           \\
 \hline
 \citet{henyey1988energy} & Hamiltonian & Yes & Yes & No  & Analytical \\
 \hline
@@ -447,7 +448,7 @@ phase, as we will see later from the numerical simulations.
 \centering
 \includegraphics[width=0.8\textwidth]{figures/fig_analytical_solutions_ak0.1.pdf}
 \caption{
-  Steady solutions for the modulation of short-wave (a) wavenumber, (b)
+  Steady analytical solutions for the modulation of short-wave (a) wavenumber, (b)
   gravitational acceleration, (c) amplitude, (d) steepness, (e) intrinsic
   frequency, and (f) intrinsic phase speed as function of long-wave phase for
   $\varepsilon_L = 0.1$, based on
@@ -461,15 +462,51 @@ phase, as we will see later from the numerical simulations.
 \subsection{Gravity modulation}
 \label{subsection:gravity_modulation}
 
-Long waves induce orbital (centripetal) accelerations on their surface, so the
-short waves ride in an accelerated reference frame and experience effective
+Three distinct effects contribute to the modulation of the effective gravity of
+short waves in the presence of long waves.
+First, long waves induce orbital (centripetal) accelerations on their surface,
+so the short waves ride in an accelerated reference frame and experience effective
 gravity that is lower at the crests and higher in the troughs
 \citep{longuet1986eulerian,longuet1987propagation}.
-Further, the projection of the long-wave induced horizontal acceleration
-contributes to small but non-negligible effects on the short-wave effective
+This is an $\mathcal{O}(\varepsilon_L)$ effect.
+Second, it is important to distinguish between the Eulerian and Lagrangian effective
+gravities \citep{longuet1986eulerian}.
+The Eulerian gravity is that which would be measured by a fixed wave staff,
+for example, and features sharp and strong minima at the crests and broad
+and weak maxima in the troughs.
+In contrast, the Lagrangian gravity is that which is experienced by a short wave
+group that propagates with its own group speed and is advected by the ambient,
+long-wave induced, velocity.
+The Lagrangian velocity is overall smoother and more attenuated compared to
+its Eulerian counterpart because the local slope as experienced by the
+travelling short-wave group is gentler.
+The two gravities are related by:
+
+\begin{equation}
+\label{eq:gravity_modulation_lagrangian}
+\widetilde{g_l} =
+g + \frac{dW}{dt} =
+g + \frac{\partial W}{\partial t} + \left(C_g + U\right) \frac{\partial W}{\partial x} =
+\widetilde{g_e} + \left(C_g + U\right) \frac{\partial W}{\partial x}
+\end{equation}
+where $l$ and $e$ subscripts serve to denote "Lagrangian" and "Eulerian",
+respectively.
+Although \citet{longuet1986eulerian} thoroughly described the differences
+between the Eulerian and Lagrangian effective gravities, he did so for
+a fully nonlinear irrotational gravity wave, which can be computed numerically
+but is not readily available analytically.
+Note also that when evaluating the Lagrangian effective gravity,
+\citet{longuet1987propagation} considered the orbital motion of the long wave
+but not the propagation speed of the short-wave group, which can exceed the
+ambient velocity $U$ depending on the properties of the short and long waves
+considered.
+Group speed of the short waves aside, the Lagrangian correction to the gravity
+being an advective term is $\mathcal{O}(\varepsilon_L^2)$.
+Third, the projection of the long-wave induced horizontal acceleration
+contributes small but non-negligible effects on the short-wave effective
 gravity in the curvilinear coordinate system
 \citep{phillips1981dispersion,zhang1990evolution}.
-These two effects are completely described by projecting the gravitational
+These three effects are completely described by projecting the gravitational
 acceleration vector from the coordinate that is perpendicular to the mean water
 surface ($z=0$) to that which is perpendicular to the long-wave surface
 ($z=\eta_L$), and likewise for the long-wave orbital accelerations:
@@ -478,8 +515,8 @@ surface ($z=0$) to that which is perpendicular to the long-wave surface
 \label{eq:gravity_modulation_general}
 \frac{\widetilde{g}}{g}
   = \cos{\alpha} 
-  + \dfrac{\partial W_{z=\eta}}{\partial t} \cos{\alpha}
-  + \dfrac{\partial U_{z=\eta}}{\partial t} \sin{\alpha}
+  + \frac{1}{g} \dfrac{dW_{z=\eta_L}}{dt} \cos{\alpha}
+  + \frac{1}{g} \dfrac{dU_{z=\eta_L}}{dt} \sin{\alpha}
 \end{equation}
 
 \begin{equation}
@@ -487,11 +524,11 @@ surface ($z=0$) to that which is perpendicular to the long-wave surface
 \alpha = \tan^{-1}{\dfrac{\partial \eta}{\partial x}}
 \end{equation}
 where $\alpha$ is the local slope of the long-wave surface.
-For short waves on a linear long wave, the gravity modulation is:
+For short waves on a linear long wave, the Eulerian gravity modulation is:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear}
-\frac{\widetilde{g}}{g}
+\frac{\widetilde{g_e}}{g}
   = 
   \frac{
     1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}
@@ -499,6 +536,9 @@ For short waves on a linear long wave, the gravity modulation is:
   }
   {\sqrt{\left(\varepsilon_L \sin{\psi}\right)^2 + 1}}
 \end{equation}
+The same derivation can be carried out for the Lagrangian gravity
+modulation following (\ref{eq:gravity_modulation_lagrangian})-(\ref{eq:local_slope}),
+and is omitted here for brevity.
 Curvilinear effects on effective gravity can be removed altogether by setting
 $\alpha = 0$.
 In that case, (\ref{eq:gravity_modulation_general}) simplifies to:
@@ -559,8 +599,8 @@ and inserting them into (\ref{eq:gravity_modulation_general}):
 \label{eq:gravity_modulation_general_stokes}
 \frac{\widetilde{g}}{g}
   = \cos{\alpha_{St}}
-  + \dfrac{\partial W_{z=\eta_{St}}}{\partial t} \cos{\alpha_{St}}
-  + \dfrac{\partial U_{z=\eta_{St}}}{\partial t} \sin{\alpha_{St}}
+  + \dfrac{dW_{z=\eta_{St}}}{dt} \cos{\alpha_{St}}
+  + \dfrac{dU_{z=\eta_{St}}}{dt} \sin{\alpha_{St}}
 \end{equation}
 
 \begin{equation}
@@ -571,7 +611,7 @@ and inserting them into (\ref{eq:gravity_modulation_general}):
 Let us now examine the contributions of the different terms to the short-wave
 effective gravity modulation.
 Fig. \ref{fig:effective_gravities}a shows the effective gravity modulation of
-short-wave as a function of the long-wave phase for $\varepsilon_L = 0.2$, for
+short waves as a function of the long-wave phase for $\varepsilon_L = 0.2$, for
 a variety of the gravity modulation forms.
 This value of $\varepsilon_L$ allows easier visualisation of the modulation
 differences, while still being relatively moderate.
@@ -622,15 +662,6 @@ The effective gravity reduction at the crests is $\approx 11\%$, $25\%$, and $66
 for $\varepsilon_L = 0.1$, $0.2$, and $0.4$, respectively.
 These are similar to the fully-nonlinear numerical estimates of
 \citet{longuet1986eulerian,longuet1987propagation}.
-Note that these are strictly Eulerian values, evaluated at fixed positions in
-space.
-As \citet{longuet1986eulerian} pointed out, the effective gravity in the
-Lagrangian frame (\textit{i.e.}, following the surface particles) is smoother
-and less amplified because the moving particles spend a longer time riding near
-the crests and less time returning through the troughs.
-However, when we solve the short-wave crest and action conservation equations
-in an Eulerian frame, it is the Eulerian effective gravity that must be applied
-to conserve the short-wave properties across the long-wave phase.
 
 \begin{figure}
 \centering
@@ -756,7 +787,7 @@ slowly-varying--for the wave action conservation to hold.
 However, he incorrectly stated that there is no explicit restriction on the
 steepness of the long wave, and that it appears necessary to only assume
 small-amplitude short waves and significant scale separation ($k/k_L$).
-The restriction on $\varepsilon_L$ becomes readily apparent when we recognize
+The restriction on $\varepsilon_L$ becomes apparent when we recognize
 that the long wave-induced orbital velocity scales with $\varepsilon_L$, and
 that the divergence of this velocity is the dominant term in (\ref{eq:wavenumber})
 and (\ref{eq:wave_action2}).
@@ -1345,7 +1376,9 @@ this paper.
   Milan Curcic was partly supported by the National Science Foundation
   grant AGS-1745384, Transatlantic Research Partnership by the French Embassy
   in the United States and the FACE Foundation, and the Office of Naval Research
-  Coastal Land Air-Sea Interaction DRI.
+  grants N000142012102 (Coastal Land Air-Sea Interaction DRI) and
+  N000142412598 (in collaboration with SASCWATCH: Study on Air-Sea Coupling with
+  WAves, Turbulence, and Clouds at High winds MURI).
 }
 
 \backsection[Declaration of interests]{The author reports no conflict of interest.}
@@ -1373,7 +1406,7 @@ The long-wave induced velocities (\ref{eq:phi})-(\ref{eq:W_L}) are accurate to
 $\mathcal{O}(\varepsilon_L^3)$ when evaluated at the mean water level.
 However, in this paper we depart from the mean water level and evaluate the
 velocities at the surface of the long wave.
-This introduces a additional errors at $\mathcal{O}(\varepsilon_L^2)$.
+This introduces additional errors at $\mathcal{O}(\varepsilon_L^2)$.
 To quantify this error exactly, we compare the velocities evaluated at the
 surface for a linear (small-amplitude) wave and a third-order Stokes wave,
 with the surface velocity of a fully nonlinear wave
