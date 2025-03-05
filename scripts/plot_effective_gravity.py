@@ -17,10 +17,10 @@ def plot_effective_gravities(a: float):
     t = 0
 
     g1 = g0 * (1 - ak * np.cos(phase))
-    g2 = gravity(x, t, a, k, omega, g0, "linear", curvilinear=False)
-    g3 = gravity(x, t, a, k, omega, g0, "stokes", curvilinear=False)
-    g4 = gravity(x, t, a, k, omega, g0, "linear", curvilinear=True)
-    g5 = gravity(x, t, a, k, omega, g0, "stokes", curvilinear=True)
+    g2 = gravity(x, t, a, k, omega, g0, wave_type="linear", curvilinear=False)
+    g3 = gravity(x, t, a, k, omega, g0, wave_type="stokes", curvilinear=False)
+    g4 = gravity(x, t, a, k, omega, g0, wave_type="linear", curvilinear=True)
+    g5 = gravity(x, t, a, k, omega, g0, wave_type="stokes", curvilinear=True)
 
     fig = plt.figure(figsize=(8, 12))
     axes = fig.subplots(2, 1)
@@ -146,10 +146,10 @@ def plot_effective_gravities(a: float):
     for a in np.arange(0, 0.41, 0.01):
         ak = a * k
         g1 = g0 * (1 - ak * np.cos(phase))
-        g2 = gravity(x, t, a, k, omega, g0, "linear", curvilinear=False)
-        g3 = gravity(x, t, a, k, omega, g0, "stokes", curvilinear=False)
-        g4 = gravity(x, t, a, k, omega, g0, "linear", curvilinear=True)
-        g5 = gravity(x, t, a, k, omega, g0, "stokes", curvilinear=True)
+        g2 = gravity(x, t, a, k, omega, g0, wave_type="linear", curvilinear=False)
+        g3 = gravity(x, t, a, k, omega, g0, wave_type="stokes", curvilinear=False)
+        g4 = gravity(x, t, a, k, omega, g0, wave_type="linear", curvilinear=True)
+        g5 = gravity(x, t, a, k, omega, g0, wave_type="stokes", curvilinear=True)
         g1_max.append(np.max(g1))
         g2_max.append(np.max(g2))
         g3_max.append(np.max(g3))

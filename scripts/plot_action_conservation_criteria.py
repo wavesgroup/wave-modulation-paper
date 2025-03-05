@@ -9,7 +9,7 @@ matplotlib.rcParams["font.size"] = 14
 
 def get_homogeneity_and_stationarity(a_long, k_long, k_short):
     m = WaveModulationModel(a_long=a_long, k_long=k_long, k_short=k_short)
-    m.run(wave_type="linear", ramp_type="groups")
+    m.run(wave_type="stokes", ramp_type="groups")
     ds = m.to_xarray()
 
     x, t = ds.space.values, ds.time.values
@@ -116,7 +116,7 @@ axes = [ax1, ax2, ax3, ax4, ax5, ax6]
 cmap = plt.cm.viridis
 
 # Plot homogeneity (left column)
-H_levels = np.arange(0.9, 1.01, 0.01)
+H_levels = np.arange(0.88, 1.01, 0.01)
 c1 = ax1.contourf(ak_values, r_values, H_k_values, levels=H_levels, cmap=cmap)
 c3 = ax3.contourf(ak_values, r_values, H_N_values, levels=H_levels, cmap=cmap)
 c5 = ax5.contourf(ak_values, r_values, H_g_values, levels=H_levels, cmap=cmap)
@@ -136,7 +136,7 @@ plt.colorbar(c3, ax=ax3)
 plt.colorbar(c5, ax=ax5)
 
 # Plot stationarity (right column)
-S_levels = np.arange(0.6, 1.05, 0.05)
+S_levels = np.arange(0.5, 1.05, 0.05)
 c2 = ax2.contourf(ak_values, r_values, S_k_values, levels=S_levels, cmap=cmap)
 c4 = ax4.contourf(ak_values, r_values, S_N_values, levels=S_levels, cmap=cmap)
 c6 = ax6.contourf(ak_values, r_values, S_g_values, levels=S_levels, cmap=cmap)

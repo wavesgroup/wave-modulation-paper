@@ -14,10 +14,13 @@ def plot_analytical_solutions(a_L: float):
     t = 0
     g0 = 9.8
     omega = np.sqrt(g0 * k_L)
+    k_short = 10
+    omega_short = np.sqrt(g0 * k_short)
+    cg_short = 0.5 * omega_short / k_short
 
     k_lhs = 1 + ak_L * np.cos(phase)
     k_modulation = np.exp(ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase)))
-    g_modulation = gravity(x, t, a_L, k_L, omega, g0, "linear") / g0
+    g_modulation = gravity(x, t, a_L, k_L, omega, g0, cg_short, "linear") / g0
     N_modulation = k_modulation
     a_modulation = g_modulation ** (-0.25) * k_modulation**0.25 * N_modulation**0.5
     a_lhs = k_lhs
