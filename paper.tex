@@ -50,6 +50,11 @@ of \citet{longuet1960changes}, and are similar to the nonlinear numerical
 solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution}.
 The short-wave steepness modulation is attributed to be 5/8 due to the
 wavenumber, 1/4 due to the wave action, and 1/8 due to the effective gravity.
+Examining the homogeneity and stationarity requirements of the wave action
+conservation equation reveals that stationarity is more easily violated than
+homogeneity, and that the short-wave action is strongly conserved ($>$99\%) only
+for very small amplitude long waves, and weakly conserved ($>$90\%) for steep
+long waves.
 We further examine the results of \citet{peureux2021unsteady} who found through
 numerical simulations that the short-wave modulation grows unsteadily with
 each long-wave passage.
@@ -89,12 +94,16 @@ wavenumber $k_L$ and amplitude $a_L$, and $\psi$ is the long-wave phase.
 This process is illustrated in Fig. \ref{fig:hydrodynamic_modulation_diagram}.
 Hydrodynamic modulation is a key process for the development and
 interpretation of remote sensing of ocean surface waves and currents
-\citep{keller1975microwave,hara1994hydrodynamic}, and is distinguished
+\citep{keller1975microwave,alpers1978two,hara1994hydrodynamic}, and is distinguished
 from aerodynamic modulation \citep{donelan1987effect,belcher1999wave,chen2000effects}.
+Experimental studies of the general short-wave modulation problem included both
+the laboratory \citep[e.g.,][]{keller1975microwave,donelan2010modulation} and field
+\citep[e.g.,][]{hara2003observation,plant1977studies} measurements.
 \citet{phillips1981dispersion} and \citet{longuet1987propagation} revisited the
 hydrodynamic modulation problem by considering nonlinear long waves and
 variations in the effective gravity of short waves.
-Their results yielded significantly stronger modulation than previously predicted.
+Their results yielded significantly stronger modulation than previously predicted
+by \citet{longuet1960changes}.
 \citet{henyey1988energy} derived an analytical solution for the modulation of
 short waves using Hamiltonian mechanics and reported similar modulation magnitudes
 to that of \citet{longuet1987propagation}.
@@ -102,9 +111,10 @@ to that of \citet{longuet1987propagation}.
 using a nonlinear Schr\" odinger equation and found stronger wavenumber
 modulation but weaker amplitude modulation than those predicted by
 \citet{longuet1987propagation}.
-The variety of analytical and numerical frameworks (Eulerian crest and action
-conservation, Hamiltonian, Schr\" odinger) that tackle the same fundamental
-physics and that relatively closely reproduce steady solutions for short-wave
+Aside from the early linear solutions by \citet{longuet1960changes}, the variety
+of analytical and numerical frameworks (Eulerian crest and action conservation,
+Hamiltonian, Schr\" odinger) that tackle the same fundamental
+physics and that relatively closely reproduce the steady solutions for short-wave
 modulation suggests that the solutions are robust.
 Nevertheless, alternative analytical and numerical approaches to the modulation
 problem remain of interest, especially if higher degrees of nonlinearity can be
@@ -186,9 +196,10 @@ This paper  & Crest and action & Yes & Yes & No  & Analytical \\
 \end{center}
 \end{table}
 
-In this paper, we revisit this problem from the perspective of linear wave theory
-but consider the long-wave slope to be significant enough to require evaluating
-the short-waves at the long-wave surface rather than at the mean water level.
+In this paper, we revisit this problem from the perspective of wave action
+conservation but consider the long-wave slope to be significant enough to
+require evaluating the short-waves at the long-wave surface rather than at the
+mean water level.
 This allows us to derive alternative, steady, nonlinear solutions for the
 modulation of short waves, within the limits of small $\varepsilon_L$.
 The analytical solutions yield modulations that are stronger than the original
@@ -431,7 +442,7 @@ First, evaluating the long-wave velocity at $z = 0$ rather than $z = \eta_L$; an
 second, further truncating the Taylor expansion series beyond the first-order
 term.
 These approximations underestimate the short-wave modulation magnitude
-(Fig. \ref{fig:analytical_solutions_ak0.1}a).
+(Fig. \ref{fig:analytical_solutions_ak0.1}).
 At the wave crest, (\ref{eq:k_short_exact}) yields the wavenumber modulation
 that is 16.9\%, 38.5\%, 66.4\%, and 104\% larger than that of
 \citet{longuet1960changes} for $\varepsilon_L = 0.1, 0.2, 0.3, 0.4$, respectively.
@@ -443,9 +454,15 @@ linearised conservation of wave crests in (\ref{eq:wavenumber}) creates excess
 short-wave wavenumber.
 The solution of (\ref{eq:wavenumber}) must be conservative across the long-wave
 phase, as we will see later from the numerical simulations.
-Although the analytical solutions by \citet{longuet1960changes} has been updated
-by the numerical simulations of \citet{longuet1987propagation}, they are here
+The steady analytical solutions for modulation of short-wave effective gravity,
+amplitude, steepness, intrinsic frequency, and phase speed are also shown in
+Fig. \ref{fig:analytical_solutions_ak0.1}, for reference, however, their
+formulations appear in the following subsections.
+Although the analytical solutions by \citet{longuet1960changes} have been updated
+by the numerical results of \citet{longuet1987propagation}, they are here
 nevertheless relevant to use as reference for the proposed analytical solutions.
+This comparison allows quantifying solely the effect of evaluating the
+long-wave properties at the surface rather than at the mean water level.
 
 \begin{figure}
 \centering
@@ -497,7 +514,7 @@ respectively.
 Although \citet{longuet1986eulerian} thoroughly described the differences
 between the Eulerian and Lagrangian effective gravities, he did so for
 a fully nonlinear irrotational gravity wave, which can be computed numerically
-but is not readily available analytically.
+but not analytically.
 Note also that when evaluating the Lagrangian effective gravity,
 \citet{longuet1987propagation} considered the orbital motion of the long wave
 but not the propagation speed of the short-wave group, which can exceed the
@@ -535,7 +552,7 @@ For short waves on a linear long wave, the Eulerian gravity modulation is:
   = 
   \frac{
     1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}
-    \left[ 1 + \left(\varepsilon_L \sin{\psi}\right)^2 \right]
+    \left[ 1 + \left(\varepsilon_L \sin{\psi}\right)^2 e^{\varepsilon_L \cos{\psi}} \right]
   }
   {\sqrt{\left(\varepsilon_L \sin{\psi}\right)^2 + 1}}
 \end{equation}
@@ -548,16 +565,17 @@ In that case, (\ref{eq:gravity_modulation_general}) simplifies to:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear_no_curvature}
-\frac{\widetilde{g}}{g} = 1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}
+\frac{\widetilde{g_e}}{g} = 1 - \varepsilon_L \cos{\psi} e^{\varepsilon_L \cos{\psi}}
 \end{equation}
 If we evaluate the orbital accelerations at the mean water level $z=0$,
 this further simplifies to:
 
 \begin{equation}
 \label{eq:gravity_modulation_linear_no_curvature_mean_level}
-\frac{\widetilde{g}}{g} = 1 - \varepsilon_L \cos{\psi}
+\frac{\widetilde{g_e}}{g} = 1 - \varepsilon_L \cos{\psi}
 \end{equation}
-which is the form used by \citet{peureux2021unsteady}, for example.
+which is the form used by \citet{longuet1960changes} and
+\citet{peureux2021unsteady}, for example.
 
 The general form of the gravity modulation (\ref{eq:gravity_modulation_general})
 is convenient because it allows us to easily attribute the modulation to
@@ -657,6 +675,8 @@ approximations).
   and purple is the same as red but for a fully-nonlinear wave.
   The elevation and surface velocities for the fully-nonlinear wave are computed
   following \citet{clamond2018accurate}.
+  Long-wave crest and trough are located at $\psi = 0$ and $\psi = \pi$,
+  respectively.
 }
 \label{fig:effective_gravities}
 \end{figure}
@@ -934,7 +954,7 @@ crest and action conservation equations.
 (\ref{eq:wavenumber}) and (\ref{eq:wave_action2}) are discretised using
 second-order central finite difference in space and integrated in time using the
 fourth-order Runge-Kutta method \citep{butcher1996runge}.
-The space is divided into 100 grid points.
+The space is divided into 128 grid points.
 This is effectively the same equation set and numerical configuration as that of
 \citet{peureux2021unsteady}, except that their long-wave orbital velocities are
 evaluated at $z=0$ instead of $z=\eta_L$, thus neglecting the Stokes drift
@@ -954,8 +974,8 @@ $\mathcal{O}(10^{-7})$ and $\mathcal{O}(10^{-5})$ relative error, respectively.
 We show in the next section that our numerical solutions for infinite long-wave
 trains are qualitatively equivalent to those of \citet{peureux2021unsteady}.
 
-The numerical equations here are integrated in a fixed reference frame,
-rather than that moving with the long-wave phase speed.
+The numerical equations here are integrated in a fixed reference frame with
+periodic boundary conditions, rather than that moving with the long-wave phase speed.
 Either approach produces equivalent modulation results, however a fixed
 reference frame may allow for a more intuitive interpretation of the results.
 This difference is important to keep in mind when comparing the results
@@ -982,7 +1002,7 @@ At $\varepsilon_L = 0.1$, the numerical solutions for the wavenumber, amplitude,
 and steepness modulation are all remarkably similar to the analytical solutions
 (Fig. \ref{fig:numerical_solutions}a,d,g).
 This suggests that for low long-wave steepness the steady analytical solution
-is a reasonable proxy for the fully-nonlinear crest-action conservation
+is a reasonable approximation for the fully-nonlinear crest-action conservation
 equation solutions.
 The numerical solutions diverge more notably from the analytical ones at
 moderate steepness of 0.2 (Fig. \ref{fig:numerical_solutions}b,e,h), and are
@@ -1012,7 +1032,8 @@ solutions, become important.
   \citet{longuet1960changes} and \citet{longuet1987propagation}, respectively.
   Blue line is based on the analytical solutions from this paper.
   Green and orange lines are for the numerical solutions from this paper
-  using linear and third-order Stokes long waves, respectively.
+  using linear and third-order Stokes approximations of long waves, respectively.
+  Red line is for the fully-nonlinear gravity wave based on \citet{clamond2018accurate}.
 }
 \label{fig:numerical_vs_analytical_k}
 \end{figure}
@@ -1043,16 +1064,26 @@ from the analytical and numerical solutions, are shown on Figs.
 steepness $\varepsilon_L$.
 Overall, the numerical solutions, based on the linear and the third-order Stokes
 long waves alike, begin to diverge from the analytical solution at
-$\varepsilon_L \approx 0.2$.
-The numerical solution using the Stokes long wave is quantitatively very similar
-to the fully-nonlinear solutions of \citet{longuet1987propagation} in amplitude
-modulation, however with somewhat lower wavenumber and steepness modulations.
-For example, at $\varepsilon_L = 0.4$, the steepness modulation in our solutions
-is close to 6, whereas \citet{longuet1987propagation} finds it close to 8.
-The underestimate in the wavenumber modulation at high long-wave steepness
-relative to the results of \citet{longuet1987propagation}
-is likely due to his long wave velocities being evaluated to a higher order in
-$\varepsilon_L$ than they are here.
+$\varepsilon_L \approx 0.15$.
+The numerical solution using the third-order Stokes long wave is quantitatively
+very similar to the fully-nonlinear solutions of \citet{longuet1987propagation}
+in wavenumber modulation, however with somewhat lower amplitude and steepness
+modulations.
+Using the velocity and gravity properties of a fully-nonlinear wave, based on
+the approach by \citet{clamond2018accurate}, the numerical solutions diverge
+from those of the third-order Stokes wave only at very large steepnesses
+($\varepsilon_L > 0.3$).
+Using a fully-nonlinear form of the long-wave thus does not collapse the
+difference between the solutions here and those of \citet{longuet1987propagation}.
+For example, at $\varepsilon_L = 0.4$, the steepness modulation in our solution
+is 6.6, whereas \citet{longuet1987propagation} finds it to be 7.8.
+A possible reason for this difference is that the solutions by
+\citet{longuet1987propagation} are stationary (see his \S2), whereas in our
+numerical model we solve the prognostic nonlinear equations for the short-wave
+wavenumber and action.
+As we will see in the next section, and as was suggested by \citet{peureux2021unsteady},
+they are often, but not always, mostly steady, and can be strongly unsteady in
+special cases.
 Nevertheless, the overall steepness modulation between the two numerical
 approaches are remarkably similar, and either solution would cause the
 short-waves of even low steepness to break \citep{banner1993wave}.
@@ -1062,7 +1093,7 @@ This suggests that in the cases where the short-waves would survive the
 modulation and persist over multiple long-wave periods, the two solutions are
 effectively equivalent.
 
-As the numerical solutions are for nonlinear wave action and crest conservation
+As the numerical solutions are for the nonlinear wave action and crest conservation
 equations, it is important to re-evaluate the homogeneity and stationarity
 requirements for the wave action conservation to remain valid.
 Fig. \ref{fig:homogeneity_stationarity_numerical} shows the homogeneities
@@ -1073,11 +1104,11 @@ Although homogeneity is slightly lower ($H_{k,N,g} \approx 0.92$ for $k/k_L = 10
 and $\varepsilon_L = 0.4$) compared to the analytical solutions,
 the stationarity is significantly reduced.
 Following the same criteria for strong ($S_{k,N,g} > 0.99$) and weak
-($S_{k,N,g} > 0.9$) stationarity as in subsection \ref{sec:wave_action_conservation},
+($S_{k,N,g} > 0.9$) stationarity as in \S\ref{sec:wave_action_conservation},
 the numerical solutions are only weakly stationary for $\varepsilon_L < 0.21$
 at $k/k_L = 10$, and for $\varepsilon_L < 0.36$ at $k/k_L = 100$.
 This provides a quantitative guidance on when the short-wave action can be
-considered to be conserved.
+considered to be conserved in the presence of longer waves.
 
 \begin{figure}
 \centering
@@ -1259,8 +1290,13 @@ varying on the time scales of short waves, \textit{i.e.}
 $|\partial U / \partial x| \ll k |U|$
 and $|\partial U / \partial t| \ll \sigma |U|$.
 This implies $k_L \ll k$ and $\sigma_L \ll \sigma$, respectively.
+The same requirement is imposed on the properties of short waves, including
+wavenumber, amplitude, and effective gravity.
 Another requirement is for the short-waves to remain linear, which implies
 $a k \ll 1$.
+These requirements have been evaluated for the solutions presented here by
+quantifying the homogeneity and stationarity of each relevant property of the
+flow in \S\ref{sec:wave_action_conservation}.
 Furthermore, the short waves examined here do not include the effects of
 surface tension (gravity-capillary waves) or intermediate or shallow water,
 although the solutions can be extended to those conditions, as
@@ -1272,7 +1308,10 @@ This approach, of course, isolates this particular process from other
 dominant modulation and nonlinear transfer processes, such as wave growth
 by wind, wave dissipation, and aerodynamic sheltering by the longer waves,
 that are otherwise present in most measurements
-\citep{plant1986two,laxague2017gravity}. 
+\citep[e.g.,][]{plant1986two,laxague2017gravity}.
+An alternative approach using a fully nonlinear velocity potential flow solver
+that allows for two-way interaction between short and long waves would provide
+additional insight into the modulation of the long waves by the short waves.
 
 Although in this paper we only explored the solutions for $k_L = 1$ and $k=10$
 the results are not sensitive to different values of $k_L$, provided the same
@@ -1318,6 +1357,9 @@ Another important consideration of the hydrodynamic modulation process is
 whether it should somehow be accounted for in phase-averaged spectral wave
 models \citep{group1988wam,tolman1991third,donelan2012modeling} used for global
 and regional wave forecasting.
+Second-order wave spectra have historically been provided by some wave models
+due to the importance for understanding radar altimetry data, however only in a
+diagnostic capacity \citep[e.g.,][]{janssen2009some}.
 Currently, most spectral wave models used for research or forecasting
 do not consider the preferential steepening of short waves in the context
 of their dispersion properties or the wind input via the short-wave phase speed.
@@ -1340,7 +1382,7 @@ squared slope deserves re-examination.
 \label{section:conclusions}
 
 In this paper we revisited the problem of short-wave modulation by long waves
-from a linear wave theory perspective.
+from a wave action conservation perspective.
 Using the linearised wave crest and action conservation equations coupled with
 nonlinear solutions for the effective gravity, we derived steady analytical
 solutions for the modulation of short wave wavenumber, amplitude, steepness,
