@@ -32,18 +32,18 @@ U_stokes = orbital_horizontal_velocity(x, eta_stokes, t, a, k, omega)
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(8, 9), sharex=True)
 
 # Top panel: Surface elevation
-ax1.plot(phase, eta_linear, label="Linear")
-ax1.plot(phase, eta_stokes, label="3$^{rd}$ order Stokes")
-ax1.plot(phase, eta, color="k", label="Fully nonlinear")
+ax1.plot(phase, eta_linear, label="1$^{st}$ order (linear)", lw=3)
+ax1.plot(phase, eta_stokes, label="3$^{rd}$ order Stokes", lw=3)
+ax1.plot(phase, eta, color="k", label="Fully nonlinear", lw=3)
 ax1.axhline(y=0, color="k", linestyle="--", alpha=0.5)
 ax1.set_ylabel("Surface elevation (m)")
 ax1.legend()
 ax1.grid(True)
 
 # Middle panel: Velocities
-ax2.plot(phase, U_linear, label="Linear")
-ax2.plot(phase, U_stokes, label="3$^{rd}$ order Stokes")
-ax2.plot(phase, U, color="k", label="Fully nonlinear")
+ax2.plot(phase, U_linear, label="1$^{st}$ order (linear)", lw=3)
+ax2.plot(phase, U_stokes, label="3$^{rd}$ order Stokes", lw=3)
+ax2.plot(phase, U, color="k", label="Fully nonlinear", lw=3)
 ax2.axhline(y=0, color="k", linestyle="--", alpha=0.5)
 ax2.set_ylabel("Horizontal velocity (m/s)")
 ax2.grid(True)
@@ -52,8 +52,8 @@ ax2.grid(True)
 error_linear = U_linear - U
 error_stokes = U_stokes - U
 
-ax3.plot(phase, error_linear, label="Linear")
-ax3.plot(phase, error_stokes, label="3$^{rd}$ order Stokes")
+ax3.plot(phase, error_linear, label="1$^{st}$ order (linear)", lw=3)
+ax3.plot(phase, error_stokes, label="3$^{rd}$ order Stokes", lw=3)
 ax3.axhline(y=0, color="k", linestyle="--", alpha=0.5)
 ax3.set_ylabel("Velocity Error (m/s)")
 ax3.legend()
@@ -117,14 +117,14 @@ ax = fig.add_subplot(111)
 ax.plot(
     ak_values,
     np.array(max_error_linear),
-    lw=2,
+    lw=3,
     color="tab:blue",
     label="1$^{st}$ order, maximum error",
 )
 ax.plot(
     ak_values,
     np.array(mean_error_linear),
-    lw=2,
+    lw=3,
     color="tab:blue",
     linestyle="--",
     label="1$^{st}$ order, mean absolute error",
@@ -132,20 +132,20 @@ ax.plot(
 ax.plot(
     ak_values,
     np.array(max_error_stokes),
-    lw=2,
+    lw=3,
     color="tab:orange",
     label="3$^{rd}$ order, maximum error",
 )
 ax.plot(
     ak_values,
     np.array(mean_error_stokes),
-    lw=2,
+    lw=3,
     color="tab:orange",
     linestyle="--",
     label="3$^{rd}$ order, mean absolute error",
 )
-ax.plot(ak_values, ak_values**2, "k--", lw=2, label=r"$\varepsilon_L^2$")
-ax.plot(ak_values, ak_values**3, "k:", lw=2, label=r"$\varepsilon_L^3$")
+ax.plot(ak_values, ak_values**2, "k--", lw=3, label=r"$\varepsilon_L^2$")
+ax.plot(ak_values, ak_values**3, "k:", lw=3, label=r"$\varepsilon_L^3$")
 ax.set_xlabel(r"$\varepsilon_L$")
 ax.set_ylabel("Surface velocity error (m/s)")
 ax.legend()

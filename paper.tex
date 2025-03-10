@@ -53,7 +53,7 @@ wavenumber, 1/4 due to the wave action, and 1/8 due to the effective gravity.
 Examining the homogeneity and stationarity requirements of the wave action
 conservation equation reveals that stationarity is more easily violated than
 homogeneity, and that the short-wave action is strongly conserved ($>$99\%) only
-for very small amplitude long waves, and weakly conserved ($>$90\%) for steep
+for very small-amplitude long waves, and weakly conserved ($>$90\%) for steep
 long waves.
 We further examine the results of \citet{peureux2021unsteady} who found through
 numerical simulations that the short-wave modulation grows unsteadily with
@@ -576,6 +576,14 @@ this further simplifies to:
 \end{equation}
 which is the form used by \citet{longuet1960changes} and
 \citet{peureux2021unsteady}, for example.
+The Lagrangian correction in (\ref{eq:gravity_modulation_lagrangian}) is:
+
+\begin{equation}
+\label{eq:gravity_modulation_lagrangian_correction}
+U \frac{\partial W}{\partial x} = g \varepsilon_L^2 \cos^2{\psi} e^{2 \varepsilon_L \cos{\psi}}
++ \mathcal{O}(\varepsilon_L^3)
+\end{equation}
+and so it becomes important only for large $\varepsilon_L$.
 
 The general form of the gravity modulation (\ref{eq:gravity_modulation_general})
 is convenient because it allows us to easily attribute the modulation to
@@ -745,7 +753,7 @@ and (\ref{eq:wave_action_modulation}), the above simplifies to the result of
 \begin{equation}
 \label{eq:wave_amplitude_modulation_order1}
 \dfrac{\widetilde{a}}{a} = 
-  \left( \dfrac{g}{\widetilde{g}} \right)^{\frac{1}{4}}
+  \left( \dfrac{\widetilde{g}}{g} \right)^{-\frac{1}{4}}
   \left( 1 + \varepsilon_L \right)^{\frac{3}{4}}
   \approx \frac{(1 + \varepsilon_L)^{\frac{3}{4}}}{(1 - \varepsilon_L)^{\frac{1}{4}}}
   \approx 1 + \varepsilon_L
@@ -767,15 +775,14 @@ crests and increased in the troughs.
 We discuss the implications of this effect later in \S\ref{section:discussion}
 in the context of wind input to short waves.
 
-Finally, the short-wave steepness modulation follows from (\ref{eq:k_short_exact})
-and (\ref{eq:wave_amplitude_modulation}):
+Finally, the short-wave steepness modulation follows from (\ref{eq:wave_amplitude_modulation}):
 
 \begin{equation}
 \label{eq:ak_modulation}
 \dfrac{\widetilde{ak}}{ak} = 
   \left( \dfrac{\widetilde{k}}{k} \right)^{\frac{5}{4}}
   \left( \dfrac{\widetilde{N}}{N} \right)^{\frac{1}{2}}
-  \left( \dfrac{g}{\widetilde{g}} \right)^{\frac{1}{4}}
+  \left( \dfrac{\widetilde{g}}{g} \right)^{-\frac{1}{4}}
 \end{equation}
 The short-wave steepness modulation at the long-wave crests is thus largely
 controlled by the wavenumber modulation (5/8, or, 62.5\%), followed by the
@@ -790,7 +797,7 @@ modulation at the long-wave crests.
 This result may be useful for the interpretation of remote sensing products
 that resolve some but not all of the short-wave modulation effects.
 Finally, the relative contributions of different modulation factors remain
-mostly constant as $\varepsilon_L$ increases, with only a mild increase of the
+mostly constant as $\varepsilon_L$ increases, with only a mild decrease of the
 effective gravity modulation contribution, and mild increases of the
 wavenumber and wave action modulation contributions.
 
@@ -1086,10 +1093,16 @@ they are often, but not always, mostly steady, and can be strongly unsteady in
 special cases.
 Nevertheless, the overall steepness modulation between the two numerical
 approaches are remarkably similar, and either solution would cause the
-short-waves of even low steepness to break \citep{banner1993wave}.
-Where the two modulation solutions differ (at $\varepsilon_L > 0.2$),
-either solution would lead to short-wave breaking after one long-wave period.
-This suggests that in the cases where the short-waves would survive the
+short-waves of moderate steepness to break \citep{banner1993wave}.
+Specifically, where the two modulation solutions differ ($\varepsilon_L \gtrsim 0.3$),
+the steepness modulation approaches and exceeds 3.
+Tripling the short-wave steepness of even $\varepsilon = 0.1$ would bring the
+wave train near the observed breaking thresholds of $\varepsilon \gtrsim 0.32$
+\citep{perlin2013breaking}, although, recent measurements show evidence of
+significantly higher breaking thresholds
+\citep{toffoli2010maximum,mcallister2024three}, and even exceeding the
+geometric Stokes limit of 0.44.
+Nevertheless, in the cases where the short-waves would survive the
 modulation and persist over multiple long-wave periods, the two solutions are
 effectively equivalent.
 
@@ -1249,12 +1262,17 @@ the short-wave steepening to lock-in to the long-wave crests.
   \label{fig:inhomogeneity_tendencies}
 \end{figure}
 
-\subsection{Short-wave modulation by long-wave groups}
+\subsection{Modulation by long waves of varying amplitude}
 \label{subsection:wave_groups}
 
-We now proceed to examine the numerical solutions with the long-wave forcing
-applied as a long-wave group.
-The wave group is simulated as a non-dispersive train of long waves whose
+We now proceed to examine the numerical solutions of short-wave modulation by
+long waves whose amplitude varies with time.
+The amplitude variation aims to mimic the behaviour of long-wave groups, a
+phenomenon that is ubiquitous in the ocean due to the dispersive nature of
+surface gravity waves, as well as due to the fact that wind-generated waves
+evolve to have a broad-banded spectra.
+For simplicity of implementation and interpretation, 
+the wave group here is simulated as a non-dispersive train of long waves whose
 amplitude scales with $\sin[\pi t / (n T_L)]$, where $n$ is the number of
 long waves in the group.
 The elevation of the long waves thus gradually ramps up from rest to $a_L$ at
@@ -1387,10 +1405,10 @@ Using the linearised wave crest and action conservation equations coupled with
 nonlinear solutions for the effective gravity, we derived steady analytical
 solutions for the modulation of short wave wavenumber, amplitude, steepness,
 intrinsic frequency, and phase speed.
-The latter two have not been previously examined in the context of short-wave
-modulation, but may be important for correctly calculating the wind input into
-short waves, which is proportional to the wind speed relative to the wave
-celerity.
+The latter two were previously examined in the context of short-wave
+modulation \citep{longuet1962resonant,longuet1962phase}, and may be important
+for correctly calculating the wind input into short waves, which is proportional
+to the wind speed relative to the wave celerity.
 The approximate steady solutions yield higher wavenumber and amplitude
 modulation than that of \citet{longuet1960changes}, and somewhat lower than 
 the numerical solutions of \citet{longuet1987propagation} and
