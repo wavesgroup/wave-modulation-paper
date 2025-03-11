@@ -50,11 +50,9 @@ of \citet{longuet1960changes}, and are similar to the nonlinear numerical
 solutions by \citet{longuet1987propagation} and \citet{zhang1990evolution}.
 The short-wave steepness modulation is attributed to be 5/8 due to the
 wavenumber, 1/4 due to the wave action, and 1/8 due to the effective gravity.
-Examining the homogeneity and stationarity requirements of the wave action
-conservation equation reveals that stationarity is more easily violated than
-homogeneity, and that the short-wave action is strongly conserved ($>$99\%) only
-for very small-amplitude long waves, and weakly conserved ($>$90\%) for steep
-long waves.
+Examining the homogeneity and stationarity requirements for the conservation of
+wave action reveals that stationarity is a stronger requirement and is
+generally not satisfied for very steep long waves.
 We further examine the results of \citet{peureux2021unsteady} who found through
 numerical simulations that the short-wave modulation grows unsteadily with
 each long-wave passage.
@@ -63,7 +61,7 @@ conditions as a special case and does not generally occur, for example in more
 realistic long-wave groups.
 The proposed steady solutions are a good approximation of the fully
 nonlinear numerical solutions in long-wave steepness up to $\approx$0.2.
-Except for a subset of initial conditions, the solutions to the fully nonlinear
+Except for a subset of initial conditions, the solutions to the non-linearised
 crest-action conservation equations are mostly steady in the reference frame of
 the long waves.
 \end{abstract}
@@ -1206,9 +1204,14 @@ It may at first seem that there is something special about the uniform initial
 conditions that makes its solutions grow unsteadily and indefinitely.
 \citet{peureux2021unsteady} described this scenario as "...the sudden appearance
 of a long wave perturbation in the middle of a homogeneous short wave field".
-However, it is not obvious whether such a scenario is realistic as waves tend to
+However, it is not obvious whether such a scenario is common as waves tend to
 disperse into groups, and the time scales of incoming swell fronts are much
 longer than those of short-wave generation by wind.
+Exceptional situations with such a sudden onset of swell may occur could be
+around complex coastlines or in shadows behind islands, where wind-generated
+ripples may propagate from an otherwise calm sea state into the path of a
+crossing swell.
+
 To test whether the sudden onset of long-wave forcing causes the unsteady growth,
 we repeat the numerical simulation of Fig.
 \ref{fig:modulation_3panel_infinite}, except for a linear ramp applied to $a_L$
@@ -1270,7 +1273,7 @@ long waves whose amplitude varies with time.
 The amplitude variation aims to mimic the behaviour of long-wave groups, a
 phenomenon that is ubiquitous in the ocean due to the dispersive nature of
 surface gravity waves, as well as due to the fact that wind-generated waves
-evolve to have a broad-banded spectra.
+evolve to have broad-banded spectra.
 For simplicity of implementation and interpretation, 
 the wave group here is simulated as a non-dispersive train of long waves whose
 amplitude scales with $\sin[\pi t / (n T_L)]$, where $n$ is the number of
@@ -1343,6 +1346,9 @@ larger at $\varepsilon_L = 0.4$.
 This suggests that as long as $k/k_L \gg 1$, the modulation amplitude is
 largely independent of the ratio $k/k_L$.
 These results can be reproduced with the companion numerical model.
+Note, however, according to \S\ref{sec:wave_action_conservation}, that the
+wave action conservation requirements are more easily satisfied for larger
+$k/k_L$.
 Also not considered here are the short-wave trains that are oblique to the
 longer waves, which is relatively straightforward to include
 \citep{peureux2021unsteady}.
@@ -1420,6 +1426,11 @@ the mean water level) and due to nonlinear effective gravity.
 In the steady solutions, the short-wave steepness modulation is dominated by
 the wavenumber modulation (5/8), followed by the wave action modulation (1/4),
 and is least affected by the effective gravity modulation (1/8).
+The homogeneity and stationarity criteria for wave action conservation are
+evaluated for both the analytical and numerical solutions.
+The stationarity is a stronger criterion than homogeneity, and is found to be
+strongly satisfied (> 99\% stationary) for very gently sloped waves and weakly
+satisfied (> 90\% stationary) for steeper waves.
 
 The numerical solutions of the full wave crest and action conservation equations
 are consistent with the analytical solutions for $\varepsilon_L \lesssim 0.2$,
@@ -1428,12 +1439,18 @@ and are similar in amplitude to the numerical solutions of
 The simulations also reveal that the unsteady growth of short-wave steepness
 reported by \citet{peureux2021unsteady} is due to the sudden appearance of
 long waves in a homogeneous short-wave field, a scenario that is unlikely to
-occur in the open ocean.
-A more likely condition such as that of long-wave groups, are only mildly
+be common in the open ocean.
+A more likely condition such as that of long-wave groups, is only mildly
 destabilising for the short waves.
-These results suggest that for mildly-to-moderately steep short waves,
+These results suggest that for the long-wave steepness $\varepsilon_L \lesssim 0.2$,
 the analytical steady solutions presented here are sufficient to describe the
 modulation of short waves by long waves.
+For moderately steep long waves ($0.2 \lesssim \varepsilon_L \lesssim 0.3$),
+numerical solutions of non-linearised crest and action conservation equations
+are necessary to capture the short-wave steepness modulation.
+For steeper long waves ($\varepsilon_L > 0.3$), the short-wave properties can
+no longer be considered stationary \citep{bretherton1968wavetrains}, and the
+wave action conservation equation is not valid in this context.
 It may be worthwhile to revisit a more systematic inclusion of the hydrodynamic
 modulation effects in phase-averaged spectral wave models, beyond the simple
 cumulative mean squared slope for wave dissipation, but also for modulating
