@@ -49,7 +49,7 @@ def plot_modulation_3panel(model, contour_levels, title):
         ax.set_yticks(range(0, num_periods + 1, 1))
         ax.set_xticks(np.arange(0, 2.5 * np.pi, 0.5 * np.pi))
         ax.set_xticklabels([r"$0$", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
-        ax.set_xlabel(r"$\Psi$")
+        ax.set_xlabel(r"$k_L x$")
 
     fig.subplots_adjust(left=0.1, right=0.9, bottom=0.0, top=0.9)
     cbar = fig.colorbar(
@@ -64,7 +64,7 @@ def plot_modulation_3panel(model, contour_levels, title):
 
 m = WaveModulationModel()
 m.run(ramp_type=None)
-plot_modulation_3panel(m, np.arange(0.5, 2.3, 0.1), "Infinite wave train")
+plot_modulation_3panel(m, np.linspace(0.5, 2.4, 20), "Infinite wave train")
 
 m.run(ramp_type="linear")
 plot_modulation_3panel(m, np.arange(0.75, 1.3, 0.05), "Linear ramp")

@@ -10,7 +10,9 @@ figures: hydrodynamic_modulation_diagram \
          numerical_simulations \
          numerical_simulations_with_phase \
          numerical_simulations_ramp_properties \
-         modulation_contributors
+         modulation_contributors \
+	 velocity_error \
+	 action_conservation_criteria
 
 hydrodynamic_modulation_diagram: plot_modulation_diagram.py
 	python3 plot_modulation_diagram.py
@@ -38,3 +40,10 @@ numerical_simulations: plot_numerical_simulations.py
 
 numerical_simulations_ramp_properties: plot_numerical_simulations_ramp_properties.py
 	python3 plot_numerical_simulations_ramp_properties.py
+
+velocity_error: plot_velocity_error.py
+	python3 plot_velocity_error.py
+
+action_conservation_criteria: plot_action_conservation_criteria.py
+	python3 plot_action_conservation_criteria.py
+	python3 plot_velocity_error.py

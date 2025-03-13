@@ -130,7 +130,7 @@ pos = arrow_positions[0]
 ax.text(
     pos - 0.2,
     np.sin(pos) - 0.4,
-    r"$\frac{\partial W}{\partial t}$",
+    r"$\frac{dW}{dt}$",
     fontsize=28,
     ha="right",
     va="top",

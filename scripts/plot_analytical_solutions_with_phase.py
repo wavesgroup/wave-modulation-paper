@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib
-from twowave import gravity_curvilinear
 
 matplotlib.rc("font", size=12)
 
@@ -10,19 +9,19 @@ def plot_analytical_solutions(a_L: float):
     phase = np.linspace(0, 2 * np.pi, 10000, endpoint=False)
     k_L = 1
     ak_L = a_L * k_L
-    x = phase / k_L
-    t = 0
     g0 = 9.8
-    omega = np.sqrt(g0 * k_L)
 
     k_lhs = 1 + ak_L * np.cos(phase)
+    g_lhs = 1 - ak_L * np.cos(phase)
     k_modulation = np.exp(ak_L * np.cos(phase) * np.exp(ak_L * np.cos(phase)))
-    g_modulation = gravity_curvilinear(x, t, a_L, k_L, omega, g0, "linear") / g0
+    g_modulation = 1 + ak_L * np.exp(ak_L * np.cos(phase)) * (
+        -np.cos(phase) + ak_L * np.sin(phase) ** 2
+    )
     N_modulation = k_modulation
     a_modulation = g_modulation ** (-0.25) * k_modulation**0.25 * N_modulation**0.5
     a_lhs = k_lhs
 
-    omega_lhs = np.sqrt(k_lhs)
+    omega_lhs = np.sqrt(g_lhs * k_lhs)
     omega_modulation = np.sqrt(g_modulation * k_modulation)
 
     Cp_lhs = omega_lhs / k_lhs
@@ -50,7 +49,7 @@ def plot_analytical_solutions(a_L: float):
     )
     axes[0].legend()
 
-    axes[1].plot(phase, np.ones(phase.shape), "k-", lw=2)
+    axes[1].plot(phase, g_lhs, "k-", lw=2)
     axes[1].plot(phase, g_modulation, marker="", linestyle="-", color="tab:blue", lw=2)
 
     axes[2].plot(phase, a_lhs, "k-", lw=2)
