@@ -41,8 +41,8 @@ measurements, and numerical wave forecasting.
 This paper revisits the wave crest and action conservation laws and derives
 steady, nonlinear, analytical solutions for the change of short-wave wavenumber,
 action, and gravitational acceleration due to the presence of longer waves.
-We validate the analytical solutions with numerical simulations of the full 
-conservation equations.
+We validate the analytical solutions with numerical solutions of the full 
+crest and action conservation equations.
 The nonlinear analytical solutions of short-wave wavenumber, amplitude, and
 steepness modulation significantly deviate from the linear analytical solutions
 of \citet{longuet1960changes}, and are similar to the nonlinear numerical
@@ -244,10 +244,11 @@ An important limitation here is that $U$ must be slowly varying on the scales of
 the wave period \citep{bretherton1968wavetrains}.
 From the perspective of short waves riding on long waves, the advective current
 is the horizontal near-surface orbital velocity of the long wave.
-Strictly, a velocity profile must be considered when determining the
-advective velocity for a wave of any given wavenumber \citep{stewart1974hf},
-however, for brevity, here we will assume a surface velocity to be the advective
-one for short waves.
+Strictly, shear must be considered when determining the advective velocity for
+a wave of any given wavenumber \citep{stewart1974hf,ellingsen2014ship}.
+Here, we assume the surface velocity to be the advective one for short waves,
+and demonstrate later in $\S$\ref{sec:wave_action_conservation} that this is
+valid for sufficient scale separation between the short and long waves.
 The evolution of the short-wave wavenumber is described by the conservation of
 wave crests \citep[e.g.,][]{whitham1974dispersive,phillips1981dispersion}:
 
@@ -283,11 +284,13 @@ conservative in wave modulation theory
 We describe this and other requirements in more detail further below and show
 in what long-wave conditions they are satisfied.
 The wave crest conservation (\ref{eq:wave_crests}) follows from the assumption
-of a conserved wave phase, which is limited by the same set of requirements as
-those for the wave action conservation \citep[e.g.,][]{whitham1974dispersive}.
+of a conserved wave phase, and is another prerequisite for wave action
+conservation \citep[e.g.,][]{whitham1974dispersive}.
 Although the absence of wave growth and dissipation is not generally realistic in
 the open ocean, it is a useful approximation here to isolate the effects
 of hydrodynamic modulation solely due to the motion of the long waves.
+The governing equations (\ref{eq:dispersion})-(\ref{eq:wave_action}) are
+derived in Appendix \ref{appendix:derivation}.
 
 Short waves that ride on the surface of the longer waves move in an accelerated
 reference frame (due to the centripetal acceleration at the long-wave surface)
@@ -341,6 +344,14 @@ In other words, the wave kinematics (the wavenumber distribution) are not
 concerned with the wave action.
 In contrast, the wave action is governed, among others, by the
 group velocity and thus depends on the wavenumber.
+This convenient property is only possible if we consider the linear form
+of the dispersion relation, that is, if the series are truncated at the
+second-order solution in the Stokes expansion.
+For a third-order expansion, an additional term that is proportional to the
+square of the wave steepness appears in the dispersion relation.
+In that case, equations (\ref{eq:wavenumber}) and (\ref{eq:wave_action2})
+become fully coupled and the analytical solution for the wavenumber is no longer
+feasible.
 
 For the ambient forcing, we consider a train of monochromatic long waves
 defined, to the first order in $\varepsilon_L$, by the elevation
@@ -869,9 +880,25 @@ between the long and short waves:
   \sigma_L \ll \widetilde{\sigma}
 \end{equation}
 \citet{bretherton1968wavetrains} also require that the medium is nearly uniform
-over the vertical scales of motion of the short waves.
-For the ambient velocity being the orbital velocity of the long wave, this is
-trivially satisfied with (\ref{eq:k_scale_separation}).
+over the vertical scales of motion of the short waves:
+
+\begin{equation}
+  \frac{1}{U} \frac{\partial U}{\partial z} \ll \widetilde{k}
+\end{equation}
+which, for a long deep water wave, is equivalent to (\ref{eq:k_scale_separation}).
+Alternatively, if we use the second Froude number criterion following
+\citet{ellingsen2014ship} and quantify the shear length
+under the long wave surface as:
+
+\begin{equation}
+  l_S = \frac{g}{S^2} \approx \frac{g}{\varepsilon_L^2 \omega_L^2}
+\end{equation}
+we arrive to an additional requirement:
+
+\begin{equation}
+  \frac{k}{k_L} \gg \varepsilon_L^2
+\end{equation}
+which relates the scale separation to the long-wave steepness.
 
 \begin{figure}
 \centering
@@ -948,6 +975,8 @@ is valid to $\mathcal{O}(k_L/k)$, applying the general criteria
 error of $\mathcal{O}(\varepsilon_L k_L/k)$.
 We will revisit these criteria based on the numerical solutions of nonlinear
 wave action and crest conservation equations in the next section.
+For the asymptotic limits of wave action conservation in terms of the wave
+short-wave steepness, see Appendix \ref{appendix:wave_action_conservation}.
 
 \section{Numerical solutions}
 \label{section:numerical_solutions}
@@ -1422,12 +1451,14 @@ Using the linearised wave crest and action conservation equations coupled with
 nonlinear solutions for the effective gravity, we derived steady, nonlinear, analytical
 solutions for the modulation of short wave wavenumber, amplitude, steepness,
 intrinsic frequency, and phase speed.
-The latter two were previously examined in the context of short-wave
-modulation \citep{longuet1962resonant,longuet1962phase}, and may be important
-for correctly calculating the wind input into short waves, which is proportional
-to the wind speed relative to the wave celerity.
+The latter two were previously examined in the context of resonant interactions
+\citep{longuet1962resonant,longuet1962phase}, a modulation process distinct from
+the one discussed here.
+Both effects, however, may be important for correctly calculating the wind input
+into short waves, which is proportional to the wind speed relative to the wave
+celerity.
 The approximate steady solutions yield higher wavenumber and amplitude
-modulation than that of \citet{longuet1960changes}, and somewhat lower than 
+modulation than that of \citet{longuet1960changes}, and somewhat lower than
 the numerical solutions of \citet{longuet1987propagation} and
 \citet{zhang1990evolution}.
 This is mainly due to the analytical solution requiring the crest and action
@@ -1501,6 +1532,313 @@ this paper.
 
 \appendix
 
+\section{Derivation of the governing equations}
+\label{appendix:derivation}
+
+Here we derive the governing equations for the short waves
+(\ref{eq:dispersion})-(\ref{eq:wave_action}) and discuss their asymptotic
+consistency.
+
+\subsection{Wave dispersion}
+
+An irrotational flow has a velocity potential such that the continuity can be
+expressed as:
+
+\begin{equation}
+  \nabla^2 \phi = 0
+  \label{eq:laplace_equation}
+\end{equation}
+Boundary conditions that allow solving for $\phi$ are the dynamic and kinematic
+free surface boundary conditions, respectively:
+
+\begin{equation}
+  \frac{\partial \phi}{\partial t} + \frac{1}{2} (\nabla{\phi})^2 + gz = 0 \quad \text{at} \quad z = \eta(x,t)
+  \label{eq:dynamic_free_surface_boundary_condition}
+\end{equation}
+
+\begin{equation}
+  \frac{\partial \eta}{\partial t} + \frac{\partial \phi}{\partial x} \frac{\partial \eta}{\partial x} + \frac{\partial \phi}{\partial z} = 0 \quad \text{at} \quad z = \eta(x,t)
+  \label{eq:kinematic_free_surface_boundary_condition}
+\end{equation}
+Also required is the bottom boundary condition:
+
+\begin{equation}
+  \frac{\partial \phi}{\partial z} = 0 \quad \text{at} \quad z = -h
+\end{equation}
+In the \citet{stokes1847} perturbation approach, the velocity potential and
+elevation are expanded in a power series of the wave steepness
+$\varepsilon = ak$ as:
+
+\begin{equation}
+  \phi = \sum_{n=1}^{\infty} \varepsilon^n \phi_n
+\end{equation}
+\begin{equation}
+  \eta = \sum_{n=1}^{\infty} \varepsilon^n \eta_n
+\end{equation}
+The power series expansion requires $\varepsilon \ll 1$.
+The velocity potential and elevation series are truncated at the desired order
+and inserted into the dynamic free surface boundary condition (\ref{eq:dynamic_free_surface_boundary_condition}).
+Up to the third order, the solutions for the velocity potential and the
+corresponding velocity components are (\ref{eq:phi})-(\ref{eq:W_L}), and the
+surface elevation is (\ref{eq:eta_stokes}).
+Evaluating these quantities to higher orders in $\varepsilon$ is possible at
+the expense of higher complexity and with diminishing returns in accuracy.
+
+Combining the solutions for the potential and the surface elevation with the
+kinematic free surface boundary condition (\ref{eq:kinematic_free_surface_boundary_condition})
+yields the dispersion relation, which in the linear case and in deep water is
+(\ref{eq:dispersion}).
+At the third order in $\varepsilon$, the frequency begins to depend on the wave
+steepness $\varepsilon$ as well:
+
+\begin{equation}
+  \omega = \sqrt{g k} \left(1 + \frac{1}{2} \varepsilon^2 + \mathcal{O}(\varepsilon^4)\right) + U k
+  \label{eq:dispersion_nonlinear}
+\end{equation}
+In this paper we constrain the analysis framework to the linear case for short
+waves, as this permits the analytical solutions in $\S\ref{section:analytical_solutions}$.
+The Doppler shift by the ambient velocity $U$ is unaffected by the nonlinear
+effects in the solution.
+
+\subsection{Conservation of wave crests}
+
+A system with a well defined phase function $\psi(x,t)$ also has the wavenumber
+and frequency defined as its gradients with respect to space and time, respectively:
+
+\begin{equation}
+  k = \frac{\partial \psi}{\partial x}
+  \label{eq:wavenumber_from_phase}
+\end{equation}
+
+\begin{equation}
+  \omega = - \frac{\partial \psi}{\partial t}
+  \label{eq:frequency_from_phase}
+\end{equation}
+implying $\psi = kx - \omega t$.
+Differentiating (\ref{eq:wavenumber_from_phase})-(\ref{eq:frequency_from_phase})
+with respect to time and space, respectively, and then eliminating $\psi$ yields:
+
+\begin{equation}
+  \frac{\partial k}{\partial t} + \frac{\partial \omega}{\partial x} = 0
+  \label{eq:wavenumber_conservation}
+\end{equation}
+which is the crest conservation equation (\ref{eq:wave_crests}).
+That this is the wavenumber conservation equation with the group speed as the
+transport velocity can be recognized by writing:
+
+\begin{equation}
+  \frac{\partial k}{\partial t} + \frac{\partial \omega}{\partial k} \frac{\partial k}{\partial x} = 0
+\end{equation}
+This conservation equation is valid regardless of the order of nonlinearity
+considered, as long as $\psi$ is well defined.
+Nonlinearity in terms of $\varepsilon$ can, however, enter (\ref{eq:wavenumber_conservation})
+through nonlinear forms of $\omega$ such as (\ref{eq:dispersion_nonlinear}).
+
+\subsection{Conservation of wave action}
+\label{appendix:wave_action_conservation}
+
+The conservation of wave action (\ref{eq:wave_action}) is most readily derived
+following the variational approach by \citet{whitham1965general}.
+Begin with a statement that infinitesimal variations of a Lagrangian of a system
+over a spatial domain and time interval must vanish:
+
+\begin{equation}
+  \delta \iint L\, dx\,dt = 0
+\end{equation}
+Here, $L$ is the instantaneous Lagrangian density, a scalar quantity that
+corresponds to the difference between the kinetic and potential energy of the
+system:
+
+\begin{equation}
+  L = \int_{-h}^{\eta} \left[ \frac{1}{2} (\nabla{\phi})^2 + gz \right] dz
+  \label{eq:lagrangian_density_energy_difference}
+\end{equation}
+\citet{luke1967variational} showed that the equations for irrotational
+surface waves follow from the variational approach if the Lagrangian $L$ is
+defined instead as:
+
+\begin{equation}
+  L = \int_{-h}^{\eta} \left[ \frac{\partial \phi}{\partial t} + \frac{1}{2} (\nabla{\phi})^2 + gz \right] dz
+  \label{eq:lagrangian_density_luke}
+\end{equation}
+(\ref{eq:lagrangian_density_energy_difference}) and (\ref{eq:lagrangian_density_luke})
+are equivalent in the sense that they both yield (\ref{eq:laplace_equation}),
+however, varying the latter is necessary to attain the correct boundary conditions
+\citep{whitham1967non}.
+Notice that for water waves the instantaneous Lagrangian being zero is
+equivalent to the Bernoulli's equation, which is also the dynamic free surface
+boundary condition.
+
+Then, Whitham's averaged variation principle is obtained by averaging the
+instantaneous Lagrangian $L$ over one wave period:
+
+\begin{equation}
+  \mathcal{L} = \frac{1}{2\pi} \int_0^{2\pi} L\ d\psi
+  \label{eq:averaged_lagrangian}
+\end{equation}
+where $\mathcal{L}$ is the averaged Lagrangian density.
+The averaged variational principle then states:
+
+\begin{equation}
+  \delta \iint \mathcal{L}\, dx\,dt = 0
+\end{equation}
+The averaged Lagrangian for water waves is obtained by integrating
+(\ref{eq:lagrangian_density_luke}) over depth, and then averaging over the phase
+(\ref{eq:averaged_lagrangian}).
+In the deep water limit, it is:
+
+\begin{equation}
+  \mathcal{L} = \frac{1}{4} \left( 1 - \frac{\omega^2}{gk} \right) g a^2 + \mathcal{O}(\varepsilon^4)
+\end{equation}
+which, after recognizing the wave energy$E = \frac{1}{2} g a^2$, yields:
+
+\begin{equation}
+  \mathcal{L} = \frac{1}{2} \left( 1 - \frac{\omega^2}{gk} \right) E + \mathcal{O}(\varepsilon^4)
+  \label{eq:averaged_lagrangian_deep_water}
+\end{equation}
+
+Whitham's conservation equations for water waves are:
+
+\begin{equation}
+  \frac{\partial \mathcal{L}}{\partial a} = 0
+\end{equation}
+
+\begin{equation}
+  \frac{\partial}{\partial t} \left(\frac{\partial \mathcal{L}}{\partial \omega}\right) - \frac{\partial}{\partial x} \left(\frac{\partial \mathcal{L}}{\partial k}\right) = 0
+  \label{eq:whitham_conservation_equation}
+\end{equation}
+Inserting (\ref{eq:averaged_lagrangian_deep_water}) into (\ref{eq:whitham_conservation_equation})
+and defining:
+
+\begin{equation}
+  \frac{\partial \mathcal{L}}{\partial \omega} = \frac{E}{\sigma} \equiv N
+  \label{eq:adiabatic1}
+\end{equation}
+yields the conservation of wave action:
+
+\begin{equation}
+  \frac{\partial}{\partial t} \left[ N + \mathcal{O}(\varepsilon^4) \right] +
+  \frac{\partial}{\partial x} \left[ (C_g + \mathcal{O}(\varepsilon^2)) N + \mathcal{O}(\varepsilon^4) \right] = 0
+\end{equation}
+Due to the $\mathcal{O}(\varepsilon^2)$ correction to the group speed, the
+overall truncation error for the wave action balance is $\mathcal{O}(\varepsilon^2)$
+as well:
+
+\begin{equation}
+  \frac{\partial N}{\partial t} +
+  \frac{\partial (C_g N)}{\partial x} = \mathcal{O}(\varepsilon^2)
+  \label{eq:wave_action_conservation_nonlinear}
+\end{equation}
+which was introduced as a governing equation in \S\ref{section:governing_equations}.
+Although the truncation error of $\mathcal{O}(\varepsilon^2)$ arising from $C_g$
+seems to have been omitted in the original derivation by \citet{whitham1967non},
+it appeared correctly later in \citet{whitham1974linear}.
+An important nuance about applying the nonlinear dispersion here is that the
+secondary (wave-induced) mean flow and set-up effects can be ignored in the
+deep water limit; this is discussed by \citet{whitham1974dispersive}.
+The terms proportional to $\varepsilon^4$ do not appear in the averaged Lagrangian
+(\ref{eq:averaged_lagrangian_deep_water}) until the third-order Stokes waves
+are considered, for which the dispersion gains a $\mathcal{O}(\varepsilon^2)$
+correction.
+In that case, the conserved quantity is:
+
+\begin{equation}
+  \frac{\partial \mathcal{L}}{\partial \omega} = \frac{E}{\sigma} (1 + \frac{1}{2} \varepsilon^2)
+  \label{eq:adiabatic2}
+\end{equation}
+and the group speed gains a nonlinear factor in $\varepsilon^2$ as well.
+(\ref{eq:wave_action_conservation_nonlinear}), then, maintains the same form,
+but with the truncation error of $\mathcal{O}(\varepsilon^4)$.
+This derivation, as well as the averaged Lagrangian principle applied to the
+wave-induced mean flow over arbitrary water depths, is detailed at greater length
+by \citet{whitham1967non}.
+
+To consider the effect of slowly varying ambient currents,
+\citet{bretherton1968wavetrains} carried out the same derivation except that
+they propagated the ambient current derivatives $\partial U / \partial t$ and
+$\partial U / \partial x$ through the averaged Lagrangian.
+To allow these derivatives to drop out of the averaging integral, the authors
+make an argument that the variation must be sufficiently small, no larger than
+$\mathcal{O}(\frac{1}{\sigma U} \frac{\partial U}{\partial t})$ and
+$\mathcal{O}(\frac{1}{k U} \frac{\partial U}{\partial x})$, respectively.
+Taking into consideration the asymptotic limits in terms of the wave steepness
+$\varepsilon$ as well as the variation of the ambient current, the wave action
+balance can be written as:
+
+\begin{equation}
+  \frac{\partial N}{\partial t} +
+  \frac{\partial}{\partial x} \left[ \left(C_g + U\right) N \right] =
+  \mathcal{O}\left(\varepsilon^4, \frac{1}{\sigma U} \frac{\partial U}{\partial t}, \frac{1}{k U} \frac{\partial U}{\partial x}\right)
+\end{equation}
+\S\ref{sec:wave_action_conservation} deals specifically with quantifying the
+ambient velocity variation in the context of long-wave orbital velocities.
+
+There is an alternative derivation of the wave action conservation that was
+pointed out by \citet{bretherton1968wavetrains}.
+Starting from the wave energy conservation in non-uniform currents derived by
+\citet{longuet1961changes}
+
+\begin{equation}
+  \frac{\partial E}{\partial t} +
+  \frac{\partial}{\partial x} \left[ \left(C_g + U\right) E \right] +
+  S_{x} \frac{\partial U}{\partial x} = 0
+  \label{eq:energy_conservation_nonuniform_currents}
+\end{equation}
+where $S_x$ is the wave radiation stress, and combining it with the dispersion
+relation (\ref{eq:dispersion}) and conservation of crests
+(\ref{eq:wave_crests}), they show that (\ref{eq:energy_conservation_nonuniform_currents})
+is equivalent to the wave action conservation (\ref{eq:wave_action}).
+This derivation is found in the Appendix of \citet{bretherton1968wavetrains},
+and was later recognized by \citet{whitham1974linear} as well.
+
+In summary, asymptotically consistent sets of dispersion and action conservation
+equations vary depending on the level of nonlinearity considered.
+In the case of linear waves, the dispersion relation (\ref{eq:dispersion}),
+the averaged Lagrangian (\ref{eq:averaged_lagrangian_deep_water}), the adiabatic
+quantity (\ref{eq:adiabatic1}) and the wave action conservation
+(\ref{eq:wave_action_conservation_nonlinear}) are asymptotically consistent.
+For third-order Stokes waves, the dispersion relation
+(\ref{eq:dispersion_nonlinear}), the adiabatic quantity (\ref{eq:adiabatic2}),
+together with the group speed that includes a $\mathcal{O}(\varepsilon^2)$ correction,
+are governed by the action conservation law
+(\ref{eq:wave_action_conservation_nonlinear}) and are asymptotically consistent.
+This is summarized in Table \ref{table:asymptotic_consistency}.
+
+\begin{table}
+\begin{center}
+\def~{\hphantom{0}}
+\begin{tabular}{cccc}
+Order & Frequency  & Group speed & Wave action conservation \\
+\hline
+1, 2 & $\sqrt{gk}(1 + \mathcal{O}(\varepsilon^2))$ & $\frac{1}{2}\sqrt{\frac{g}{k}}(1 + \mathcal{O}(\varepsilon^2))$ & $\frac{\partial N}{\partial t} + \frac{\partial (C_g N)}{\partial x} = \mathcal{O}(\varepsilon^2)$ \\
+\hline
+3 & $\sqrt{gk}(1 + \frac{1}{2}\varepsilon^2 + \mathcal{O}(\varepsilon^4))$ & $\frac{1}{2}\sqrt{\frac{g}{k}}(1 + \frac{5}{2}\varepsilon^2 + \mathcal{O}(\varepsilon^4))$ & $\frac{\partial N}{\partial t} + \frac{\partial (C_g N)}{\partial x} = \mathcal{O}(\varepsilon^4)$ \\
+\hline
+\end{tabular}
+\caption{
+  Asymptotically consistent sets of dispersion and wave action relations for
+  deep water and their respective truncation errors in terms of the wave
+  steepness $\varepsilon$, for the first three Stokes expansion orders.
+}
+\label{table:asymptotic_consistency}
+\end{center}
+\end{table}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{figures/fig_velocity_error_by_phase.pdf}
+\caption{
+  Surface elevation (top) and horizontal velocity (middle) for the linear wave
+  (blue), the third-order Stokes wave (orange), and the fully-nonlinear wave
+  (black) with steepness of $\varepsilon_L = 0.4$.
+  The bottom panel shows the surface velocity error for the linear wave (blue)
+  and the third-order Stokes wave (orange), relative to the fully-nonlinear
+  wave solution.
+}
+\label{fig:velocity_error_by_phase}
+\end{figure}
+
 \section{Surface velocity errors}
 \label{appendix:surface_velocity_errors}
 
@@ -1535,21 +1873,6 @@ Field measurements of near-surface orbital velocities by
 \citet{laxague2020observations} qualitatively support this result, although
 they find larger departures from the linear theory in stronger winds, that is,
 steeper waves.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{figures/fig_velocity_error_by_phase.pdf}
-\caption{
-  Surface elevation (top) and horizontal velocity (middle) for the linear wave
-  (blue), the third-order Stokes wave (orange), and the fully-nonlinear wave
-  (black) with steepness of $\varepsilon_L = 0.4$.
-  The bottom panel shows the surface velocity error for the linear wave (blue)
-  and the third-order Stokes wave (orange), relative to the fully-nonlinear
-  wave solution.
-}
-\label{fig:velocity_error_by_phase}
-\end{figure}
-
 
 \begin{figure}
 \centering
