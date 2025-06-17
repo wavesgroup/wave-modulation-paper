@@ -1,5 +1,5 @@
 \documentclass[lineno]{jfm}
-\documentclass[]{jfm}
+%\documentclass[]{jfm}
 
 \usepackage{graphicx}
 %\usepackage{epstopdf,epsfig}
@@ -1719,7 +1719,7 @@ yields the conservation of wave action:
 
 \begin{equation}
   \frac{\partial}{\partial t} \left[ N + \mathcal{O}(\varepsilon^4) \right] +
-  \frac{\partial}{\partial x} \left[ (C_g + \mathcal{O}(\varepsilon^2)) N + \mathcal{O}(\varepsilon^4) \right] = 0
+  \frac{\partial}{\partial x} \left[ (C_g + \mathcal{O}(\varepsilon^2)) (N + \mathcal{O}(\varepsilon^4)) \right] = 0
 \end{equation}
 Due to the $\mathcal{O}(\varepsilon^2)$ correction to the group speed, the
 overall truncation error for the wave action balance is $\mathcal{O}(\varepsilon^2)$
@@ -1802,7 +1802,8 @@ For third-order Stokes waves, the dispersion relation
 (\ref{eq:dispersion_nonlinear}), the adiabatic quantity (\ref{eq:adiabatic2}),
 together with the group speed that includes a $\mathcal{O}(\varepsilon^2)$ correction,
 are governed by the action conservation law
-(\ref{eq:wave_action_conservation_nonlinear}) and are asymptotically consistent.
+(\ref{eq:wave_action_conservation_nonlinear}, but with the truncation error of
+$\mathcal{O}(\varepsilon^4)$), and are asymptotically consistent.
 This is summarized in Table \ref{table:asymptotic_consistency}.
 
 \begin{table}
