@@ -1,8 +1,8 @@
 # wave-modulation-paper
 
 Paper and code for the short-wave modulation paper.
-Under review in Journal Fluid Mechanics.
-Preprint [here](https://arxiv.org/abs/2410.12960).
+
+Read the published paper [here](https://doi.org/10.1017/jfm.2025.10376).
 
 LaTeX source is licensed under [CC-BY](LICENSE).
 Python scripts are licensed under [MIT](scripts/LICENSE).
